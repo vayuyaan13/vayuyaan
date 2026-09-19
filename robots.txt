@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://vayuyaan13.github.io/vayuyaan/sitemap.xml
