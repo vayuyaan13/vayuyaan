@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://vayuyaan13.github.io/vayuyaan/</loc></url>
+  <url><loc>https://vayuyaan13.github.io/vayuyaan/arduino/</loc></url>
+  <url><loc>https://vayuyaan13.github.io/vayuyaan/sensors/</loc></url>
+  <url><loc>https://vayuyaan13.github.io/vayuyaan/robotics/</loc></url>
+  <url><loc>https://vayuyaan13.github.io/vayuyaan/esp32/</loc></url>
 </urlset>
