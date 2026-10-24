@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5 Arduino IR Sensor Projects for Beginners | Vayuyaan</title>
+<meta name="description" content="Build five Arduino IR sensor projects, including obstacle detection, line following, object counting, automatic lighting and an IR alarm, with wiring and testing tips.">
+<link rel="canonical" href="https://vayuyaan13.github.io/vayuyaan/ir-sensor-projects-arduino/">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta property="og:locale" content="en_IN">
+<meta property="og:site_name" content="Vayuyaan">
+<meta property="og:title" content="5 Arduino IR Sensor Projects for Beginners | Vayuyaan">
+<meta property="og:description" content="Try five practical Arduino IR sensor projects, from obstacle detection to line following, with build and troubleshooting advice.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://vayuyaan13.github.io/vayuyaan/ir-sensor-projects-arduino/">
+<meta property="og:image" content="https://vayuyaan13.github.io/vayuyaan/assets/ir-sensor-projects-arduino.svg">
+<meta property="og:image:alt" content="Arduino Uno, IR sensor modules and a line-following robot">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="5 Arduino IR Sensor Projects for Beginners | Vayuyaan">
+<meta name="twitter:description" content="Five beginner-friendly Arduino IR sensor builds with wiring, testing and troubleshooting tips.">
+<meta name="twitter:image" content="https://vayuyaan13.github.io/vayuyaan/assets/ir-sensor-projects-arduino.svg">
+<link rel="stylesheet" href="../style.css?v=20261024c">
+<style>
+.article-shell{max-width:1160px;margin:0 auto;padding:28px 28px 88px}.article-breadcrumb{display:flex;gap:10px;align-items:center;color:#77818a;font-size:.82rem;margin:8px 0 38px}.article-breadcrumb a{color:#64717d;text-decoration:none}.blog-article{max-width:1040px;margin:0 auto}.article-header{max-width:850px;margin:0 auto 42px;padding:0 0 34px;border-bottom:1px solid #e5e9ed}.article-category{font-size:.72rem;letter-spacing:.15em;font-weight:800;color:#977000;margin:0 0 16px}.article-header h1{font-size:clamp(2.45rem,5.2vw,4.4rem);letter-spacing:-.055em;line-height:1.04;margin:0 0 24px;max-width:850px}.article-deck{font-size:1.18rem;line-height:1.8;color:#52606b;max-width:790px;margin:0}.article-byline{display:flex;flex-wrap:wrap;gap:11px;align-items:center;margin-top:24px;color:#7d8790;font-size:.8rem}.article-byline span:first-child{font-weight:700;color:#26313a}.article-hero{margin:30px 0 34px}.article-hero img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:14px;border:1px solid #e2e7ea}.article-hero figcaption{font-size:.8rem;color:#78838b;margin-top:10px;line-height:1.5}.article-layout{display:grid;grid-template-columns:210px minmax(0,740px);gap:56px;justify-content:center;align-items:start}.article-toc{position:sticky;top:112px;border-left:2px solid #e5e9ed;padding:4px 0 5px 17px;display:flex;flex-direction:column;gap:11px}.article-toc p{font-size:.66rem;letter-spacing:.14em;font-weight:800;color:#8a949d;margin:0 0 5px}.article-toc a{font-size:.82rem;line-height:1.45;text-decoration:none;color:#65717b}.article-content{min-width:0;color:#303b44;font-size:1.04rem;line-height:1.9}.article-content p{margin:0 0 22px}.article-content a{color:#805d00;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}.article-content .article-lead{font-size:1.2rem;line-height:1.85;color:#202b33}.article-content h2{font-size:clamp(1.75rem,3.2vw,2.3rem);letter-spacing:-.035em;line-height:1.2;margin:52px 0 18px;scroll-margin-top:110px}.article-content h3{font-size:1.22rem;line-height:1.4;margin:31px 0 10px;letter-spacing:-.02em}.article-content ul,.article-content ol{padding-left:26px;margin:0 0 26px}.article-content li{padding-left:5px;margin:0 0 10px}.article-note{margin:30px 0 38px;padding:24px 27px;background:#fff9e6;border-left:4px solid #ffc928;border-radius:0 9px 9px 0}.article-note p{margin:8px 0 0}.note-label{font-size:.68rem!important;letter-spacing:.14em;font-weight:800;color:#8d6a00;margin:0!important}.article-table{width:100%;border-collapse:collapse;margin:25px 0 30px;font-size:.89rem;line-height:1.6}.article-table th,.article-table td{padding:13px 14px;text-align:left;vertical-align:top;border:1px solid #e3e7ea}.article-table th{background:#f5f7f8;color:#18232b;font-weight:700}.article-end-cta{margin:48px 0 30px;padding:30px;background:#111820;color:#fff;border-radius:12px}.article-end-cta h2{font-size:1.8rem;margin:9px 0 12px;color:#fff}.article-end-cta p:not(.note-label){color:#c4cbd0;margin-bottom:22px}.article-button{display:inline-flex;align-items:center;gap:18px;background:#ffd23f;color:#111820!important;padding:12px 17px;border-radius:7px;text-decoration:none!important;font-weight:800;font-size:.9rem}.article-sources{font-size:.8rem;color:#77818a;border-top:1px solid #e5e9ed;padding-top:20px;margin-top:36px!important}@media(max-width:820px){.article-layout{grid-template-columns:1fr;gap:30px}.article-toc{position:static;border:1px solid #e5e9ed;border-radius:10px;padding:17px 19px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 16px}.article-toc p{grid-column:1/-1}.article-header{margin-bottom:32px}.article-content h2{margin-top:42px}}@media(max-width:560px){.article-shell{padding:20px 20px 60px}.article-breadcrumb{margin-bottom:28px;font-size:.75rem}.article-header h1{font-size:2.55rem}.article-deck{font-size:1.04rem}.article-content{font-size:1rem;line-height:1.8}.article-content .article-lead{font-size:1.1rem}.article-toc{grid-template-columns:1fr 1fr}.article-note{padding:20px}.article-end-cta{padding:23px}.article-table{font-size:.78rem}.article-table th,.article-table td{padding:9px 8px}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://vayuyaan13.github.io/vayuyaan/ir-sensor-projects-arduino/#article","mainEntityOfPage":{"@type":"WebPage","@id":"https://vayuyaan13.github.io/vayuyaan/ir-sensor-projects-arduino/"},"headline":"5 Arduino IR Sensor Projects for Beginners","description":"Build five practical Arduino IR sensor projects with component guidance, testing steps and troubleshooting tips.","image":["https://vayuyaan13.github.io/vayuyaan/assets/ir-sensor-projects-arduino.svg"],"author":{"@type":"Organization","name":"Vayuyaan"},"publisher":{"@type":"Organization","name":"Vayuyaan","logo":{"@type":"ImageObject","url":"https://vayuyaan13.github.io/vayuyaan/assets/vayuyaan-logo.png"}},"datePublished":"2026-10-24","dateModified":"2026-10-24","inLanguage":"en-IN","articleSection":"Arduino Projects","keywords":["Arduino IR sensor projects","IR sensor Arduino","line follower robot","infrared sensor module"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vayuyaan13.github.io/vayuyaan/"},{"@type":"ListItem","position":2,"name":"Arduino IR Sensor Projects","item":"https://vayuyaan13.github.io/vayuyaan/ir-sensor-projects-arduino/"}]}]}
+</script>
+</head>
+<body>
+<header class="header"><nav class="nav">
+<a class="brand" href="../" aria-label="Vayuyaan learning hub home"><img src="../assets/vayuyaan-logo.png" alt="Vayuyaan logo"></a>
+<div class="navlinks"><a href="../">Home</a><a href="../write-for-us/">Write for Us</a><a href="../arduino/">Arduino Guides</a><a href="../sensors/">Sensor Guides</a><a href="../robotics/">Robotics Projects</a><a href="../motor-drivers/">Motor Drivers</a><a href="../what-is-esp32/">ESP32</a><a href="https://vayuyaan.com/blog/">Electronics Blog</a><a href="https://vayuyaan.com/shop/">Shop Components</a><a class="nav-cta" href="https://vayuyaan.com/">Vayuyaan.com ↗</a></div><button class="menu" type="button" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+</nav></header>
+<main class="article-shell">
+<div class="article-breadcrumb"><a href="../">Home</a><span>›</span><a href="../arduino/">Arduino Guides</a><span>›</span><span>IR Sensor Projects</span></div>
+<article class="blog-article">
+<header class="article-header"><p class="article-category">ARDUINO • SENSORS • BEGINNER PROJECTS</p><h1>5 Arduino IR Sensor Projects for Beginners</h1><p class="article-deck">Build useful projects with an infrared sensor module, from basic obstacle detection to a line-following robot. Each idea includes the core logic, wiring checks and ways to test your circuit.</p><div class="article-byline"><span>Vayuyaan Editorial Team</span><span class="byline-dot">•</span><span>Beginner-friendly guide</span><span class="byline-dot">•</span><span>Updated October 2026</span></div></header>
+<figure class="article-hero"><img src="../assets/ir-sensor-projects-arduino.svg" alt="Arduino Uno connected to infrared sensor modules and a small line-following robot" width="1200" height="675" loading="eager" fetchpriority="high"><figcaption>Start by testing the sensor module on its own, then connect it to a complete project.</figcaption></figure>
+<div class="article-layout">
+<nav class="article-toc" aria-label="Table of contents"><p>IN THIS GUIDE</p><a href="#how-ir-works">How IR modules work</a><a href="#before-you-start">Before you start</a><a href="#obstacle">1. Obstacle detector</a><a href="#line-follower">2. Line follower</a><a href="#counter">3. Object counter</a><a href="#light">4. Automatic light</a><a href="#alarm">5. IR alarm</a><a href="#troubleshooting">Troubleshooting</a><a href="#faq">FAQs</a></nav>
+<div class="article-content">
+<p class="article-lead">Infrared (IR) sensor modules are useful when a project needs to detect a nearby object or follow a line. Most low-cost reflective modules shine infrared light and measure how much returns from a surface. Their output changes according to the module design, adjustment and target.</p>
+<p>If you are new to the component, first review the <a href="https://vayuyaan.com/blog/ir-sensor-working-principle-and-applications/">IR Sensor working principle</a>. This article focuses on projects you can build after you understand the sensor's output.</p>
+<h2 id="how-ir-works">How an IR sensor module works</h2>
+<p>A common reflective IR module contains an infrared emitter and a receiver. The emitter sends IR light toward a surface; the receiver detects some of the reflected light. An onboard comparator on many modules converts the receiver signal into a digital HIGH or LOW output.</p>
+<p>Do not assume every module uses the same logic. Some boards output LOW when they detect an object, while others may behave differently. Test the module and check its documentation before writing project logic.</p>
+<div class="article-note"><p class="note-label">IMPORTANT</p><p>Reflective IR sensors are not universal distance meters. Detection depends on surface colour, angle, ambient light, sensor height and the module's sensitivity setting. Black tape may absorb more IR than a light surface, but results vary.</p></div>
+<h2 id="before-you-start">Components and safe setup</h2>
+<ul><li>Arduino Uno R3 or a compatible 5 V microcontroller board.</li><li>One or more digital-output IR sensor modules, depending on the project.</li><li>Breadboard, jumper wires and a USB data cable.</li><li>LED and a suitable current-limiting resistor for indicator projects.</li><li>For the robot: chassis, two DC geared motors, wheels and a compatible motor driver.</li></ul>
+<p>Connect the module's VCC and GND to the supply specified for your exact board. Connect its OUT pin to a digital input such as D2. Many modules accept 3.3–5 V, but verify before connecting. If you use a 3.3 V controller, make sure the sensor's output voltage is safe for that input.</p>
+<p>Keep motors on a suitable motor-driver circuit; do not power them directly from Arduino I/O pins. For a standalone test, upload a small sketch that reads the sensor pin and prints the result in the Serial Monitor. Move a target in front of the sensor and note whether detection produces HIGH or LOW.</p>
+<h2 id="obstacle">Project 1: IR obstacle detector</h2>
+<p>This is the simplest project. The Arduino reads one IR sensor and turns on an LED when the module detects an object. It helps you verify the module, output polarity and basic program flow before adding more parts.</p>
+<h3>Connections</h3>
+<ul><li>Sensor VCC → rated supply; GND → GND; OUT → D2.</li><li>LED anode → D8 through a current-limiting resistor; LED cathode → GND. You can instead use the onboard LED on many Uno boards.</li></ul>
+<h3>Example code</h3>
+<pre><code>const int sensorPin = 2;
+const int ledPin = 8;
+
+// Change this to LOW if your module detects with LOW.
+const int detectedState = HIGH;
+
+void setup() {
+  pinMode(sensorPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  int sensorState = digitalRead(sensorPin);
+  digitalWrite(ledPin, sensorState == detectedState ? HIGH : LOW);
+  delay(20);
+}</code></pre>
+<p><strong>Test it:</strong> Adjust the module's potentiometer slowly if it has one. Try light and dark objects at different distances, then set the detection threshold for your use case. If the LED behaves backwards, confirm the output polarity and change <code>detectedState</code>.</p>
+<h2 id="line-follower">Project 2: Arduino line-following robot</h2>
+<p>A line follower uses two or more downward-facing IR sensors to detect contrast between a track and its background. The Arduino reads the sensor pattern and commands the motors through a motor driver. Two sensors can handle a simple track; more sensors can improve behaviour on curves and junctions.</p>
+<p>For the complete robot build, use this <a href="https://vayuyaan.com/blog/line-follower-robot-using-arduino/">Arduino line follower robot</a> tutorial. The checklist below explains how to approach the IR sensing part before integrating the motors.</p>
+<ol><li>Mount sensors close to the floor and at a consistent height. Follow the sensor maker's guidance and leave room to adjust it.</li><li>Read each sensor separately over the track and background. Record whether black or white causes HIGH or LOW for your module.</li><li>Map the readings to actions such as forward, slight left, slight right and stop. The mapping depends on sensor placement and track contrast.</li><li>Test the motors with the wheels lifted before placing the robot on the floor. Confirm left and right motor direction.</li><li>Start slowly and tune the sensor spacing, motor speed and turning response.</li></ol>
+<div class="article-note"><p class="note-label">BUILD TIP</p><p>Do not copy a line-follower truth table blindly. IR boards can use different output polarities, so measure your own sensors and write the control rules from those readings.</p></div>
+<h2 id="counter">Project 3: Simple object counter</h2>
+<p>Use a digital IR module as a basic passage detector. When an object passes in front of the sensor, the Arduino counts a transition and prints the total. This can demonstrate counting small objects on a test track, but a single reflective sensor may miss objects if they pass too quickly or have difficult surfaces.</p>
+<h3>Counting logic</h3>
+<p>Read the sensor continuously and count only when its state changes from “not detected” to “detected.” Add a short debounce or lockout interval to reduce repeated counts while an object remains in front of the sensor. If two objects pass close together, test whether the module can distinguish them at that speed.</p>
+<pre><code>const int sensorPin = 2;
+const int detectedState = HIGH; // Verify for your module
+int previousState = LOW;
+unsigned long lastCountMs = 0;
+unsigned long count = 0;
+
+void setup() {
+  pinMode(sensorPin, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int currentState = digitalRead(sensorPin);
+  unsigned long now = millis();
+
+  if (currentState == detectedState &&
+      previousState != detectedState &&
+      now - lastCountMs > 200) {
+    count++;
+    lastCountMs = now;
+    Serial.println(count);
+  }
+
+  previousState = currentState;
+}</code></pre>
+<p><strong>Test it:</strong> Pass one object at a time and compare the Serial Monitor with the real count. Increase the lockout interval if one object creates multiple counts; reduce it cautiously if objects are missed. For dependable industrial counting, choose a sensor designed for the target speed, material and environment.</p>
+<h2 id="light">Project 4: Automatic light or indicator</h2>
+<p>Use an IR module to trigger a small indicator when a hand or object approaches a defined point. For example, it can switch on an LED near a drawer, a demonstration display or a model doorway. The sensor does not measure ambient brightness, so this is object-triggered lighting rather than a true dark-activated night light.</p>
+<h3>Build approach</h3>
+<ol><li>Connect the IR output to a digital input and the LED through a resistor to a digital output.</li><li>Start with the obstacle-detector sketch and confirm the detection polarity.</li><li>Choose whether the LED should remain on only during detection or stay on for a timed interval after detection.</li><li>Test the response from several approach angles and in the room's actual lighting.</li></ol>
+<p>For a light that activates only when a room becomes dark, use a light-dependent resistor (LDR) or a suitable ambient-light sensor instead. Choose the sensing component based on what the project must measure.</p>
+<h2 id="alarm">Project 5: Basic IR-triggered alarm</h2>
+<p>A reflective IR sensor can trigger a buzzer or indicator when an object enters a small test area. This is suitable for a learning demo or a model display. It is not a reliable security system: sunlight, surface changes, alignment and sensor range can cause missed detections or false triggers.</p>
+<h3>Build approach</h3>
+<ul><li>Read the IR module with a digital input.</li><li>Drive a small active buzzer only if its current requirements are within the board's safe limits; otherwise use a suitable transistor driver or buzzer module.</li><li>Add a short re-trigger delay if the alarm should sound once per detection rather than continuously.</li><li>Test with different targets and lighting conditions, and document the limits of your setup.</li></ul>
+<p>Never connect a load that draws more current than a microcontroller pin can safely supply. Check the specifications of your buzzer or driver module before wiring it.</p>
+<h2 id="troubleshooting">Troubleshooting checklist</h2>
+<table class="article-table"><thead><tr><th>Problem</th><th>What to check</th></tr></thead><tbody><tr><td>No output change</td><td>Verify VCC, GND and OUT wiring; confirm the module supply rating; test with the Serial Monitor.</td></tr><tr><td>Output is inverted</td><td>Check whether the module is active HIGH or active LOW and update the code's detection state.</td></tr><tr><td>False detections</td><td>Adjust sensitivity, reduce ambient light interference, secure the sensor and retest the target angle.</td></tr><tr><td>Line follower wanders</td><td>Check sensor height and spacing, track contrast, motor direction, speed and output polarity.</td></tr><tr><td>Object counts repeat</td><td>Count only a new detection edge and tune the lockout interval for the object's speed.</td></tr></tbody></table>
+<h2 id="faq">Frequently asked questions</h2>
+<h3>Can one IR sensor control a line-following robot?</h3><p>One sensor can detect a line edge in a very simple experiment, but a practical line follower normally uses two or more sensors to determine whether the robot is left or right of the track.</p>
+<h3>Does an IR sensor measure exact distance?</h3><p>Most inexpensive reflective digital modules are intended for detection, not accurate distance measurement. Their response depends on the target and setup. Use a distance sensor designed for your required range and accuracy if you need measurements.</p>
+<h3>Why does my IR sensor always show HIGH or LOW?</h3><p>Check the supply, common ground, output pin and sensitivity adjustment. Confirm the logic level with a known target and check the module's documentation. Some boards also need a pull-up or pull-down depending on their circuit design.</p>
+<h3>Can I connect an IR module to ESP32?</h3><p>Often yes, if the module's signal voltage is compatible with ESP32's 3.3 V GPIO. Do not feed a 5 V output into an ESP32 input unless the specific board documentation confirms it is safe. Check the module output before connecting.</p>
+<div class="article-end-cta"><p class="note-label">NEXT BUILD</p><h2>Ready to build a robot?</h2><p>Use the IR sensors to read the track first, then add motor control and tune the robot one step at a time.</p><a class="article-button" href="https://vayuyaan.com/blog/line-follower-robot-using-arduino/">Open the line follower tutorial →</a></div>
+<p class="article-sources">Practical note: sensor modules vary by manufacturer. Confirm pin labels, supply voltage and output polarity using the documentation for the exact module you own. Test each subsystem independently before combining it into a larger project.</p>
+</div></div></article></main>
+<footer><div class="footer-brand"><img src="../assets/vayuyaan-logo.png" alt="Vayuyaan logo"><p>Electronics • Robotics • DIY</p></div><div class="footer-social"><b>Social Media</b><a href="https://www.instagram.com/vayuyaan_official/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.facebook.com/Vayuyaan.official/" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://x.com/VayuyaanTechHub" target="_blank" rel="noopener noreferrer">X (Twitter)</a><a href="https://www.linkedin.com/company/vayuyaan/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.youtube.com/@vayuyaan" target="_blank" rel="noopener noreferrer">YouTube</a></div><div><b>Explore</b><a href="../write-for-us/">Write for Us</a><a href="../arduino/">Arduino guides</a><a href="../what-is-esp32/">ESP32 guides</a><a href="../sensors/">Sensor guides</a><a href="../robotics/">Robotics projects</a><a href="https://vayuyaan.com/blog/">Vayuyaan electronics blog</a></div><div><b>Shop</b><a href="https://vayuyaan.com/product-category/electronic-modules/">Electronic modules</a><a href="https://vayuyaan.com/shop/">Arduino, sensors and robotics components</a><a href="https://vayuyaan.com/faqs/">Vayuyaan FAQs and help</a><a href="https://vayuyaan.com/">Visit Vayuyaan.com</a></div></footer>
+<div class="footer-bottom"><span>© 2026 Vayuyaan. All rights reserved.</span><span>Electronics • Robotics • DIY</span></div>
+<script>(()=>{const b=document.querySelector('.menu'),n=document.querySelector('.navlinks');if(b&&n){b.addEventListener('click',()=>{const open=n.classList.toggle('mobile-open');b.setAttribute('aria-expanded',String(open));b.setAttribute('aria-label',open?'Close navigation menu':'Open navigation menu')});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('mobile-open');b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','Open navigation menu')}))}})();</script>
+</body></html>
