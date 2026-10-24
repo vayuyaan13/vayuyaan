@@ -1,4 +1,17 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>What Is ESP32? Features, Uses &amp; Beginner Guide | Vayuyaan</title><meta name="description" content="What is ESP32? Learn its features, Wi-Fi and Bluetooth capabilities, common uses, ESP32 vs Arduino Uno, and how beginners can get started safely."><link rel="canonical" href="https://vayuyaan13.github.io/vayuyaan/esp32/"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:title" content="What Is ESP32? Features, Uses &amp; Beginner Guide | Vayuyaan"><meta property="og:description" content="Understand ESP32 features, uses, board choices, and beginner setup in this practical guide."><meta property="og:type" content="website"><meta property="og:url" content="https://vayuyaan13.github.io/vayuyaan/esp32/"><link rel="stylesheet" href="../style.css?v=20261024c"><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>What Is ESP32? Features, Uses &amp; Projects Guide | Vayuyaan</title><meta name="description" content="What is ESP32? Explore its features, Wi-Fi and Bluetooth, real-world uses, ESP32 vs Arduino Uno, board selection, setup steps and wiring safety."><link rel="canonical" href="https://vayuyaan13.github.io/vayuyaan/esp32/">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta property="og:locale" content="en_IN">
+<meta property="og:site_name" content="Vayuyaan">
+<meta property="og:image" content="https://vayuyaan13.github.io/vayuyaan/assets/vayuyaan-logo.png">
+<meta property="og:image:alt" content="Vayuyaan electronics and robotics learning hub">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="What Is ESP32? Features, Uses &amp; Projects Guide | Vayuyaan">
+<meta name="twitter:description" content="Explore ESP32 features, real-world uses, ESP32 vs Arduino Uno, setup steps and wiring safety.">
+<meta name="twitter:image" content="https://vayuyaan13.github.io/vayuyaan/assets/vayuyaan-logo.png"><meta property="og:title" content="What Is ESP32? Features, Uses &amp; Projects Guide | Vayuyaan"><meta property="og:description" content="Explore ESP32 features, Wi-Fi and Bluetooth, practical uses, board selection, setup steps and wiring safety in this beginner-friendly guide."><meta property="og:type" content="article">
+<meta property="article:section" content="Electronics and Microcontrollers">
+<meta property="article:tag" content="ESP32">
+<meta property="article:tag" content="ESP32 development board">
+<meta property="article:tag" content="IoT projects"><meta property="og:url" content="https://vayuyaan13.github.io/vayuyaan/esp32/"><link rel="stylesheet" href="../style.css?v=20261024c"><style>
 .article-shell{max-width:1160px;margin:0 auto;padding:28px 28px 88px}
 .article-breadcrumb{display:flex;gap:10px;align-items:center;color:#77818a;font-size:.82rem;margin:8px 0 38px}
 .article-breadcrumb a{color:#64717d;text-decoration:none}.article-breadcrumb a:hover{color:#111820;text-decoration:underline}
@@ -29,7 +42,59 @@
 .article-sources{font-size:.8rem;color:#77818a;border-top:1px solid #e5e9ed;padding-top:20px;margin-top:36px!important}
 @media(max-width:820px){.article-layout{grid-template-columns:1fr;gap:30px}.article-toc{position:static;border:1px solid #e5e9ed;border-radius:10px;padding:17px 19px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 16px}.article-toc p{grid-column:1/-1}.article-header{margin-bottom:32px}.article-content h2{margin-top:42px}}
 @media(max-width:560px){.article-shell{padding:20px 20px 60px}.article-breadcrumb{margin-bottom:28px;font-size:.75rem}.article-header h1{font-size:2.55rem}.article-deck{font-size:1.04rem}.article-content{font-size:1rem;line-height:1.8}.article-content .article-lead{font-size:1.1rem}.article-toc{grid-template-columns:1fr 1fr}.article-note{padding:20px}.article-end-cta{padding:23px}.article-table{font-size:.78rem}.article-table th,.article-table td{padding:9px 8px}}
-</style></head><body><header class="header"><nav class="nav">
+</style><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://vayuyaan13.github.io/vayuyaan/esp32/#article",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://vayuyaan13.github.io/vayuyaan/esp32/"
+      },
+      "headline": "What Is ESP32? Features, Uses, and How to Get Started",
+      "description": "Learn what ESP32 is, how its wireless and GPIO features work, common applications, how it compares with Arduino Uno, and how to choose and set up a board safely.",
+      "image": ["https://vayuyaan13.github.io/vayuyaan/assets/vayuyaan-logo.png"],
+      "author": {
+        "@type": "Organization",
+        "name": "Vayuyaan Editorial Team",
+        "url": "https://vayuyaan.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Vayuyaan",
+        "url": "https://vayuyaan.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://vayuyaan13.github.io/vayuyaan/assets/vayuyaan-logo.png"
+        }
+      },
+      "inLanguage": "en-IN",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Vayuyaan Electronics and Robotics Guides",
+        "url": "https://vayuyaan13.github.io/vayuyaan/"
+      },
+      "about": [
+        {"@type": "Thing", "name": "ESP32"},
+        {"@type": "Thing", "name": "Internet of Things"},
+        {"@type": "Thing", "name": "Microcontrollers"}
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://vayuyaan13.github.io/vayuyaan/esp32/#breadcrumb",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://vayuyaan13.github.io/vayuyaan/"},
+        {"@type": "ListItem", "position": 2, "name": "Electronics Blog", "item": "https://vayuyaan.com/blog/"},
+        {"@type": "ListItem", "position": 3, "name": "What Is ESP32?", "item": "https://vayuyaan13.github.io/vayuyaan/esp32/"}
+      ]
+    }
+  ]
+}
+</script>
+</head><body><header class="header"><nav class="nav">
 <a class="brand" href="../" aria-label="Vayuyaan learning hub home"><img src="../assets/vayuyaan-logo.png" alt="Vayuyaan logo"></a>
 <div class="navlinks"><a href="../">Home</a><a href="../write-for-us/" >Write for Us</a><a href="../arduino/" >Arduino Guides</a><a href="../sensors/" >Sensor Guides</a><a href="../robotics/" >Robotics Projects</a><a href="../motor-drivers/" >Motor Drivers</a><a href="../esp32/" aria-current="page">ESP32</a><a href="https://vayuyaan.com/blog/">Electronics Blog</a><a href="https://vayuyaan.com/shop/">Shop Components</a><a class="nav-cta" href="https://vayuyaan.com/">Vayuyaan.com ↗</a></div>
 <button class="menu" type="button" aria-label="Open navigation menu" aria-expanded="false">☰</button>
