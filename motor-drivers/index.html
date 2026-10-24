@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arduino Motor Driver Guide: L293D, L298N, Wiring & Code | Vayuyaan</title>
+<meta name="description" content="Learn how Arduino motor drivers work, compare L293D and L298N modules, wire a DC motor, control direction and speed with PWM, and troubleshoot common issues.">
+<link rel="canonical" href="https://vayuyaan13.github.io/vayuyaan/motor-drivers/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:title" content="Arduino Motor Driver Guide: L293D, L298N, Wiring & Code | Vayuyaan">
+<meta property="og:description" content="Learn how Arduino motor drivers work, compare L293D and L298N modules, wire a DC motor, control direction and speed with PWM, and troubleshoot common issues.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://vayuyaan13.github.io/vayuyaan/motor-drivers/">
+<link rel="stylesheet" href="../style.css">
+<style>
+.article-hero{max-width:1000px;margin:auto;padding:70px 28px 54px}
+.article-hero h1{font-size:clamp(2.6rem,5vw,4.7rem);line-height:1.03;letter-spacing:-.055em;margin:18px 0}
+.article-hero p{max-width:800px;font-size:1.12rem;color:var(--muted)}
+.article-layout{max-width:1180px;margin:auto;padding:0 28px 80px;display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:48px;align-items:start}
+.article-content{min-width:0}
+.article-content h2{font-size:clamp(1.7rem,3vw,2.3rem);line-height:1.12;letter-spacing:-.035em;margin:42px 0 14px}
+.article-content h3{font-size:1.25rem;margin:26px 0 10px}
+.article-content p,.article-content li{color:#495762;line-height:1.8}
+.article-content a{color:#765500;text-underline-offset:3px}
+.article-content ul,.article-content ol{padding-left:23px}
+.note{padding:18px 20px;background:#fff8d9;border:1px solid #f3df8b;border-radius:12px;margin:22px 0}
+.caution{padding:18px 20px;background:#fff4ef;border:1px solid #f0d0c4;border-radius:12px;margin:22px 0}
+.codebox{overflow-x:auto;background:#121a20;color:#f1f5f7;padding:20px;border-radius:12px;font: .87rem/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre}
+.table-wrap{overflow-x:auto}
+.article-content table{width:100%;border-collapse:collapse;margin:18px 0}
+.article-content th,.article-content td{border:1px solid #e1e6e9;padding:12px;text-align:left;vertical-align:top;font-size:.92rem}
+.article-content th{background:#f5f7f8;color:#202a32}
+.toc{position:sticky;top:110px;border:1px solid var(--line);border-radius:14px;padding:20px;background:#fff}
+.toc b{display:block;margin-bottom:10px}
+.toc a{display:block;text-decoration:none;color:#596672;font-size:.88rem;padding:6px 0}
+.toc a:hover{color:#111}
+.related-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}
+.related-links a{display:block;padding:18px;border:1px solid var(--line);border-radius:12px;text-decoration:none;background:#fff}
+.related-links strong{display:block;color:var(--ink);margin-bottom:6px}
+.related-links span{font-size:.9rem;color:var(--muted)}
+@media(max-width:800px){.article-layout{grid-template-columns:1fr}.toc{position:static;order:-1}.related-links{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="header"><nav class="nav">
+<a class="brand" href="../"><img src="../assets/vayuyaan-logo.png" alt="Vayuyaan logo"></a>
+<div class="navlinks"><a href="../">Home</a><a href="../arduino/">Arduino Guides</a><a href="../sensors/">Sensor Guides</a><a href="../robotics/">Robotics Projects</a><a href="../esp32/">ESP32</a><a href="https://vayuyaan.com/blog/">Electronics Blog</a><a href="https://vayuyaan.com/">Vayuyaan.com ↗</a></div>
+<button class="menu" type="button" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+</nav></header>
+<main>
+<section class="article-hero">
+<div class="pill"><span></span> Arduino · Motor Control · Beginner Guide</div>
+<h1>Arduino Motor Driver Guide: L293D, L298N, Wiring &amp; Code</h1>
+<p>Learn how to control a DC motor with Arduino using a motor-driver IC or module. This guide covers driver basics, L293D and L298N differences, wiring, direction control, PWM speed control and practical troubleshooting.</p>
+<div class="hero-actions"><a class="primary" href="#wiring">Jump to wiring <b>↓</b></a><a class="secondary" href="#code">See example code</a></div>
+</section>
+<div class="article-layout">
+<article class="article-content">
+<div class="note"><strong>Before you start:</strong> A motor can draw far more current than an Arduino I/O pin can safely provide. Use a driver rated for your motor and an appropriate motor supply. Disconnect power while changing wires.</div>
+<h2 id="what-is">What is an Arduino motor driver?</h2>
+<p>A motor driver acts as the power interface between a microcontroller and a motor. Arduino pins send low-current logic signals; the driver switches the higher current that the motor needs. With a suitable driver, you can command a motor to run forward, reverse, stop or change speed.</p>
+<p>A common beginner setup uses an Arduino Uno, a brushed DC motor, a motor driver such as the L293D or L298N, and a separate supply selected for the motor's voltage and current. The exact wiring depends on the board and driver module you own.</p>
+<h2 id="choose-driver">L293D vs L298N: which should you choose?</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Feature</th><th>L293D</th><th>L298N module</th></tr></thead>
+<tbody>
+<tr><td>Typical form</td><td>Small IC or breakout board</td><td>Larger module, often with screw terminals and a heatsink</td></tr>
+<tr><td>Common use</td><td>Small, low-current DC motors and simple beginner builds</td><td>Projects needing a more substantial dual H-bridge module, within its specifications</td></tr>
+<tr><td>Wiring</td><td>Requires careful identification of logic, enable, motor and supply pins</td><td>Module labels often make motor and supply connections easier to identify</td></tr>
+<tr><td>Limitations</td><td>Voltage drop, current limits and thermal limits apply</td><td>Voltage drop, current limits and heat still matter; a heatsink does not make every motor suitable</td></tr>
+</tbody></table></div>
+<p>Neither driver is automatically the best choice for every robot. Check the exact manufacturer's datasheet or module documentation for recommended motor voltage, continuous current, peak current and thermal limits. For modern low-voltage motors, another driver may be more efficient.</p>
+<h2 id="parts">Parts you will need</h2>
+<ul>
+<li>Arduino Uno R3 or a compatible 5 V logic board.</li>
+<li>An L293D IC/breakout or an L298N module.</li>
+<li>One brushed DC motor whose voltage and current fit the driver.</li>
+<li>A suitable motor power supply or battery.</li>
+<li>Jumper wires and, for an IC, a breadboard or breakout board as appropriate.</li>
+<li>USB cable for programming the Arduino.</li>
+</ul>
+<p>If you are new to the board, start with the <a href="https://vayuyaan.com/blog/arduino-uno-r3-complete-guide-for-beginners/">Arduino Uno R3 guide for beginners</a> to identify power, digital and PWM pins before connecting the driver.</p>
+<h2 id="wiring">Basic Arduino-to-driver wiring</h2>
+<p>The following is a conceptual wiring checklist for one DC motor on a driver channel. Always match the labels and pinout of your exact driver board; L293D breakout boards and L298N modules do not all use identical labels.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Signal / connection</th><th>Typical purpose</th><th>Check before power-on</th></tr></thead>
+<tbody>
+<tr><td>Arduino digital output → IN1</td><td>Sets one direction input</td><td>Confirm the input pin number on your board.</td></tr>
+<tr><td>Arduino digital output → IN2</td><td>Sets the other direction input</td><td>Use a separate output pin.</td></tr>
+<tr><td>Arduino PWM-capable pin → EN / enable</td><td>Enables the channel and can carry PWM for speed control</td><td>Some modules have an enable jumper; follow its manual before connecting PWM.</td></tr>
+<tr><td>Driver OUT1 / OUT2 → motor terminals</td><td>Supplies the motor from the H-bridge output</td><td>Do not connect the motor directly to Arduino I/O pins.</td></tr>
+<tr><td>Motor supply → driver motor-power input</td><td>Provides the motor's power</td><td>Stay within the driver's and motor's rated voltage and current.</td></tr>
+<tr><td>Arduino GND ↔ driver GND ↔ supply negative</td><td>Provides a common reference for logic signals</td><td>Follow the driver board's grounding instructions.</td></tr>
+</tbody></table></div>
+<div class="caution"><strong>Power safety:</strong> Do not assume the driver's logic supply and motor supply are the same. Never feed a motor from an Arduino 5 V pin unless the complete board documentation explicitly supports that load. Verify polarity and disconnect power before moving wires.</div>
+<h2 id="code">Example Arduino code: direction and PWM speed</h2>
+<p>This sketch illustrates the two direction inputs and an enable pin for a single driver channel. It uses Arduino pin 9 for PWM, pin 7 for IN1 and pin 8 for IN2. Change these assignments to match your wiring and board.</p>
+<pre class="codebox"><code>const int enA = 9;  // PWM-capable enable pin
+const int in1 = 7;  // Direction input 1
+const int in2 = 8;  // Direction input 2
+
+void setup() {
+  pinMode(enA, OUTPUT);
+  pinMode(in1, OUTPUT);
+  pinMode(in2, OUTPUT);
+}
+
+void loop() {
+  // Direction A
+  digitalWrite(in1, HIGH);
+  digitalWrite(in2, LOW);
+  analogWrite(enA, 150);  // PWM: 0 to 255
+  delay(2000);
+
+  // Stop the motor
+  analogWrite(enA, 0);
+  delay(1000);
+
+  // Direction B
+  digitalWrite(in1, LOW);
+  digitalWrite(in2, HIGH);
+  analogWrite(enA, 150);
+  delay(2000);
+
+  // Stop before the next cycle
+  analogWrite(enA, 0);
+  delay(1000);
+}</code></pre>
+<p><strong>Important:</strong> This example assumes the driver accepts the indicated logic levels and PWM on its enable input. Follow the board's instructions about enable jumpers and logic voltage. On some boards, a PWM pin must be connected differently or a jumper must be removed before speed control works.</p>
+<h3>What does the PWM value do?</h3>
+<p>On a standard Arduino Uno, <code>analogWrite()</code> commonly accepts values from 0 to 255. A value of 0 requests no PWM output; larger values increase the duty cycle. The motor's actual speed also depends on its load, supply voltage, driver voltage drop and motor characteristics, so PWM values do not translate directly into a fixed RPM.</p>
+<h2 id="test">Test the motor safely</h2>
+<ol>
+<li>Check the motor rating and the driver's voltage/current limits.</li>
+<li>With power disconnected, inspect polarity, motor terminals, direction inputs, enable pin and ground wiring.</li>
+<li>Upload the sketch with the motor disconnected if you want to verify that the board accepts the code.</li>
+<li>Connect the motor and supply. Raise the motor off the table so wheels or shafts cannot catch objects.</li>
+<li>Start at a moderate PWM value, watch for unexpected heat or noise, and disconnect power immediately if the driver or wiring heats quickly.</li>
+<li>If direction is reversed from what you expect, turn power off before swapping the motor wires or changing the direction logic.</li>
+</ol>
+<h2 id="troubleshooting">Common problems and fixes</h2>
+<h3>Motor does not move</h3>
+<p>Check the motor supply first, then common ground, enable pin/jumper, IN1/IN2 wiring and the motor terminals. Test the motor with a suitable, current-limited supply only if you know its rating and can do so safely.</p>
+<h3>Arduino resets when the motor starts</h3>
+<p>Startup current or electrical noise may cause a voltage dip. Use a power source sized for the motor, keep motor current out of the Arduino board's logic supply path, arrange grounding according to the driver documentation and add recommended decoupling components where required.</p>
+<h3>Speed does not change</h3>
+<p>Check that the enable input actually receives PWM, that the module's enable jumper is configured correctly and that the selected Arduino pin supports PWM. Also confirm that your code changes the PWM value and that the load is not too heavy.</p>
+<h3>Driver becomes very hot</h3>
+<p>Stop and disconnect power. The motor may exceed the driver's current rating, the supply voltage may be wrong, or the driver may be overheating because of voltage drop and load. Recheck the datasheet and choose a driver with suitable electrical and thermal ratings.</p>
+<h3>Motor spins in the opposite direction</h3>
+<p>Direction depends on the polarity at the motor terminals and the input logic. Reverse the direction inputs in code or, with power disconnected, swap the two motor leads.</p>
+<h2 id="projects">What can you build next?</h2>
+<p>Once you can control motor direction and speed separately, use the same building blocks in a simple robot. Add sensors only after motor control works reliably.</p>
+<div class="related-links">
+<a href="https://vayuyaan.com/blog/line-follower-robot-using-arduino/"><strong>Arduino line follower robot</strong><span>Combine motor control with IR sensor logic.</span></a>
+<a href="https://vayuyaan.com/blog/smart-dustbin-using-arduino-and-ultrasonic-sensor/"><strong>Smart dustbin project</strong><span>Explore sensor-triggered automation.</span></a>
+<a href="https://vayuyaan.com/blog/learn-everything-about-ultrasonic-sensor-hc-sr04/"><strong>HC-SR04 ultrasonic sensor</strong><span>Review distance sensing before building an obstacle-avoiding robot.</span></a>
+<a href="../robotics/"><strong>Robotics learning hub</strong><span>Follow the broader sensing and motion checklist.</span></a>
+</div>
+<h2 id="faqs">Frequently asked questions</h2>
+<h3>Can I connect a DC motor directly to an Arduino Uno?</h3>
+<p>No. A typical DC motor needs more current than an Arduino I/O pin can provide and can generate electrical noise. Use a suitable motor driver and motor supply.</p>
+<h3>Can the L293D control two motors?</h3>
+<p>The L293D is a dual H-bridge driver designed to control two DC motors independently when each motor and the required load fall within the device's ratings. Consult the datasheet for the limits that apply to your exact part.</p>
+<h3>Can I use an L298N for speed control?</h3>
+<p>Many L298N modules support PWM speed control through an enable input. Check the module's jumper configuration and documentation, then connect a compatible PWM signal.</p>
+<h3>Why does the same PWM value produce different speeds?</h3>
+<p>Motor speed depends on load, supply voltage, driver losses, friction and the motor itself. PWM is a control input, not a direct RPM setting.</p>
+<h3>Should the motor and Arduino use the same power supply?</h3>
+<p>It depends on current requirements and the driver design. A separate motor supply is often practical, with grounds connected as the driver documentation requires. Never exceed the rating of any board or component.</p>
+<div class="note"><strong>Final checklist:</strong> Use the correct driver for the motor, verify the pinout for your actual module, provide suitable motor power, follow common-ground instructions, and test one change at a time.</div>
+</article>
+<aside class="toc"><b>On this page</b>
+<a href="#what-is">What is a motor driver?</a>
+<a href="#choose-driver">L293D vs L298N</a>
+<a href="#parts">Parts list</a>
+<a href="#wiring">Wiring checklist</a>
+<a href="#code">Arduino code</a>
+<a href="#test">Safe testing</a>
+<a href="#troubleshooting">Troubleshooting</a>
+<a href="#projects">Related projects</a>
+<a href="#faqs">FAQs</a>
+</aside>
+</div>
+<section class="section" style="padding-top:0">
+<div class="section-top"><div><span class="kicker">KEEP LEARNING</span><h2>Related Arduino and robotics guides</h2></div><p>Build from board basics to sensors and motion one step at a time.</p></div>
+<div class="guide-grid">
+<a class="guide" href="https://vayuyaan.com/blog/arduino-uno-r3-complete-guide-for-beginners/"><span>ARDUINO BASICS</span><h3>Arduino Uno R3 Guide for Beginners</h3><p>Review board pins and basic connections before you start.</p><strong>Read the beginner guide →</strong></a>
+<a class="guide" href="../arduino/"><span>ARDUINO LEARNING HUB</span><h3>Arduino Guides</h3><p>Explore board setup, sensors, motor control and projects.</p><strong>Explore Arduino guides →</strong></a>
+<a class="guide" href="../robotics/"><span>ROBOTICS</span><h3>Build with Sensors and Motors</h3><p>Follow practical checks for reliable beginner robot builds.</p><strong>Explore robotics →</strong></a>
+</div>
+</section>
+</main>
+<footer><div class="footer-brand"><img src="../assets/vayuyaan-logo.png" alt="Vayuyaan logo"><p>Electronics • Robotics • DIY</p></div>
+<div><b>Learning</b><a href="../arduino/">Arduino guides</a><a href="../sensors/">Sensor guides</a><a href="../robotics/">Robotics projects</a><a href="../esp32/">ESP32 guides</a></div>
+<div><b>Vayuyaan</b><a href="https://vayuyaan.com/blog/">Electronics blog</a><a href="https://vayuyaan.com/shop/">Shop components</a></div></footer>
+<div class="footer-bottom"><span>© 2026 Vayuyaan</span><span>Arduino motor driver learning resource</span></div>
+</body></html>
