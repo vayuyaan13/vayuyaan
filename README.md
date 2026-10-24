@@ -8,7 +8,7 @@ https://vayuyaan13.github.io/vayuyaan/
 - [Arduino guides](https://vayuyaan13.github.io/vayuyaan/arduino/)
 - [Sensor guides](https://vayuyaan13.github.io/vayuyaan/sensors/)
 - [Robotics projects](https://vayuyaan13.github.io/vayuyaan/robotics/)
-- [ESP32 guides](https://vayuyaan13.github.io/vayuyaan/esp32/)
+- [ESP32 guides](https://vayuyaan13.github.io/vayuyaan/what-is-esp32/)
 - [Write for Us](https://vayuyaan13.github.io/vayuyaan/write-for-us/)
 
 ## Search engines
