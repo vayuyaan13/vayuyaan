@@ -1,0 +1,189 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>What Is ESP32? Features, Uses &amp; Projects Guide | Vayuyaan</title><meta name="description" content="What is ESP32? Explore its features, Wi-Fi and Bluetooth, real-world uses, ESP32 vs Arduino Uno, board selection, setup steps and wiring safety."><link rel="canonical" href="https://vayuyaan13.github.io/vayuyaan/what-is-esp32/">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta property="og:locale" content="en_IN">
+<meta property="og:site_name" content="Vayuyaan">
+<meta property="og:image" content="https://vayuyaan13.github.io/vayuyaan/assets/vayuyaan-logo.png">
+<meta property="og:image:alt" content="Vayuyaan electronics and robotics learning hub">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="What Is ESP32? Features, Uses &amp; Projects Guide | Vayuyaan">
+<meta name="twitter:description" content="Explore ESP32 features, real-world uses, ESP32 vs Arduino Uno, setup steps and wiring safety.">
+<meta name="twitter:image" content="https://vayuyaan13.github.io/vayuyaan/assets/vayuyaan-logo.png"><meta property="og:title" content="What Is ESP32? Features, Uses &amp; Projects Guide | Vayuyaan"><meta property="og:description" content="Explore ESP32 features, Wi-Fi and Bluetooth, practical uses, board selection, setup steps and wiring safety in this beginner-friendly guide."><meta property="og:type" content="article">
+<meta property="article:section" content="Electronics and Microcontrollers">
+<meta property="article:tag" content="ESP32">
+<meta property="article:tag" content="ESP32 development board">
+<meta property="article:tag" content="IoT projects"><meta property="og:url" content="https://vayuyaan13.github.io/vayuyaan/what-is-esp32/"><link rel="stylesheet" href="../style.css?v=20261024c"><style>
+.article-shell{max-width:1160px;margin:0 auto;padding:28px 28px 88px}
+.article-breadcrumb{display:flex;gap:10px;align-items:center;color:#77818a;font-size:.82rem;margin:8px 0 38px}
+.article-breadcrumb a{color:#64717d;text-decoration:none}.article-breadcrumb a:hover{color:#111820;text-decoration:underline}
+.blog-article{max-width:1040px;margin:0 auto}
+.article-header{max-width:850px;margin:0 auto 48px;padding:0 0 34px;border-bottom:1px solid #e5e9ed}
+.article-category{font-size:.72rem;letter-spacing:.15em;font-weight:800;color:#977000;margin:0 0 16px}
+.article-header h1{font-size:clamp(2.45rem,5.2vw,4.4rem);letter-spacing:-.055em;line-height:1.04;margin:0 0 24px;max-width:850px}
+.article-deck{font-size:1.18rem;line-height:1.8;color:#52606b;max-width:790px;margin:0}
+.article-byline{display:flex;flex-wrap:wrap;gap:11px;align-items:center;margin-top:24px;color:#7d8790;font-size:.8rem}.article-byline span:first-child{font-weight:700;color:#26313a}.byline-dot{color:#c1a044}
+.article-layout{display:grid;grid-template-columns:210px minmax(0,740px);gap:56px;justify-content:center;align-items:start}
+.article-toc{position:sticky;top:112px;border-left:2px solid #e5e9ed;padding:4px 0 5px 17px;display:flex;flex-direction:column;gap:11px}
+.article-toc p{font-size:.66rem;letter-spacing:.14em;font-weight:800;color:#8a949d;margin:0 0 5px}
+.article-toc a{font-size:.82rem;line-height:1.45;text-decoration:none;color:#65717b}.article-toc a:hover{color:#9a7100}
+.article-content{min-width:0;color:#303b44;font-size:1.04rem;line-height:1.9}
+.article-content p{margin:0 0 22px}.article-content a{color:#805d00;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}.article-content a:hover{color:#111820}
+.article-content .article-lead{font-size:1.2rem;line-height:1.85;color:#202b33}
+.article-note{margin:30px 0 38px;padding:24px 27px;background:#fff9e6;border-left:4px solid #ffc928;border-radius:0 9px 9px 0}
+.article-note p{margin:8px 0 0}.note-label{font-size:.68rem!important;letter-spacing:.14em;font-weight:800;color:#8d6a00;margin:0!important}
+.article-content h2{font-size:clamp(1.75rem,3.2vw,2.3rem);letter-spacing:-.035em;line-height:1.2;margin:52px 0 18px;scroll-margin-top:110px}
+.article-content h3{font-size:1.22rem;line-height:1.4;margin:31px 0 10px;letter-spacing:-.02em}
+.article-content ul,.article-content ol{padding-left:26px;margin:0 0 26px}.article-content li{padding-left:5px;margin:0 0 10px}
+.article-table{width:100%;border-collapse:collapse;margin:25px 0 30px;font-size:.89rem;line-height:1.6}
+.article-table th,.article-table td{padding:13px 14px;text-align:left;vertical-align:top;border:1px solid #e3e7ea}
+.article-table th{background:#f5f7f8;color:#18232b;font-weight:700}.article-table td:first-child{font-weight:700;min-width:105px}
+.article-end-cta{margin:48px 0 30px;padding:30px;background:#111820;color:#fff;border-radius:12px}
+.article-end-cta h2{font-size:1.8rem;margin:9px 0 12px;color:#fff}.article-end-cta p:not(.note-label){color:#c4cbd0;margin-bottom:22px}
+.article-button{display:inline-flex;align-items:center;gap:18px;background:#ffd23f;color:#111820!important;padding:12px 17px;border-radius:7px;text-decoration:none!important;font-weight:800;font-size:.9rem}
+.article-sources{font-size:.8rem;color:#77818a;border-top:1px solid #e5e9ed;padding-top:20px;margin-top:36px!important}
+@media(max-width:820px){.article-layout{grid-template-columns:1fr;gap:30px}.article-toc{position:static;border:1px solid #e5e9ed;border-radius:10px;padding:17px 19px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 16px}.article-toc p{grid-column:1/-1}.article-header{margin-bottom:32px}.article-content h2{margin-top:42px}}
+@media(max-width:560px){.article-shell{padding:20px 20px 60px}.article-breadcrumb{margin-bottom:28px;font-size:.75rem}.article-header h1{font-size:2.55rem}.article-deck{font-size:1.04rem}.article-content{font-size:1rem;line-height:1.8}.article-content .article-lead{font-size:1.1rem}.article-toc{grid-template-columns:1fr 1fr}.article-note{padding:20px}.article-end-cta{padding:23px}.article-table{font-size:.78rem}.article-table th,.article-table td{padding:9px 8px}}
+</style><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://vayuyaan13.github.io/vayuyaan/what-is-esp32/#article",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://vayuyaan13.github.io/vayuyaan/what-is-esp32/"
+      },
+      "headline": "What Is ESP32? Features, Uses, and How to Get Started",
+      "description": "Learn what ESP32 is, how its wireless and GPIO features work, common applications, how it compares with Arduino Uno, and how to choose and set up a board safely.",
+      "image": ["https://vayuyaan13.github.io/vayuyaan/assets/vayuyaan-logo.png"],
+      "author": {
+        "@type": "Organization",
+        "name": "Vayuyaan Editorial Team",
+        "url": "https://vayuyaan.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Vayuyaan",
+        "url": "https://vayuyaan.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://vayuyaan13.github.io/vayuyaan/assets/vayuyaan-logo.png"
+        }
+      },
+      "inLanguage": "en-IN",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Vayuyaan Electronics and Robotics Guides",
+        "url": "https://vayuyaan13.github.io/vayuyaan/"
+      },
+      "about": [
+        {"@type": "Thing", "name": "ESP32"},
+        {"@type": "Thing", "name": "Internet of Things"},
+        {"@type": "Thing", "name": "Microcontrollers"}
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://vayuyaan13.github.io/vayuyaan/what-is-esp32/#breadcrumb",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://vayuyaan13.github.io/vayuyaan/"},
+        {"@type": "ListItem", "position": 2, "name": "Electronics Blog", "item": "https://vayuyaan.com/blog/"},
+        {"@type": "ListItem", "position": 3, "name": "What Is ESP32?", "item": "https://vayuyaan13.github.io/vayuyaan/what-is-esp32/"}
+      ]
+    }
+  ]
+}
+</script>
+</head><body><header class="header"><nav class="nav">
+<a class="brand" href="../" aria-label="Vayuyaan learning hub home"><img src="../assets/vayuyaan-logo.png" alt="Vayuyaan logo"></a>
+<div class="navlinks"><a href="../">Home</a><a href="../write-for-us/" >Write for Us</a><a href="../arduino/" >Arduino Guides</a><a href="../sensors/" >Sensor Guides</a><a href="../robotics/" >Robotics Projects</a><a href="../motor-drivers/" >Motor Drivers</a><a href="../what-is-esp32/" aria-current="page">ESP32</a><a href="https://vayuyaan.com/blog/">Electronics Blog</a><a href="https://vayuyaan.com/shop/">Shop Components</a><a class="nav-cta" href="https://vayuyaan.com/">Vayuyaan.com ↗</a></div>
+<button class="menu" type="button" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+</nav></header><main class="article-shell">
+  <div class="article-breadcrumb"><a href="../">Home</a><span>›</span><a href="https://vayuyaan.com/blog/">Electronics Blog</a><span>›</span><span>What Is ESP32?</span></div>
+  <article class="blog-article">
+    <header class="article-header">
+      <p class="article-category">MICROCONTROLLERS · BEGINNER'S GUIDE</p>
+      <h1>What Is ESP32? Features, Uses, and How to Get Started</h1>
+      <p class="article-deck">The ESP32 is a powerful, low-cost microcontroller family used in Wi-Fi devices, Bluetooth projects, sensors, automation and the Internet of Things. This guide explains what it does, how it compares with Arduino Uno, and what beginners should know before building their first project.</p>
+      <div class="article-byline"><span>Vayuyaan Editorial Team</span><span class="byline-dot">•</span><span>Beginner guide</span><span class="byline-dot">•</span><span>8–10 min read</span></div>
+    </header>
+    <div class="article-layout">
+      <aside class="article-toc" aria-label="Table of contents"><p>IN THIS ARTICLE</p><a href="#what-is-esp32">What is ESP32?</a><a href="#how-it-works">How it works</a><a href="#features">Key features</a><a href="#uses">Common uses</a><a href="#esp32-vs-arduino">ESP32 vs Arduino Uno</a><a href="#choose-board">Choosing a board</a><a href="#getting-started">Getting started</a><a href="#safety">Power and wiring</a><a href="#faq">FAQs</a></aside>
+      <div class="article-content">
+        <p class="article-lead">Imagine a small electronic board that can read a temperature sensor, switch a light, connect to your Wi-Fi network and send data to a dashboard. An ESP32 development board can do all of that in one compact setup.</p>
+        <p>ESP32 boards are popular with students, makers and engineers because they combine general-purpose input/output (GPIO), communication interfaces and wireless capabilities at a relatively low cost. However, the ESP32 is a family of chips, so features and pin layouts vary by model.</p>
+        <figure class="article-note"><span class="note-label">IN SHORT</span><p><strong>ESP32 is a family of microcontrollers from Espressif Systems.</strong> Many variants include Wi-Fi and Bluetooth, making them useful for connected electronics and IoT projects. You program the chip to read inputs, process information and control outputs.</p></figure>
+        <h2 id="what-is-esp32">What is ESP32?</h2>
+        <p>The ESP32 is a microcontroller family developed by <a href="https://www.espressif.com/">Espressif Systems</a>. A microcontroller is a compact computer on a chip. It runs a program, reads signals from connected components and controls outputs according to your code.</p>
+        <p>A development board places an ESP32 chip or module on a circuit board with supporting components. Depending on the board, it may include a USB connector, voltage regulator, antenna, boot buttons and pins that make it easier to connect sensors or displays.</p>
+        <p>This distinction matters: <em>ESP32</em> refers to the chip family, while an <em>ESP32 development board</em> is the physical board you connect to your computer and project circuit.</p>
+        <h2 id="how-it-works">How does an ESP32 work?</h2>
+        <p>You write a program on your computer and upload it to the development board. Once powered, the ESP32 executes that program without needing your computer to stay connected. The program can read sensor values, make decisions and control devices.</p>
+        <ol>
+          <li><strong>Read an input:</strong> collect a signal from a button, temperature sensor, light sensor or other compatible module.</li>
+          <li><strong>Process the data:</strong> use your code to compare values, calculate a result or decide what should happen next.</li>
+          <li><strong>Control an output:</strong> turn on an LED, update a display or send a control signal to a suitable driver circuit.</li>
+          <li><strong>Communicate:</strong> on supported models, use Wi-Fi or Bluetooth to exchange data with another device or service.</li>
+        </ol>
+        <p>For example, a room-monitoring project can read a temperature sensor and send readings over Wi-Fi to a local dashboard. The ESP32 runs the logic; the sensor, power supply and dashboard provide the rest of the system.</p>
+        <h2 id="features">Key ESP32 features</h2>
+        <h3>Wi-Fi and Bluetooth on supported variants</h3>
+        <p>Wireless connectivity makes the ESP32 useful for smart-home controls, remote monitoring and network-connected sensors. Not every chip in the ESP32 family supports the same Bluetooth version or wireless combination, so check the exact model before buying.</p>
+        <h3>GPIO and communication interfaces</h3>
+        <p>General-purpose input/output pins connect the microcontroller to external circuits. Depending on the model, peripherals may include ADC, PWM, I²C, SPI, UART and touch sensing. Not every pin supports every function, and some pins have boot or input-only restrictions.</p>
+        <h3>Small size and flexible development options</h3>
+        <p>ESP32 development boards are available in different sizes and layouts. Many beginners use the Arduino IDE, while developers can also use Espressif's ESP-IDF framework. Your choice depends on the board, project requirements and how much control you need.</p>
+        <h3>Power-saving modes</h3>
+        <p>Some ESP32 projects use sleep modes to reduce energy consumption between readings. Actual battery life depends on the board's regulator, sensors, wireless activity, firmware and wake-up interval—not just the chip's sleep specification.</p>
+        <h2 id="uses">What is ESP32 used for?</h2>
+        <p>The ESP32 works well when a project needs local control plus communication or data collection. Common examples include:</p>
+        <ul>
+          <li><strong>IoT sensors:</strong> send temperature, humidity, air-quality or other readings to a local network or cloud service.</li>
+          <li><strong>Home automation:</strong> control compatible lights, switches and monitoring systems through a network.</li>
+          <li><strong>Wireless control:</strong> build Bluetooth or Wi-Fi interfaces for suitable electronic devices.</li>
+          <li><strong>Robotics:</strong> read sensors and control motor-driver inputs in small robots. Motors need a suitable driver and power supply.</li>
+          <li><strong>Data logging:</strong> collect measurements and save or transmit them for later analysis.</li>
+          <li><strong>Prototypes and learning:</strong> experiment with displays, buttons, relays, sensors and communication protocols.</li>
+        </ul>
+        <p>It is not automatically the best choice for every circuit. A simple project that only blinks an LED may need a more basic board; an ESP32 becomes especially useful when its processing, peripheral or wireless features solve a real project need.</p>
+        <h2 id="esp32-vs-arduino">ESP32 vs Arduino Uno: what is the difference?</h2>
+        <p>Arduino Uno is a development board built around a different microcontroller platform and ecosystem. ESP32 boards often offer more processing capability and built-in wireless connectivity, while the Uno is a straightforward option for learning basic electronics and digital I/O.</p>
+        <table class="article-table"><thead><tr><th>Consideration</th><th>ESP32 development board</th><th>Arduino Uno R3</th></tr></thead><tbody><tr><td>Wireless</td><td>Wi-Fi/Bluetooth on supported variants</td><td>No built-in Wi-Fi or Bluetooth on the classic Uno R3</td></tr><tr><td>Best fit</td><td>Connected sensors, IoT and wireless control</td><td>Foundational electronics and simple control projects</td></tr><tr><td>Pin details</td><td>Model-specific; some pins have restrictions</td><td>Defined Uno R3 layout and familiar beginner examples</td></tr><tr><td>Logic voltage</td><td>GPIO is generally 3.3 V logic; do not assume 5 V tolerance</td><td>Classic Uno R3 uses 5 V logic</td></tr></tbody></table>
+        <p>Choose based on the project, not on a claim that one board is always better. If you are new to microcontrollers, read the <a href="https://vayuyaan.com/blog/arduino-uno-r3-complete-guide-for-beginners/">Arduino Uno R3 beginner's guide</a> as well, then compare the wiring and programming requirements for your project.</p>
+        <h2 id="choose-board">How to choose an ESP32 development board</h2>
+        <p>Before ordering, check the board's exact name and documentation. Boards can use different ESP32 variants, USB-to-serial chips, pin layouts and power arrangements. A pinout from one board may not match another even if both are sold as ESP32 boards.</p>
+        <ul>
+          <li>Confirm the chip or module name printed on the board or product page.</li>
+          <li>Check the pinout diagram and note any input-only or boot-strapping pins.</li>
+          <li>Confirm how the board connects to your computer and whether a USB driver is required.</li>
+          <li>Check the supported wireless features and available memory for your planned project.</li>
+          <li>Make sure the board's dimensions, antenna placement and power options suit the enclosure or battery you intend to use.</li>
+        </ul>
+        <h2 id="getting-started">How to get started with ESP32</h2>
+        <p>You do not need to begin with a complicated IoT build. First prove that your board can connect to your computer and run a basic program. Then add components one at a time.</p>
+        <ol>
+          <li><strong>Identify your board.</strong> Use its exact model and pinout instead of guessing from a similar-looking board.</li>
+          <li><strong>Install your development environment.</strong> Follow the current setup instructions for Arduino-ESP32 or ESP-IDF.</li>
+          <li><strong>Select the board and port.</strong> Connect with a data-capable USB cable and select the matching board target and serial port.</li>
+          <li><strong>Upload a simple example.</strong> Start with an example supported by your board. Follow the board-specific BOOT/reset procedure if the upload requires it.</li>
+          <li><strong>Verify before adding hardware.</strong> Check the upload result and serial output. Once that works, connect a single sensor or output and test again.</li>
+        </ol>
+        <p>Once you understand the core features and have chosen a board, the next step is to prepare the development environment and upload a first sketch. Our <a href="https://vayuyaan.com/blog/getting-started-with-esp32-development-board/">What is ESP32</a> guide walks through the development-board setup and first steps, so you can move from the concepts in this article to a working board.</p>
+        <h2 id="safety">Power and wiring precautions</h2>
+        <p>ESP32 GPIO is generally designed for 3.3 V logic and should not be treated as 5 V-tolerant. A sensor powered from 5 V may produce a 5 V signal even if its data sheet lists a lower operating voltage for some pins. Check the sensor's output specification and use a suitable level shifter or interface when needed.</p>
+        <p>Never power a motor, servo or other high-current load directly from a GPIO pin. Use an appropriate driver and a power supply sized for the load. Follow the circuit design for grounding, and disconnect power before changing wiring. Always check the documentation for your exact board and component.</p>
+        <h2 id="faq">Frequently asked questions</h2>
+        <h3>Is ESP32 good for beginners?</h3><p>Yes. Start with a supported development board and a simple example. Learn the pinout and power limits before connecting external hardware.</p>
+        <h3>Does every ESP32 have Wi-Fi and Bluetooth?</h3><p>Wireless features vary across the ESP32 family. Check the exact chip's official specification rather than assuming all variants have identical Wi-Fi and Bluetooth support.</p>
+        <h3>Can I program ESP32 with Arduino IDE?</h3><p>Yes. The Arduino-ESP32 platform supports many ESP32 boards. Follow Espressif's current installation instructions and select the correct board target.</p>
+        <h3>Can I connect a 5 V sensor directly?</h3><p>Do not assume it is safe. Check the sensor's signal voltage and the board's electrical limits. Use a level shifter or a compatible interface if the sensor output exceeds the ESP32's GPIO limits.</p>
+        <h3>Should I choose ESP32 or Arduino Uno?</h3><p>Choose ESP32 when wireless connectivity or its additional capabilities help your project. Choose the classic Uno when its simpler setup and 5 V ecosystem suit the circuit and learning goal.</p>
+        <div class="article-end-cta"><p class="note-label">PUT THE BASICS INTO PRACTICE</p><h2>Ready to set up your ESP32 board?</h2><p>Use the step-by-step setup guide to check your board, configure the development environment and run your first test.</p><p>Continue with the <a href="https://vayuyaan.com/blog/getting-started-with-esp32-development-board/">What is ESP32</a> walkthrough.</p></div>
+        <p class="article-sources">Technical reference: <a href="https://www.espressif.com/">Espressif Systems</a> · <a href="https://docs.espressif.com/projects/arduino-esp32/en/latest/">Arduino-ESP32 documentation</a> · <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/">ESP-IDF getting started</a>.</p>
+      </div>
+    </div>
+  </article>
+</main><footer><div class="footer-brand"><img src="../assets/vayuyaan-logo.png" alt="Vayuyaan logo"><p>Electronics • Robotics • DIY</p></div><div class="footer-social"><b>Social Media</b><a href="https://www.instagram.com/vayuyaan_official/" target="_blank" rel="noopener noreferrer" aria-label="Vayuyaan on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle></svg>Instagram</a><a href="https://www.facebook.com/Vayuyaan.official/" target="_blank" rel="noopener noreferrer" aria-label="Vayuyaan on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-3.3 0-5 1.9-5 5v3H6v4h3v4h4v-4h3l1-4h-4V9c0-.7.3-1 1-1Z"></path></svg>Facebook</a><a href="https://x.com/VayuyaanTechHub" target="_blank" rel="noopener noreferrer" aria-label="Vayuyaan on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4l14 16M19 4L5 20"></path></svg>X (Twitter)</a><a href="https://www.linkedin.com/company/vayuyaan/" target="_blank" rel="noopener noreferrer" aria-label="Vayuyaan on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9v9M6 6.5v.1M10 18v-5a3 3 0 0 1 6 0v5M10 9v9"></path></svg>LinkedIn</a><a href="https://www.youtube.com/@vayuyaan" target="_blank" rel="noopener noreferrer" aria-label="Vayuyaan on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12s0-4-1-5-4-1-8-1-7 0-8 1-1 5-1 5 0 4 1 5 4 1 8 1 7-1 8-1 1-5 1-5Z"></path><path d="m10 9 5 3-5 3V9Z"></path></svg>YouTube</a></div><div><b>Explore</b><a href="../write-for-us/">Write for Us</a><a href="../arduino/">Arduino guides</a><a href="../esp32/">ESP32 guides</a><a href="../sensors/">Sensor guides</a><a href="../robotics/">Robotics projects</a><a href="https://vayuyaan.com/blog/">Vayuyaan electronics blog</a></div><div><b>Shop</b><a href="https://vayuyaan.com/product-category/electronic-modules/">Electronic modules</a><a href="https://vayuyaan.com/shop/">Arduino, sensors and robotics components</a><a href="https://vayuyaan.com/faqs/">Vayuyaan FAQs and help</a><a href="https://vayuyaan.com/">Visit Vayuyaan.com</a></div></footer><div class="footer-bottom"><span>© 2026 Vayuyaan. All rights reserved.</span><span>Electronics • Robotics • DIY</span></div><script>
+(()=>{const menuButton=document.querySelector('.menu');const navigation=document.querySelector('.navlinks');if(menuButton&&navigation){menuButton.addEventListener('click',()=>{const opened=navigation.classList.toggle('mobile-open');menuButton.setAttribute('aria-expanded',String(opened));menuButton.setAttribute('aria-label',opened?'Close navigation menu':'Open navigation menu');});navigation.querySelectorAll('a').forEach(item=>item.addEventListener('click',()=>{navigation.classList.remove('mobile-open');menuButton.setAttribute('aria-expanded','false');menuButton.setAttribute('aria-label','Open navigation menu');}));}})();
+</script>
+</body></html>
