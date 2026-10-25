@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IR Sensor vs Ultrasonic Sensor: Range, Accuracy & Arduino Guide | Vayuyaan</title>
+<meta name="description" content="Compare IR and ultrasonic sensors for Arduino projects. Learn how they work, range and accuracy limits, wiring, example code, common faults and which sensor to choose.">
+<meta name="robots" content="noindex,follow,max-image-preview:large">
+<link rel="canonical" href="https://vayuyaan13.github.io/vayuyaan/ir-sensor-vs-ultrasonic-sensor/">
+<meta name="theme-color" content="#ffc928">
+<meta property="og:locale" content="en_IN">
+<meta property="og:site_name" content="Vayuyaan Electronics & Robotics Guides">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IR Sensor vs Ultrasonic Sensor: Range, Accuracy & Arduino Guide">
+<meta property="og:description" content="A practical comparison of reflective IR modules and ultrasonic distance sensors, with wiring, code and project-selection advice.">
+<meta property="og:url" content="https://vayuyaan13.github.io/vayuyaan/ir-sensor-vs-ultrasonic-sensor/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IR Sensor vs Ultrasonic Sensor: Which Should You Use?">
+<meta name="twitter:description" content="Compare detection method, wiring, limitations and Arduino code before choosing a sensor for your project.">
+<link rel="stylesheet" href="../style.css?v=20261024c">
+<style>
+.article-shell{max-width:1160px;margin:0 auto;padding:28px 28px 88px}.article-breadcrumb{display:flex;flex-wrap:wrap;gap:10px;align-items:center;color:#77818a;font-size:.82rem;margin:8px 0 38px}.article-breadcrumb a{color:#64717d;text-decoration:none}.blog-article{max-width:1040px;margin:0 auto}.article-header{max-width:850px;margin:0 auto 38px;padding:0 0 30px;border-bottom:1px solid #e5e9ed}.article-category{font-size:.72rem;letter-spacing:.15em;font-weight:800;color:#977000;margin:0 0 16px}.article-header h1{font-size:clamp(2.35rem,5vw,4.1rem);letter-spacing:-.055em;line-height:1.06;margin:0 0 22px;max-width:850px}.article-deck{font-size:1.15rem;line-height:1.8;color:#52606b;max-width:790px;margin:0}.article-byline{display:flex;flex-wrap:wrap;gap:11px;align-items:center;margin-top:22px;color:#7d8790;font-size:.8rem}.article-byline span:first-child{font-weight:700;color:#26313a}.article-layout{display:grid;grid-template-columns:205px minmax(0,740px);gap:50px;justify-content:center;align-items:start}.article-toc{position:sticky;top:112px;border-left:2px solid #e5e9ed;padding:4px 0 5px 17px;display:flex;flex-direction:column;gap:10px}.article-toc p{font-size:.66rem;letter-spacing:.14em;font-weight:800;color:#8a949d;margin:0 0 5px}.article-toc a{font-size:.82rem;line-height:1.45;text-decoration:none;color:#65717b}.article-content{min-width:0;color:#303b44;font-size:1.02rem;line-height:1.85}.article-content p{margin:0 0 20px}.article-content a{color:#805d00;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}.article-content .article-lead{font-size:1.15rem;line-height:1.8;color:#202b33}.article-content h2{font-size:clamp(1.65rem,3vw,2.15rem);letter-spacing:-.035em;line-height:1.2;margin:48px 0 16px;scroll-margin-top:110px}.article-content h3{font-size:1.18rem;line-height:1.4;margin:28px 0 9px;letter-spacing:-.02em}.article-content ul,.article-content ol{padding-left:25px;margin:0 0 24px}.article-content li{padding-left:4px;margin:0 0 9px}.article-note{margin:26px 0 34px;padding:22px 25px;background:#fff9e6;border-left:4px solid #ffc928;border-radius:0 9px 9px 0}.article-note p{margin:8px 0 0}.note-label{font-size:.68rem!important;letter-spacing:.14em;font-weight:800;color:#8d6a00;margin:0!important}.article-table-wrap{overflow-x:auto;margin:22px 0 28px}.article-table{width:100%;border-collapse:collapse;font-size:.87rem;line-height:1.55;min-width:590px}.article-table th,.article-table td{padding:12px 13px;text-align:left;vertical-align:top;border:1px solid #e3e7ea}.article-table th{background:#f5f7f8;color:#18232b;font-weight:700}.article-content pre{overflow:auto;padding:18px;background:#101820;color:#f6f7f8;border-radius:9px;font: .86rem/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;margin:16px 0 23px}.article-content code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.9em}.article-content pre code{font-size:1em}.article-end-cta{margin:44px 0 28px;padding:28px;background:#111820;color:#fff;border-radius:12px}.article-end-cta h2{font-size:1.7rem;margin:9px 0 12px;color:#fff}.article-end-cta p:not(.note-label){color:#c4cbd0}.article-button{display:inline-flex;align-items:center;gap:12px;background:#ffd23f;color:#111820!important;padding:12px 16px;border-radius:7px;text-decoration:none!important;font-weight:800;font-size:.9rem}.article-faq{border-top:1px solid #e5e9ed;padding-top:12px;margin-top:18px}.article-faq h3{margin-top:22px}.article-sources{font-size:.82rem;color:#77818a;border-top:1px solid #e5e9ed;padding-top:20px;margin-top:34px!important}
+@media(max-width:820px){.article-layout{grid-template-columns:1fr;gap:28px}.article-toc{position:static;border:1px solid #e5e9ed;border-radius:10px;padding:16px 18px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px}.article-toc p{grid-column:1/-1}.article-header{margin-bottom:30px}.article-content h2{margin-top:40px}}
+@media(max-width:560px){.article-shell{padding:20px 20px 60px}.article-breadcrumb{margin-bottom:26px;font-size:.75rem}.article-header h1{font-size:2.4rem}.article-deck{font-size:1.03rem}.article-content{font-size:.98rem;line-height:1.8}.article-content .article-lead{font-size:1.07rem}.article-toc{grid-template-columns:1fr 1fr}.article-note{padding:19px}.article-end-cta{padding:22px}.article-table{font-size:.78rem}.article-table th,.article-table td{padding:9px 8px}}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://vayuyaan13.github.io/vayuyaan/ir-sensor-vs-ultrasonic-sensor/#article",
+      "mainEntityOfPage": {"@type": "WebPage", "@id": "https://vayuyaan13.github.io/vayuyaan/ir-sensor-vs-ultrasonic-sensor/"},
+      "headline": "IR Sensor vs Ultrasonic Sensor: Range, Accuracy & Arduino Guide",
+      "description": "Compare reflective IR sensor modules and ultrasonic sensors for Arduino projects, including range limits, wiring, code, applications and troubleshooting.",
+      "author": {"@type": "Organization", "name": "Vayuyaan Editorial Team"},
+      "publisher": {"@type": "Organization", "name": "Vayuyaan", "logo": {"@type": "ImageObject", "url": "https://vayuyaan13.github.io/vayuyaan/assets/vayuyaan-logo.png"}},
+      "inLanguage": "en-IN",
+      "articleSection": ["Arduino", "Sensors", "Robotics"],
+      "keywords": ["IR sensor vs ultrasonic sensor", "IR sensor Arduino", "ultrasonic sensor Arduino", "HC-SR04 vs IR sensor", "Arduino sensor comparison"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://vayuyaan13.github.io/vayuyaan/"},
+        {"@type": "ListItem", "position": 2, "name": "Sensor Guides", "item": "https://vayuyaan13.github.io/vayuyaan/sensors/"},
+        {"@type": "ListItem", "position": 3, "name": "IR Sensor vs Ultrasonic Sensor", "item": "https://vayuyaan13.github.io/vayuyaan/ir-sensor-vs-ultrasonic-sensor/"}
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="header"><nav class="nav">
+<a class="brand" href="../" aria-label="Vayuyaan learning hub home"><img src="../assets/vayuyaan-logo.png" alt="Vayuyaan logo"></a>
+<div class="navlinks"><a href="../">Home</a><a href="../write-for-us/">Write for Us</a><a href="../arduino/">Arduino Guides</a><a href="../sensors/">Sensor Guides</a><a href="../robotics/">Robotics Projects</a><a href="../motor-drivers/">Motor Drivers</a><a href="../what-is-esp32/">ESP32</a><a href="https://vayuyaan.com/blog/">Electronics Blog</a><a href="https://vayuyaan.com/shop/">Shop Components</a><a class="nav-cta" href="https://vayuyaan.com/">Vayuyaan.com ↗</a></div>
+<button class="menu" type="button" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+</nav></header>
+<main class="article-shell">
+<div class="article-breadcrumb"><a href="../">Home</a><span>›</span><a href="../sensors/">Sensor Guides</a><span>›</span><span>IR vs Ultrasonic Sensor</span></div>
+<article class="blog-article">
+<header class="article-header">
+<p class="article-category">ARDUINO • SENSORS • PRACTICAL GUIDE</p>
+<h1>IR Sensor vs Ultrasonic Sensor: Which One Should You Use?</h1>
+<p class="article-deck">Both sensors can help an Arduino react to something in front of it, but they do not measure the same thing. Use this guide to choose the right module, wire it safely and avoid the common mistakes that cause unreliable readings.</p>
+<div class="article-byline"><span>Vayuyaan Editorial Team</span><span>•</span><span>Arduino and sensor guide</span></div>
+</header>
+<div class="article-layout">
+<nav class="article-toc" aria-label="Table of contents"><p>IN THIS GUIDE</p><a href="#quick-answer">Quick answer</a><a href="#how-they-work">How they work</a><a href="#comparison">Comparison table</a><a href="#range">Range and accuracy</a><a href="#choose">Which should you choose?</a><a href="#wiring">Arduino wiring</a><a href="#code">Example code</a><a href="#troubleshooting">Troubleshooting</a><a href="#faq">FAQs</a></nav>
+<div class="article-content">
+<p class="article-lead">Choosing between an IR sensor and an ultrasonic sensor is easier when you start with the job you need the sensor to do. Do you need to detect a surface or follow a line, or do you need an approximate distance to an object? That distinction matters more than a headline range number.</p>
+<p>This comparison focuses on common low-cost modules used with an Arduino Uno: a reflective digital IR sensor module and the HC-SR04 ultrasonic distance sensor. Other IR sensors—including break-beam, remote-control receivers and thermal sensors—work differently, so their specifications should not be treated as interchangeable.</p>
+
+<h2 id="quick-answer">IR sensor vs ultrasonic sensor: the quick answer</h2>
+<ul>
+<li><strong>Choose a reflective IR module</strong> for close-range surface detection, simple object triggers or line-following experiments where contrast is useful.</li>
+<li><strong>Choose an ultrasonic sensor such as the HC-SR04</strong> when you need a distance estimate to a suitable target and can use timed echo readings.</li>
+<li><strong>Test the actual module in its real environment.</strong> Surface finish, angle, light, sound-absorbing materials and the shape of the target can all affect results.</li>
+</ul>
+<p>Neither option is automatically more accurate in every project. A sensor is a good fit when its sensing method matches the target, the distance and the conditions where it will operate.</p>
+
+<h2 id="how-they-work">How does each sensor work?</h2>
+<h3>How a reflective IR sensor works</h3>
+<p>A common reflective infrared (IR) module has an IR LED that sends light toward a nearby surface and a receiver that detects some of the reflected light. Many inexpensive boards use a comparator to turn the receiver signal into a digital output. A small potentiometer, when fitted, adjusts the detection threshold.</p>
+<p>The module is responding to reflected light, not measuring distance directly. A dark, shiny, angled or distant target may return a different signal from a light, matte target. Ambient sunlight and the sensor's mounting height can also change how it behaves.</p>
+<p>For a component-specific explanation, see this guide to the <a href="https://vayuyaan.com/blog/ir-sensor-working-principle-and-applications/">IR sensor working principle and applications</a>. Check the pin labels and output behaviour of your own module before you write the final control logic.</p>
+
+<h3>How an ultrasonic sensor works</h3>
+<p>The HC-SR04 sends a short ultrasonic burst and measures how long the echo takes to return. The controller uses the round-trip time to estimate the distance to a reflecting target. Because the sound travels to the target and back, the calculation divides the travel distance by two.</p>
+<p>The familiar HC-SR04 is often listed with a nominal measurement range of about 2–400 cm under suitable conditions. Treat that as a module specification, not a guarantee: soft materials, angled surfaces, narrow objects, nearby obstacles and the room's acoustics may cause missing or unstable echoes.</p>
+<p>For pinout and practical setup details, read the <a href="https://vayuyaan.com/blog/learn-everything-about-ultrasonic-sensor-hc-sr04/">HC-SR04 ultrasonic sensor guide</a>.</p>
+
+<h2 id="comparison">IR vs ultrasonic sensor: comparison table</h2>
+<div class="article-table-wrap"><table class="article-table">
+<thead><tr><th>Feature</th><th>Reflective digital IR module</th><th>HC-SR04 ultrasonic sensor</th></tr></thead>
+<tbody>
+<tr><td>Main job</td><td>Detects reflected IR from a nearby surface</td><td>Estimates distance from an echo time</td></tr>
+<tr><td>Typical output</td><td>Usually digital HIGH/LOW on simple modules; some sensors provide analog output</td><td>Trigger input plus timed Echo output</td></tr>
+<tr><td>Distance information</td><td>Usually a detection threshold, not a reliable distance value</td><td>Approximate distance within the sensor's usable range</td></tr>
+<tr><td>What affects readings?</td><td>Surface colour and reflectivity, angle, height, ambient IR and threshold setting</td><td>Target angle and area, sound absorption, obstacles, temperature and echo timing</td></tr>
+<tr><td>Useful for</td><td>Line contrast, close object detection, counters with suitable sensor placement</td><td>Obstacle distance, level prototypes, proximity alerts and many non-contact measurements</td></tr>
+<tr><td>Controller work</td><td>Often a simple digital read</td><td>Accurate timing of the echo pulse or a suitable pulse-measurement function</td></tr>
+<tr><td>Cost and setup</td><td>Often very inexpensive and simple to test</td><td>Still low-cost, but needs two signal connections and timing logic</td></tr>
+<tr><td>Main limitation</td><td>Detection changes with the target surface and lighting</td><td>Needs a suitable echo; angled or sound-absorbing targets can be difficult</td></tr>
+</tbody></table></div>
+<p>This table compares common hobby modules, not every sensor sold as “IR” or “ultrasonic.” If you are choosing an industrial sensor, read its datasheet and environmental ratings instead of relying on a generic comparison.</p>
+
+<h2 id="range">Range and accuracy: what to expect</h2>
+<p>People often ask which sensor has the longer range. The answer depends on the exact model and what it must detect. A basic reflective IR board is typically best treated as a short-range detector. Its sensitivity setting may make an object trigger farther away, but that does not turn it into a calibrated distance sensor.</p>
+<p>The HC-SR04 is designed to estimate distance. Its published nominal range is commonly around 2–400 cm, but the useful range in a real build may be narrower. A small object, soft fabric or a target turned at an angle may reflect too little sound back to the receiver. Readings can also become unstable when another object is close to the target.</p>
+<p>For a fair test, keep the target, its angle, the mounting and the surrounding conditions consistent. Take several readings at known distances and check how often each sensor detects the target correctly. For distance measurement, compare the ultrasonic result against a ruler or another suitable reference. For line following, test across the actual track and floor, not only a white desk.</p>
+<div class="article-note"><p class="note-label">GOOD TESTING PRACTICE</p><p>Do not compare the maximum advertised range of one module with the detection threshold of another as if they were the same measurement. First decide whether your project needs a yes/no detection signal or an estimated distance.</p></div>
+
+<h2 id="choose">Which sensor is better for your Arduino project?</h2>
+<h3>Line-following robot</h3>
+<p>Reflective IR sensors are usually the natural starting point. They can detect the contrast between a track and its background when mounted at a suitable height. Their output still depends on track material, sensor spacing and module polarity. Test each sensor over both surfaces before tuning the motor logic.</p>
+<p>For a complete build example, use this tutorial on a <a href="https://vayuyaan.com/blog/line-follower-robot-using-arduino/">line follower robot using Arduino</a>. It complements this comparison by showing how sensing becomes part of a moving robot.</p>
+<h3>Obstacle detection for a small robot</h3>
+<p>Either sensor may work, depending on the job. An IR module can be enough when you only need a simple close-range trigger. The HC-SR04 is useful when the robot needs an approximate distance to a reflecting obstacle so it can stop or change direction before reaching it.</p>
+<p>Do not assume one front-facing sensor can see every obstacle. Thin objects, angled surfaces and objects outside the sensor's field can be missed. Test the robot at a low speed in a clear area before relying on the result.</p>
+<h3>Distance measurement or a tank-level prototype</h3>
+<p>An ultrasonic sensor is generally the more suitable choice when the project needs a distance estimate rather than a simple trigger. For liquid-level prototypes, mount the sensor as instructed and check whether the tank geometry, condensation and surface movement affect the echo. Do not use a hobby module as a safety-rated or industrial level instrument.</p>
+<h3>Object counter or automatic trigger</h3>
+<p>A reflective IR module can count objects that pass a fixed sensing point, provided each item produces a clear change and the items are spaced far enough apart. Add edge detection and a suitable debounce or lockout interval in the code. If objects pass quickly, overlap, or have different surfaces, you may need a through-beam sensor or a module designed for counting.</p>
+
+<h2 id="wiring">Connecting the sensors to an Arduino Uno</h2>
+<h3>Reflective IR module</h3>
+<ul><li>Connect VCC to the voltage specified for your exact module.</li><li>Connect GND to Arduino GND.</li><li>Connect OUT to a digital input such as D2.</li></ul>
+<p>Many common modules work from 3.3–5 V, but check the board's marking and product documentation first. The output may be LOW when an object is detected, so confirm that behaviour before using it in your sketch.</p>
+<h3>HC-SR04 ultrasonic module</h3>
+<ul><li>Connect VCC to 5 V and GND to GND for a standard HC-SR04 module.</li><li>Connect TRIG to a digital output such as D9.</li><li>Connect ECHO to a digital input such as D10.</li></ul>
+<p>The standard HC-SR04 Echo signal is typically 5 V. That is suitable for a classic 5 V Arduino Uno, but not for every 3.3 V microcontroller input. If using an ESP32 or another 3.3 V controller, use a proper level-shifting method on Echo and verify the exact board and module specifications.</p>
+<div class="article-note"><p class="note-label">BEFORE POWERING UP</p><p>Disconnect USB or other power while changing wires. Double-check VCC, GND and signal pins. Do not connect DC motors directly to Arduino I/O pins; use a suitable motor driver and an appropriate power supply.</p></div>
+
+<h2 id="code">Arduino code examples</h2>
+<p>These small sketches test one sensor at a time. Run them before combining the sensors with motors, buzzers or other outputs. The first example assumes that the IR module reports detection as LOW; change the constant if your board behaves differently.</p>
+<h3>Test a digital IR sensor</h3>
+<pre><code>const int irPin = 2;
+
+// Many modules go LOW when they detect a target.
+// Check your module and change this if needed.
+const int detectedState = LOW;
+
+void setup() {
+  pinMode(irPin, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int state = digitalRead(irPin);
+
+  if (state == detectedState) {
+    Serial.println("Target detected");
+  } else {
+    Serial.println("No target detected");
+  }
+
+  delay(100);
+}</code></pre>
+<p>Open the Serial Monitor at 9600 baud. Move an object in and out of the sensing area and record the output. If the result flickers, adjust the module's sensitivity control if present and repeat the test with the target and lighting you plan to use.</p>
+<h3>Measure distance with an HC-SR04</h3>
+<pre><code>const int trigPin = 9;
+const int echoPin = 10;
+
+void setup() {
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  digitalWrite(trigPin, LOW);
+  Serial.begin(9600);
+}
+
+void loop() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  // Timeout prevents waiting indefinitely for an echo.
+  unsigned long duration = pulseIn(echoPin, HIGH, 30000UL);
+
+  if (duration == 0) {
+    Serial.println("No echo - check target and wiring");
+  } else {
+    // Approximate distance in centimetres for sound in air.
+    float distanceCm = duration * 0.0343f / 2.0f;
+    Serial.print("Distance: ");
+    Serial.print(distanceCm, 1);
+    Serial.println(" cm");
+  }
+
+  delay(100);
+}</code></pre>
+<p>The speed-of-sound value in this example is an approximation for ordinary room conditions. Temperature and the specific environment affect sound speed. The timeout also means a missing echo produces a “No echo” message rather than a valid distance of zero.</p>
+
+<h2 id="troubleshooting">Common problems and how to fix them</h2>
+<h3>The IR sensor always reports detection or no detection</h3>
+<ul><li>Verify VCC, GND and OUT wiring.</li><li>Check whether the module uses active-LOW or active-HIGH output.</li><li>Adjust its threshold slowly if it has a potentiometer.</li><li>Test a different target and change the sensor height or angle.</li><li>Try to shield the sensor from strong direct sunlight during the initial test.</li></ul>
+<h3>The ultrasonic sensor prints zero or jumps between values</h3>
+<ul><li>Confirm TRIG and ECHO are connected to the pins used in the sketch.</li><li>Check the target is within the usable range and facing the sensor.</li><li>Move away nearby objects that could return an unwanted echo.</li><li>Make sure the target is large and reflective enough for the sensor to detect.</li><li>Check power and ground; keep signal wires secure.</li></ul>
+<h3>My robot turns too late or misses an obstacle</h3>
+<p>Test the sensor while the motors are stopped, then test again with the motors running. Motor noise, power dips, vibration, sensor placement and control-loop delays can affect the result. Slow the robot down while debugging and make sure the code handles missing or implausible readings safely.</p>
+
+<h2 id="faq">Frequently asked questions</h2>
+<div class="article-faq">
+<h3>Is an IR sensor better than an ultrasonic sensor?</h3>
+<p>Neither is best for every task. IR is often a practical choice for close detection and line-following experiments. Ultrasonic sensing is more appropriate when you need an approximate distance to a suitable target.</p>
+<h3>Can an IR sensor measure distance?</h3>
+<p>A basic reflective digital module usually indicates whether the reflected signal has crossed a threshold. It should not be treated as a calibrated distance sensor. Some specialised IR distance sensors can estimate distance, but their principle and specifications are different.</p>
+<h3>Can I use both sensors on one Arduino?</h3>
+<p>Yes, when you have enough suitable pins and the wiring and timing are managed correctly. Test each module separately first, then combine them and make sure one sensor's readings do not block the response time your project needs.</p>
+<h3>Will the HC-SR04 work with an ESP32?</h3>
+<p>The trigger signal can usually be driven from a compatible GPIO, but the standard HC-SR04 Echo output is typically 5 V. Use level shifting or another suitable interface to protect a 3.3 V ESP32 input, and check the exact board and sensor specifications.</p>
+<h3>Where can I find compatible boards and modules?</h3>
+<p>Before buying a module, compare its voltage, pinout, output type and stated operating limits with the requirements of your circuit. The correct part is the one that fits the job and can be connected safely to your controller.</p>
+</div>
+
+<div class="article-end-cta"><p class="note-label">NEXT STEP</p><h2>Build a project with the right sensor</h2><p>Choose the sensor by its job, test it on the bench, and only then add the motor or other output stage.</p><a class="article-button" href="../sensors/">Explore the sensor learning hub →</a></div>
+<p class="article-sources">Technical note: Specifications vary between manufacturers and module revisions. Check the datasheet or product documentation supplied with your exact component before connecting power or relying on measurements.</p>
+</div></div>
+</article>
+</main>
+<footer><div class="footer-brand"><img src="../assets/vayuyaan-logo.png" alt="Vayuyaan logo"><p>Electronics • Robotics • DIY</p></div><div class="footer-social"><b>Social Media</b><a href="https://www.instagram.com/vayuyaan_official/" target="_blank" rel="noopener noreferrer" aria-label="Vayuyaan on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle></svg>Instagram</a><a href="https://www.facebook.com/Vayuyaan.official/" target="_blank" rel="noopener noreferrer" aria-label="Vayuyaan on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-3.3 0-5 1.9-5 5v3H6v4h3v4h4v-4h3l1-4h-4V9c0-.7.3-1 1-1Z"></path></svg>Facebook</a><a href="https://x.com/VayuyaanTechHub" target="_blank" rel="noopener noreferrer" aria-label="Vayuyaan on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4l14 16M19 4L5 20"></path></svg>X (Twitter)</a><a href="https://www.linkedin.com/company/vayuyaan/" target="_blank" rel="noopener noreferrer" aria-label="Vayuyaan on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9v9M6 6.5v.1M10 18v-5a3 3 0 0 1 6 0v5M10 9v9"></path></svg>LinkedIn</a><a href="https://www.youtube.com/@vayuyaan" target="_blank" rel="noopener noreferrer" aria-label="Vayuyaan on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12s0-4-1-5-4-1-8-1-7-1-8-1-1 5-1 5 0 4 1 5 4 1 8 1 7-1 8-1 1-5 1-5Z"></path><path d="m10 9 5 3-5 3V9Z"></path></svg>YouTube</a></div><div><b>Explore</b><a href="../write-for-us/">Write for Us</a><a href="../arduino/">Arduino tutorials</a><a href="../what-is-esp32/">ESP32 guides</a><a href="../sensors/">Sensor tutorials</a><a href="../robotics/">Robotics tutorials</a><a href="https://vayuyaan.com/blog/">Electronics blog</a></div><div><b>Shop</b><a href="https://vayuyaan.com/product-category/electronic-modules/">Electronic modules</a><a href="https://vayuyaan.com/shop/">Shop electronics and robotics</a><a href="https://vayuyaan.com/faqs/">Help &amp; FAQs</a><a href="https://vayuyaan.com/">Electronic Component Shop</a></div></footer>
+<div class="footer-bottom"><span>© 2026 Vayuyaan. All rights reserved.</span><span>Electronics • Robotics • DIY</span></div>
+<script>
+(()=>{const menuButton=document.querySelector('.menu');const navigation=document.querySelector('.navlinks');if(menuButton&&navigation){menuButton.addEventListener('click',()=>{const opened=navigation.classList.toggle('mobile-open');menuButton.setAttribute('aria-expanded',String(opened));menuButton.setAttribute('aria-label',opened?'Close navigation menu':'Open navigation menu');});navigation.querySelectorAll('a').forEach(item=>item.addEventListener('click',()=>{navigation.classList.remove('mobile-open');menuButton.setAttribute('aria-expanded','false');menuButton.setAttribute('aria-label','Open navigation menu');}));}})();
+</script>
+</body></html>
