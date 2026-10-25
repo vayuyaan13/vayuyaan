@@ -69,7 +69,7 @@
 <div class="article-layout">
 <nav class="article-toc" aria-label="Table of contents"><p>IN THIS GUIDE</p><a href="#quick-answer">Quick answer</a><a href="#how-they-work">How they work</a><a href="#comparison">Comparison table</a><a href="#range">Range and accuracy</a><a href="#choose">Which should you choose?</a><a href="#wiring">Arduino wiring</a><a href="#code">Example code</a><a href="#troubleshooting">Troubleshooting</a><a href="#faq">FAQs</a></nav>
 <div class="article-content">
-<p class="article-lead">Choosing between an IR sensor and an ultrasonic sensor is easier when you start with the job you need the sensor to do. Do you need to detect a surface or follow a line, or do you need an approximate distance to an object? That distinction matters more than a headline range number.</p>
+<p class="article-lead">Before comparing the two modules, start with the <a href="https://vayuyaan.com/blog/ir-sensor-working-principle-and-applications/">IR sensor working principle and applications</a>. An IR sensor detects reflected infrared light, while an ultrasonic sensor estimates distance from a returning sound echo. Knowing this difference helps you choose the right sensor for line following, object detection or distance measurement.</p>
 <p>This comparison focuses on common low-cost modules used with an Arduino Uno: a reflective digital IR sensor module and the HC-SR04 ultrasonic distance sensor. Other IR sensors—including break-beam, remote-control receivers and thermal sensors—work differently, so their specifications should not be treated as interchangeable.</p>
 <figure class="article-figure"><img src="../assets/ir-vs-ultrasonic-principle.svg" alt="Diagram comparing reflected infrared light detection with ultrasonic echo distance measurement" width="1200" height="560" loading="eager" decoding="async"><figcaption>IR modules detect reflected light; ultrasonic modules estimate distance from the returning sound echo.</figcaption></figure>
 
@@ -86,7 +86,7 @@
 <h3>How a reflective IR sensor works</h3>
 <p>A common reflective infrared (IR) module has an IR LED that sends light toward a nearby surface and a receiver that detects some of the reflected light. Many inexpensive boards use a comparator to turn the receiver signal into a digital output. A small potentiometer, when fitted, adjusts the detection threshold.</p>
 <p>The module is responding to reflected light, not measuring distance directly. A dark, shiny, angled or distant target may return a different signal from a light, matte target. Ambient sunlight and the sensor's mounting height can also change how it behaves.</p>
-<p>For a component-specific explanation, see this guide to the <a href="https://vayuyaan.com/blog/ir-sensor-working-principle-and-applications/">IR sensor working principle and applications</a>. Check the pin labels and output behaviour of your own module before you write the final control logic.</p>
+<p>Check the pin labels and output behaviour of your own module before you write the final control logic.</p>
 
 <h3>How an ultrasonic sensor works</h3>
 <p>The HC-SR04 sends a short ultrasonic burst and measures how long the echo takes to return. The controller uses the round-trip time to estimate the distance to a reflecting target. Because the sound travels to the target and back, the calculation divides the travel distance by two.</p>
