@@ -69,7 +69,7 @@
 <div class="article-byline"><span>Vayuyaan Editorial Team</span><span>•</span><span>Arduino and sensor guide</span></div>
 </header>
 <div class="article-layout">
-<nav class="article-toc" aria-label="Table of contents"><p>IN THIS GUIDE</p><a href="#quick-answer">Quick answer</a><a href="#how-they-work">How they work</a><a href="#comparison">Comparison table</a><a href="#range">Range and accuracy</a><a href="#choose">Which should you choose?</a><a href="#wiring">Arduino wiring</a><a href="#code">Example code</a><a href="#troubleshooting">Troubleshooting</a><a href="#faq">FAQs</a></nav>
+<nav class="article-toc" aria-label="Table of contents"><p>IN THIS GUIDE</p><a href="#quick-answer">Quick answer</a><a href="#how-they-work">How they work</a><a href="#comparison">Comparison table</a><a href="#range">Range and accuracy</a><a href="#choose">Which should you choose?</a><a href="#wiring">Arduino wiring</a><a href="#code">Example code</a><a href="#bench-test">Bench test</a><a href="#troubleshooting">Troubleshooting</a><a href="#faq">FAQs</a></nav>
 <div class="article-content">
 <p class="article-lead">Before comparing the two modules, start with the <a href="https://vayuyaan.com/blog/ir-sensor-working-principle-and-applications/">IR sensor working principle and applications</a>. An IR sensor detects reflected infrared light, while an ultrasonic sensor estimates distance from a returning sound echo. Knowing this difference helps you choose the right sensor for line following, object detection or distance measurement.</p>
 <p>This comparison focuses on common low-cost modules used with an Arduino Uno: a reflective digital IR sensor module and the HC-SR04 ultrasonic distance sensor. Other IR sensors—including break-beam, remote-control receivers and thermal sensors—work differently, so their specifications should not be treated as interchangeable.</p>
@@ -202,6 +202,26 @@ void loop() {
 }</code></pre>
 <p>The speed-of-sound value in this example is an approximation for ordinary room conditions. Temperature and the specific environment affect sound speed. The timeout also means a missing echo produces a “No echo” message rather than a valid distance of zero.</p>
 <p><strong>For a moving robot:</strong> <code>pulseIn()</code> waits for the echo and can pause the rest of your loop. This sketch is suitable for a basic bench test; for responsive motor control, consider non-blocking timing or a sensor library, reject missing/out-of-range readings, and test braking distance at low speed.</p>
+
+<h2 id="bench-test">Run a quick bench test before building</h2>
+<p>A short, repeatable test tells you more than a headline range or a single successful reading. Test the sensor you actually have, with the target and lighting or surroundings expected in your project.</p>
+<ol>
+<li><strong>Fix the setup.</strong> Secure the sensor, check its voltage and pinout, and keep the target in a marked position. Do not move the sensor between readings.</li>
+<li><strong>Test the IR module.</strong> Try the real track or object at several positions. Record whether detection is consistent, then repeat under the lighting expected during use.</li>
+<li><strong>Test the ultrasonic module.</strong> Place a flat target at measured distances within the sensor's expected range. Take several readings at each distance and note missing echoes as failures, not as zero-distance measurements.</li>
+<li><strong>Test difficult cases.</strong> Repeat with the target angled and with the actual material. For a robot, test with motors stopped first, then running, at low speed.</li>
+<li><strong>Set a pass rule.</strong> Decide what error or missed-detection rate your project can tolerate. If the sensor fails that rule, change the mounting or choose a different sensing method.</li>
+</ol>
+<div class="article-table-wrap"><table class="article-table">
+<thead><tr><th>Test condition</th><th>IR module: result</th><th>HC-SR04: result</th></tr></thead>
+<tbody>
+<tr><td>Target / surface used</td><td>Record your observation</td><td>Record your observation</td></tr>
+<tr><td>Distance or mounting height</td><td>Record the setup</td><td>Record the setup</td></tr>
+<tr><td>Repeated detections / readings</td><td>Record successes and misses</td><td>Record readings and missing echoes</td></tr>
+<tr><td>Lighting / target angle</td><td>Note any change</td><td>Note any change</td></tr>
+<tr><td>Final suitability</td><td>Pass / adjust / unsuitable</td><td>Pass / adjust / unsuitable</td></tr>
+</tbody></table></div>
+<p>This is a test worksheet, not a claim that either sensor has been independently measured here. Your own recorded results make the decision more reliable and can reveal problems that generic specifications cannot.</p>
 
 <h2 id="troubleshooting">Common problems and how to fix them</h2>
 <h3>The IR sensor always reports detection or no detection</h3>
