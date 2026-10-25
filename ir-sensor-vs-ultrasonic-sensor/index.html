@@ -33,6 +33,8 @@
       "mainEntityOfPage": {"@type": "WebPage", "@id": "https://vayuyaan13.github.io/vayuyaan/ir-sensor-vs-ultrasonic-sensor/"},
       "headline": "IR Sensor vs Ultrasonic Sensor: Range, Accuracy & Arduino Guide",
       "description": "Compare reflective IR sensor modules and ultrasonic sensors for Arduino projects, including range limits, wiring, code, applications and troubleshooting.",
+      "image": "https://vayuyaan13.github.io/vayuyaan/assets/ir-vs-ultrasonic-principle.svg",
+      "dateModified": "2026-10-26",
       "author": {"@type": "Organization", "name": "Vayuyaan Editorial Team"},
       "publisher": {"@type": "Organization", "name": "Vayuyaan", "logo": {"@type": "ImageObject", "url": "https://vayuyaan13.github.io/vayuyaan/assets/vayuyaan-logo.png"}},
       "inLanguage": "en-IN",
@@ -108,6 +110,7 @@
 </tbody></table></div>
 <figure class="article-figure"><img src="../assets/ir-vs-ultrasonic-comparison.svg" alt="Visual guide to choosing an IR or ultrasonic sensor for different Arduino project needs" width="1200" height="620" loading="lazy" decoding="async"><figcaption>Use the sensing task and the target conditions to choose a module; check the exact model's datasheet.</figcaption></figure>
 <p>This table compares common hobby modules, not every sensor sold as “IR” or “ultrasonic.” If you are choosing an industrial sensor, read its datasheet and environmental ratings instead of relying on a generic comparison.</p>
+<div class="article-note"><p class="note-label">QUICK DECISION RULE</p><p>Choose a reflective IR module when the task is to detect a nearby surface or contrast change. Choose the HC-SR04 when the project needs an approximate distance to a suitable target. If the project needs dependable measurements in sunlight, around soft or angled objects, or in a safety-critical setting, test a suitable sensor designed for those conditions rather than relying on this general rule.</p></div>
 
 <h2 id="range">Range and accuracy: what to expect</h2>
 <p>People often ask which sensor has the longer range. The answer depends on the exact model and what it must detect. A basic reflective IR board is typically best treated as a short-range detector. Its sensitivity setting may make an object trigger farther away, but that does not turn it into a calibrated distance sensor.</p>
@@ -198,6 +201,7 @@ void loop() {
   delay(100);
 }</code></pre>
 <p>The speed-of-sound value in this example is an approximation for ordinary room conditions. Temperature and the specific environment affect sound speed. The timeout also means a missing echo produces a “No echo” message rather than a valid distance of zero.</p>
+<p><strong>For a moving robot:</strong> <code>pulseIn()</code> waits for the echo and can pause the rest of your loop. This sketch is suitable for a basic bench test; for responsive motor control, consider non-blocking timing or a sensor library, reject missing/out-of-range readings, and test braking distance at low speed.</p>
 
 <h2 id="troubleshooting">Common problems and how to fix them</h2>
 <h3>The IR sensor always reports detection or no detection</h3>
