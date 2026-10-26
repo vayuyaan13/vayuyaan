@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calibrate IR Sensors for an Arduino Line Follower | Vayuyaan</title>
+<meta name="description" content="Learn how to calibrate IR sensors for an Arduino line follower. Read sensor values, set detection thresholds and troubleshoot line-tracking problems.">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<link rel="canonical" href="https://vayuyaan13.github.io/vayuyaan/arduino-line-follower-ir-sensor-calibration/">
+<meta property="og:locale" content="en_IN">
+<meta property="og:site_name" content="Vayuyaan Electronics & Robotics Guides">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Calibrate IR Sensors for an Arduino Line Follower">
+<meta property="og:description" content="Read IR sensor values, adjust detection thresholds and troubleshoot tracking problems on an Arduino line-following robot.">
+<meta property="og:url" content="https://vayuyaan13.github.io/vayuyaan/arduino-line-follower-ir-sensor-calibration/">
+<meta property="og:image" content="https://vayuyaan13.github.io/vayuyaan/assets/ir-sensor-projects-arduino.svg">
+<meta property="og:image:alt" content="Arduino IR sensor modules used for line-following robotics">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Calibrate IR Sensors for an Arduino Line Follower">
+<meta name="twitter:description" content="A practical guide to sensor readings, thresholds, sensor placement and line-tracking troubleshooting.">
+<meta name="twitter:image" content="https://vayuyaan13.github.io/vayuyaan/assets/ir-sensor-projects-arduino.svg">
+<link rel="stylesheet" href="../style.css?v=20261024c">
+<style>
+.article-shell{max-width:1160px;margin:0 auto;padding:28px 28px 88px}.article-breadcrumb{display:flex;flex-wrap:wrap;gap:10px;align-items:center;color:#77818a;font-size:.82rem;margin:8px 0 38px}.article-breadcrumb a{color:#64717d;text-decoration:none}.blog-article{max-width:1040px;margin:0 auto}.article-header{max-width:850px;margin:0 auto 38px;padding:0 0 30px;border-bottom:1px solid #e5e9ed}.article-category{font-size:.72rem;letter-spacing:.15em;font-weight:800;color:#977000;margin:0 0 16px}.article-header h1{font-size:clamp(2.35rem,5vw,4.1rem);letter-spacing:-.055em;line-height:1.06;margin:0 0 22px;max-width:850px}.article-deck{font-size:1.15rem;line-height:1.8;color:#52606b;max-width:790px;margin:0}.article-byline{display:flex;flex-wrap:wrap;gap:11px;align-items:center;margin-top:22px;color:#7d8790;font-size:.8rem}.article-byline span:first-child{font-weight:700;color:#26313a}.article-layout{display:grid;grid-template-columns:205px minmax(0,740px);gap:50px;justify-content:center;align-items:start}.article-toc{position:sticky;top:112px;border-left:2px solid #e5e9ed;padding:4px 0 5px 17px;display:flex;flex-direction:column;gap:10px}.article-toc p{font-size:.66rem;letter-spacing:.14em;font-weight:800;color:#8a949d;margin:0 0 5px}.article-toc a{font-size:.82rem;line-height:1.45;text-decoration:none;color:#65717b}.article-content{min-width:0;color:#303b44;font-size:1.02rem;line-height:1.85}.article-content p{margin:0 0 20px}.article-content a{color:#805d00;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}.article-content .article-lead{font-size:1.15rem;line-height:1.8;color:#202b33}.article-content h2{font-size:clamp(1.65rem,3vw,2.15rem);letter-spacing:-.035em;line-height:1.2;margin:48px 0 16px;scroll-margin-top:110px}.article-content h3{font-size:1.18rem;line-height:1.4;margin:28px 0 9px;letter-spacing:-.02em}.article-content ul,.article-content ol{padding-left:25px;margin:0 0 24px}.article-content li{padding-left:4px;margin:0 0 9px}.article-note{margin:26px 0 34px;padding:22px 25px;background:#fff9e6;border-left:4px solid #ffc928;border-radius:0 9px 9px 0}.article-note p{margin:8px 0 0}.note-label{font-size:.68rem!important;letter-spacing:.14em;font-weight:800;color:#8d6a00;margin:0!important}.article-table-wrap{overflow-x:auto;margin:22px 0 28px}.article-table{width:100%;border-collapse:collapse;font-size:.87rem;line-height:1.55;min-width:560px}.article-table th,.article-table td{padding:12px 13px;text-align:left;vertical-align:top;border:1px solid #e3e7ea}.article-table th{background:#f5f7f8;color:#18232b;font-weight:700}.article-content pre{overflow:auto;padding:18px;background:#101820;color:#f6f7f8;border-radius:9px;font:.86rem/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;margin:16px 0 23px}.article-content code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.9em}.article-content pre code{font-size:1em}.article-end-cta{margin:44px 0 28px;padding:28px;background:#111820;color:#fff;border-radius:12px}.article-end-cta h2{font-size:1.7rem;margin:9px 0 12px;color:#fff}.article-end-cta p:not(.note-label){color:#c4cbd0}.article-button{display:inline-flex;align-items:center;gap:12px;background:#ffd23f;color:#111820!important;padding:12px 16px;border-radius:7px;text-decoration:none!important;font-weight:800;font-size:.9rem}.article-sources{font-size:.82rem;color:#77818a;border-top:1px solid #e5e9ed;padding-top:20px;margin-top:34px!important}.article-faq{border-top:1px solid #e5e9ed;padding-top:12px;margin-top:18px}.article-faq h3{margin-top:22px}
+@media(max-width:820px){.article-layout{grid-template-columns:1fr;gap:28px}.article-toc{position:static;border:1px solid #e5e9ed;border-radius:10px;padding:16px 18px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px}.article-toc p{grid-column:1/-1}.article-header{margin-bottom:30px}.article-content h2{margin-top:40px}}
+@media(max-width:560px){.article-shell{padding:20px 20px 60px}.article-breadcrumb{margin-bottom:26px;font-size:.75rem}.article-header h1{font-size:2.4rem}.article-deck{font-size:1.03rem}.article-content{font-size:.98rem;line-height:1.8}.article-content .article-lead{font-size:1.07rem}.article-toc{grid-template-columns:1fr 1fr}.article-note{padding:19px}.article-end-cta{padding:22px}.article-table{font-size:.78rem}.article-table th,.article-table td{padding:9px 8px}}
+</style>
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@graph":[
+  {"@type":"BlogPosting","@id":"https://vayuyaan13.github.io/vayuyaan/arduino-line-follower-ir-sensor-calibration/#article",
+   "mainEntityOfPage":{"@type":"WebPage","@id":"https://vayuyaan13.github.io/vayuyaan/arduino-line-follower-ir-sensor-calibration/"},
+   "headline":"Calibrate IR Sensors for an Arduino Line Follower",
+   "description":"Learn how to read IR sensor values, set thresholds and troubleshoot an Arduino line-following robot.",
+   "image":"https://vayuyaan13.github.io/vayuyaan/assets/ir-sensor-projects-arduino.svg",
+   "datePublished":"2026-10-27","dateModified":"2026-10-27",
+   "author":{"@type":"Organization","name":"Vayuyaan Editorial Team"},
+   "publisher":{"@type":"Organization","name":"Vayuyaan","logo":{"@type":"ImageObject","url":"https://vayuyaan13.github.io/vayuyaan/assets/vayuyaan-logo.png"}},
+   "inLanguage":"en-IN","articleSection":["Arduino","Sensors","Robotics"],
+   "keywords":["IR sensor calibration","IR sensor Arduino line follower","Arduino line follower sensor","Arduino code for IR sensor line follower","TCRT5000 Arduino line follower code"]},
+  {"@type":"BreadcrumbList","itemListElement":[
+   {"@type":"ListItem","position":1,"name":"Home","item":"https://vayuyaan13.github.io/vayuyaan/"},
+   {"@type":"ListItem","position":2,"name":"Robotics Projects","item":"https://vayuyaan13.github.io/vayuyaan/robotics/"},
+   {"@type":"ListItem","position":3,"name":"IR Sensor Calibration for Line Followers","item":"https://vayuyaan13.github.io/vayuyaan/arduino-line-follower-ir-sensor-calibration/"}]}
+ ]
+}
+</script>
+</head>
+<body>
+<header class="header"><nav class="nav">
+<a class="brand" href="../" aria-label="Vayuyaan learning hub home"><img src="../assets/vayuyaan-logo.png" alt="Vayuyaan logo"></a>
+<div class="navlinks"><a href="../">Home</a><a href="../write-for-us/">Write for Us</a><a href="../arduino/">Arduino Guides</a><a href="../sensors/">Sensor Guides</a><a href="../robotics/">Robotics Projects</a><a href="../motor-drivers/">Motor Drivers</a><a href="../what-is-esp32/">ESP32</a><a href="https://vayuyaan.com/blog/">Electronics Blog</a><a href="https://vayuyaan.com/shop/">Shop Components</a><a class="nav-cta" href="https://vayuyaan.com/">Vayuyaan.com ↗</a></div>
+<button class="menu" type="button" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+</nav></header>
+<main class="article-shell">
+<div class="article-breadcrumb"><a href="../">Home</a><span>›</span><a href="../robotics/">Robotics Projects</a><span>›</span><span>IR Sensor Calibration</span></div>
+<article class="blog-article">
+<header class="article-header">
+<p class="article-category">ARDUINO • IR SENSORS • ROBOTICS</p>
+<h1>How to Calibrate IR Sensors for a Line-Follower Robot</h1>
+<p class="article-deck">Read sensor outputs, choose a reliable detection threshold, and diagnose the tracking problems that make an Arduino line follower drift or miss turns.</p>
+<div class="article-byline"><span>Vayuyaan Editorial Team</span><span>•</span><span>Practical calibration guide</span><span>•</span><span>Updated October 2026</span></div>
+</header>
+<div class="article-layout">
+<nav class="article-toc" aria-label="On this page"><p>ON THIS PAGE</p><a href="#how-sensors-work">How IR sensors work</a><a href="#before-calibration">Before calibration</a><a href="#read-digital">Read digital sensors</a><a href="#analog-threshold">Set an analog threshold</a><a href="#potentiometer">Adjust the potentiometer</a><a href="#troubleshooting">Troubleshooting</a><a href="#track-tests">Track tests</a><a href="#sensor-arrays">More sensors</a><a href="#checklist">Final checklist</a><a href="#faqs">FAQs</a></nav>
+<div class="article-content">
+<p class="article-lead">Does your Arduino line-follower robot drift off the track, turn the wrong way, or miss sharp curves? Incorrectly calibrated IR sensors may be the cause. Their readings can change with sensor height, track material, ambient light and module design.</p>
+<p>If you are still assembling the robot, start with our <a href="https://vayuyaan.com/blog/line-follower-robot-using-arduino/">line follower robot using Arduino</a> tutorial for the complete build. This guide focuses on sensor calibration and tracking problems after assembly.</p>
+<p>You'll learn how to observe sensor outputs, adjust detection thresholds, check sensor placement and troubleshoot common line-following faults without guessing at the code.</p>
+
+<h2 id="how-sensors-work">1. How IR sensors detect a line</h2>
+<p>A common reflective infrared (IR) module includes an IR LED and a receiver. The LED emits infrared light, while the receiver measures some of the light reflected by the surface. Black tape and a light background often reflect different amounts, letting the robot distinguish the line from the track.</p>
+<p>However, output logic varies by module. Black does not always produce LOW, and white does not always produce HIGH. A digital module may include a comparator and an adjustable potentiometer; an analog sensor reports a changing voltage. Some boards expose both outputs.</p>
+<div class="article-note"><p class="note-label">KEY POINT</p><p>Calibrate the actual module on the actual track. A sample threshold copied from another project may not work with your sensor, lighting or surface.</p></div>
+
+<h2 id="before-calibration">2. Check the setup before calibration</h2>
+<p>Calibration will not fix loose wiring, a misaligned sensor board or incorrect power. Before you measure anything:</p>
+<ul>
+<li>Confirm the module supply voltage from its product documentation.</li>
+<li>Connect sensor ground and Arduino ground as required by the circuit.</li>
+<li>Check that signal wires match the pins used in your sketch.</li>
+<li>Secure the sensors so their height and angle stay constant.</li>
+<li>Clean the sensor faces and test on the actual track material.</li>
+<li>Keep motor power disconnected or raise the wheels while checking sensor logic.</li>
+</ul>
+<p>There is no universal mounting height for every IR module. Start with the manufacturer's recommendation, then make small adjustments while watching the readings. Keep sensors parallel to the surface and at a consistent height.</p>
+
+<h2 id="read-digital">3. Read a two-sensor digital IR module with Arduino</h2>
+<p>This example is for two digital sensor outputs connected to pins 2 and 3 on an Arduino Uno R3. It prints the signals without moving the motors, so you can check the sensors before testing the driving logic.</p>
+<pre><code>const int LEFT_SENSOR = 2;
+const int RIGHT_SENSOR = 3;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(LEFT_SENSOR, INPUT);
+  pinMode(RIGHT_SENSOR, INPUT);
+}
+
+void loop() {
+  int leftValue = digitalRead(LEFT_SENSOR);
+  int rightValue = digitalRead(RIGHT_SENSOR);
+
+  Serial.print("Left: ");
+  Serial.print(leftValue);
+  Serial.print(" | Right: ");
+  Serial.println(rightValue);
+
+  delay(200);
+}</code></pre>
+<h3>How to record the readings</h3>
+<ol>
+<li>Upload the sketch and open Serial Monitor at 9600 baud.</li>
+<li>Place both sensors over the light background and record their outputs.</li>
+<li>Move the left sensor over the dark line, then repeat with the right sensor.</li>
+<li>Move both sensors over the line and compare their outputs again.</li>
+</ol>
+<div class="article-table-wrap"><table class="article-table"><thead><tr><th>Test surface</th><th>Left sensor</th><th>Right sensor</th></tr></thead><tbody><tr><td>Both on light background</td><td>Record your result</td><td>Record your result</td></tr><tr><td>Left sensor on dark line</td><td>Record your result</td><td>Record your result</td></tr><tr><td>Right sensor on dark line</td><td>Record your result</td><td>Record your result</td></tr><tr><td>Both on dark line</td><td>Record your result</td><td>Record your result</td></tr></tbody></table></div>
+<p>Some modules output LOW when they detect the line; others behave differently. Use the measured results rather than assuming a HIGH/LOW pattern. If a reading never changes, check power, wiring, sensor height and any sensitivity adjustment before editing the motor code.</p>
+
+<h2 id="analog-threshold">4. Set a threshold for analog IR sensors</h2>
+<p>If your sensor has an analog output, read it using an Arduino analog input. On a classic Uno R3, <code>analogRead()</code> typically returns values from 0 to 1023. Your actual readings depend on the sensor and the track.</p>
+<pre><code>const int LEFT_SENSOR = A0;
+const int RIGHT_SENSOR = A1;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int leftValue = analogRead(LEFT_SENSOR);
+  int rightValue = analogRead(RIGHT_SENSOR);
+
+  Serial.print("Left: ");
+  Serial.print(leftValue);
+  Serial.print(" | Right: ");
+  Serial.println(rightValue);
+
+  delay(200);
+}</code></pre>
+<p>Record several readings over the dark line and light background. Imagine your own tests produce readings near 260 on the dark line and 780 on the light surface. These are illustrative values, not a specification for any particular module.</p>
+<p>If the two ranges are well separated, a reasonable starting threshold is their midpoint:</p>
+<pre><code>threshold = (darkReading + lightReading) / 2;
+// Example only: (260 + 780) / 2 = 520</code></pre>
+<p>If dark produces lower values, the detection condition could be:</p>
+<pre><code>const int LINE_THRESHOLD = 520;
+
+bool isOnLine(int reading) {
+  return reading < LINE_THRESHOLD;
+}</code></pre>
+<p>If dark produces higher readings, reverse the comparison:</p>
+<pre><code>const int LINE_THRESHOLD = 520;
+
+bool isOnLine(int reading) {
+  return reading > LINE_THRESHOLD;
+}</code></pre>
+<p>Replace 520 with a threshold based on your own measurements. If the dark and light ranges overlap, choosing a midpoint will not solve the problem. Recheck sensor height, surface contrast, lighting and sensor condition.</p>
+
+<h2 id="potentiometer">5. Adjust the digital module's potentiometer</h2>
+<p>Many digital IR modules include a small potentiometer that changes the comparator threshold. If your board has one, adjust it slowly while observing the output indicator or the Arduino Serial Monitor.</p>
+<ol>
+<li>Power the module at its rated voltage.</li>
+<li>Hold the sensor above the light background and note the output.</li>
+<li>Turn the potentiometer a small amount.</li>
+<li>Move the sensor over the dark line and check whether the output switches.</li>
+<li>Repeat until both surfaces give stable, different readings at the final mounting height.</li>
+</ol>
+<p>Avoid large turns. If the output flickers while the sensor is still, check for poor contrast, ambient light, loose wires or a mounting distance that does not suit the module. Not all IR sensors have an adjustable potentiometer, so consult the module documentation.</p>
+
+<h2 id="troubleshooting">6. Troubleshoot line-following problems</h2>
+<div class="article-table-wrap"><table class="article-table"><thead><tr><th>Symptom</th><th>Likely causes</th><th>What to check</th></tr></thead><tbody>
+<tr><td>Robot follows the background instead of the line</td><td>Inverted sensor logic or wrong threshold condition</td><td>Compare actual Serial Monitor readings and reverse the condition if needed.</td></tr>
+<tr><td>Robot keeps turning left</td><td>Left sensor mapping or motor direction is wrong</td><td>Test each sensor and motor separately; verify driver wiring.</td></tr>
+<tr><td>Robot keeps turning right</td><td>Right sensor mapping or motor direction is wrong</td><td>Check the right sensor output and motor connections.</td></tr>
+<tr><td>It loses the line on curves</td><td>Sensor spacing, line width, speed or steering logic</td><td>Try a lower speed and check whether sensors see the curve early enough.</td></tr>
+<tr><td>It works under one light but not another</td><td>Ambient light affects the module's response</td><td>Calibrate and test under expected operating conditions.</td></tr>
+<tr><td>Readings jump without movement</td><td>Loose connections, electrical noise or weak surface contrast</td><td>Secure wires, check grounding and repeat measurements.</td></tr>
+<tr><td>It misses intersections</td><td>The control code does not handle that sensor combination</td><td>Log the sensor states at the junction and write an explicit response.</td></tr>
+</tbody></table></div>
+<p>Diagnose sensors before changing the motor-control algorithm. Otherwise, code changes may hide the real issue rather than fix it.</p>
+
+<h2 id="track-tests">7. Test straight lines, curves and intersections</h2>
+<h3>Straight line</h3><p>Confirm that the sensors identify the line consistently and that the robot moves forward without repeated steering corrections.</p>
+<h3>Gradual and sharp curves</h3><p>Check whether the sensor layout detects the line early enough for the controller to steer. If it loses the track, test at a lower speed and review sensor spacing, line width and steering conditions.</p>
+<h3>Intersections</h3><p>Record the sensor combination when the robot reaches a junction. Add a deliberate rule for that combination instead of assuming it behaves like a normal left or right turn.</p>
+<h3>Expected lighting</h3><p>If the robot will be used under changing indoor light, test in those conditions. A threshold that works in one place may not work reliably elsewhere.</p>
+
+<h2 id="sensor-arrays">8. What changes with three, five or six sensors?</h2>
+<p>A larger array can provide more information about the line's position, but more sensors do not automatically guarantee better tracking.</p>
+<ul>
+<li><strong>Two sensors:</strong> suitable for basic left/right detection.</li>
+<li><strong>Three sensors:</strong> a centre sensor can identify the line during straight travel, while outer sensors help detect deviations.</li>
+<li><strong>Five sensors:</strong> offers more line-position information for control logic that can use it.</li>
+<li><strong>Six sensors:</strong> may provide additional resolution depending on the array layout and code.</li>
+</ul>
+<p>For three-sensor line-follower Arduino code or a larger array, record each channel over the dark line and light background. If the array exposes analog outputs, assess each sensor's readings individually. If it exposes digital outputs, verify each sensor's logic before building steering conditions. Avoid assuming every channel shares the same ideal threshold.</p>
+
+<h2 id="checklist">9. Final calibration checklist</h2>
+<ul>
+<li>Sensor supply voltage and wiring match the module's specifications.</li>
+<li>Sensor and Arduino grounds are connected correctly.</li>
+<li>Each sensor changes output between the line and background.</li>
+<li>The sensor board is secure, aligned and mounted at a consistent height.</li>
+<li>The Arduino logic matches the observed digital state or analog reading.</li>
+<li>Any analog threshold comes from measured readings, not a copied value.</li>
+<li>The robot follows a straight section without excessive corrections.</li>
+<li>Curves and intersections have been tested at a safe speed.</li>
+<li>Calibration has been checked under expected lighting conditions.</li>
+</ul>
+<p>Repeat calibration whenever you change sensors, line width, track material, mounting height or the operating environment.</p>
+
+<div class="article-end-cta"><p class="note-label">CONTINUE THE BUILD</p><h2>Need the complete robot guide?</h2><p>Use the full tutorial for assembly, connections and the overall Arduino line-follower build. This page covers the separate task of calibrating and checking the IR sensors.</p><a class="article-button" href="https://vayuyaan.com/blog/line-follower-robot-using-arduino/">Open the Arduino line-follower guide →</a></div>
+
+<h2 id="faqs">Frequently asked questions</h2>
+<div class="article-faq">
+<h3>Why does my Arduino line follower keep moving off the line?</h3><p>Check sensor logic, alignment, threshold, wiring and motor direction. Read the sensor outputs first, then test the motors independently.</p>
+<h3>How do I know whether my IR sensor detects black or white?</h3><p>Read its digital or analog output while placing it over both surfaces. The response depends on the module, so use measurements from your own setup.</p>
+<h3>What threshold should I use for an analog IR sensor?</h3><p>There is no universal value. Measure the line and background readings, choose a starting point between clearly separated ranges, then validate it on the actual track.</p>
+<h3>Can I calibrate a digital IR sensor without Arduino code?</h3><p>If the module has a potentiometer and output indicator, you can often adjust the switching point manually. Arduino readings provide another way to confirm the signal received by the controller.</p>
+<h3>Why does my robot work on a straight line but fail on turns?</h3><p>Sensor spacing, line width, speed and steering logic may not suit the curve. Test slowly and confirm that the sensors can detect the line early enough.</p>
+<h3>Do five IR sensors make a line follower more accurate?</h3><p>A five-sensor array provides more information about line position, but accuracy still depends on sensor quality, mounting, calibration and the control algorithm.</p>
+</div>
+<p class="article-sources">Technical note: Sensor outputs and thresholds vary by module, surface and lighting. Check the documentation for your exact sensor and validate readings on your own track. Example analog readings in this article are illustrative, not measured product specifications.</p>
+</div>
+</div>
+</article>
+</main>
+<footer><div class="footer-brand"><img src="../assets/vayuyaan-logo.png" alt="Vayuyaan logo"><p>Electronics • Robotics • DIY</p></div><div class="footer-social"><b>Social Media</b><a href="https://www.instagram.com/vayuyaan_official/" target="_blank" rel="noopener noreferrer" aria-label="Vayuyaan on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle></svg>Instagram</a><a href="https://www.facebook.com/Vayuyaan.official/" target="_blank" rel="noopener noreferrer" aria-label="Vayuyaan on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-3.3 0-5 1.9-5 5v3H6v4h3v4h4v-4h3l1-4h-4V9c0-.7.3-1 1-1Z"></path></svg>Facebook</a><a href="https://x.com/VayuyaanTechHub" target="_blank" rel="noopener noreferrer" aria-label="Vayuyaan on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4l14 16M19 4L5 20"></path></svg>X (Twitter)</a><a href="https://www.linkedin.com/company/vayuyaan/" target="_blank" rel="noopener noreferrer" aria-label="Vayuyaan on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9v9M6 6.5v.1M10 18v-5a3 3 0 0 1 6 0v5M10 9v9"></path></svg>LinkedIn</a><a href="https://www.youtube.com/@vayuyaan" target="_blank" rel="noopener noreferrer" aria-label="Vayuyaan on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12s0-4-1-5-4-1-8-1-7-1-8-1-1 5-1 5 0 4 1 5 4 1 8 1 7-1 8-1 1-5 1-5Z"></path><path d="m10 9 5 3-5 3V9Z"></path></svg>YouTube</a></div><div><b>Explore</b><a href="../write-for-us/">Write for Us</a><a href="../arduino/">Arduino tutorials</a><a href="../what-is-esp32/">ESP32 guides</a><a href="../sensors/">Sensor tutorials</a><a href="../robotics/">Robotics tutorials</a><a href="https://vayuyaan.com/blog/">Electronics blog</a></div><div><b>Shop</b><a href="https://vayuyaan.com/product-category/electronic-modules/">Electronic modules</a><a href="https://vayuyaan.com/shop/">Shop electronics and robotics</a><a href="https://vayuyaan.com/faqs/">Help &amp; FAQs</a><a href="https://vayuyaan.com/">Electronic Component Shop</a></div></footer>
+<div class="footer-bottom"><span>© 2026 Vayuyaan. All rights reserved.</span><span>Electronics • Robotics • DIY</span></div>
+<script>
+(()=>{const menuButton=document.querySelector('.menu');const navigation=document.querySelector('.navlinks');if(menuButton&&navigation){menuButton.addEventListener('click',()=>{const opened=navigation.classList.toggle('mobile-open');menuButton.setAttribute('aria-expanded',String(opened));menuButton.setAttribute('aria-label',opened?'Close navigation menu':'Open navigation menu');});navigation.querySelectorAll('a').forEach(item=>item.addEventListener('click',()=>{navigation.classList.remove('mobile-open');menuButton.setAttribute('aria-expanded','false');menuButton.setAttribute('aria-label','Open navigation menu');}));}})();
+</script>
+</body></html>
