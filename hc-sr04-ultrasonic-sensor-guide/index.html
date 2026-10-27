@@ -67,6 +67,7 @@
 <div class="article-note"><p class="note-label">IMPORTANT</p><p>The 2–400 cm figure is a common nominal specification, not a promise of reliable readings at every distance. Soft, narrow, angled or irregular targets may reflect too little sound back to the receiver.</p></div>
 
 <h2 id="pinout">2. HC-SR04 pinout and Arduino Uno wiring</h2>
+<figure class="article-figure"><img src="../assets/hc-sr04-pinout-wiring.svg" alt="Wiring diagram for HC-SR04 to Arduino Uno: VCC to 5V, TRIG to digital pin 9, ECHO to digital pin 10, and GND to GND" width="1200" height="650" loading="lazy" decoding="async"><figcaption>Figure 1. Example wiring for a typical HC-SR04 and 5 V Arduino Uno R3. Pin numbers in the sketch must match your wiring.</figcaption></figure>
 <p>The module has four pins. With a typical 5 V HC-SR04 and Arduino Uno R3, one example connection is shown below. Check the labels printed on your own board before powering it.</p>
 <div class="article-table-wrap"><table class="article-table"><thead><tr><th>HC-SR04 pin</th><th>Connect to Arduino Uno</th><th>Purpose</th></tr></thead><tbody>
 <tr><td>VCC</td><td>5V</td><td>Powers the module.</td></tr>
@@ -77,6 +78,7 @@
 <p>These pin numbers are examples; the sketch and wiring must agree. The Echo output on a typical HC-SR04 is a 5 V logic signal. That is suitable for a classic 5 V Arduino Uno, but use an appropriate level shifter or divider when connecting it to a 3.3 V-only board such as many ESP32 variants.</p>
 
 <h2 id="working">3. How does the HC-SR04 work?</h2>
+<figure class="article-figure"><img src="../assets/hc-sr04-distance-principle.svg" alt="Diagram of the HC-SR04 ultrasonic pulse travelling from the sensor to a target and returning as an echo, with the distance formula echo time multiplied by 0.0343 and divided by two" width="1200" height="600" loading="lazy" decoding="async"><figcaption>Figure 2. The ECHO pulse represents round-trip travel time, so divide the calculated travel distance by two.</figcaption></figure>
 <p>When the Arduino sends a trigger pulse, the module emits a brief burst of ultrasonic sound, typically around 40 kHz. The sound travels through the air, reflects from a target and returns to the receiver. The module then holds the ECHO signal high for a period related to the round-trip travel time.</p>
 <p>The Arduino measures that pulse duration. Since sound must travel to the object and back, the calculation divides the total travel distance by two. A longer echo time generally means the object is farther away.</p>
 
@@ -141,6 +143,7 @@ void loop() {
 <p>If you have not installed the Arduino IDE yet, follow our <a href="https://youtu.be/ljO6YGKqIHk">step-by-step Arduino IDE installation video</a>.</p>
 
 <h2 id="troubleshooting">7. HC-SR04 troubleshooting: common problems and fixes</h2>
+<figure class="article-figure"><img src="../assets/hc-sr04-troubleshooting.svg" alt="Four-step HC-SR04 troubleshooting checklist: check power and ground, confirm trigger and echo pins, test a flat target facing the sensor, and compare readings with a known distance" width="1200" height="650" loading="lazy" decoding="async"><figcaption>Figure 3. Work through these checks before changing the Arduino code.</figcaption></figure>
 <div class="article-table-wrap"><table class="article-table"><thead><tr><th>Symptom</th><th>Likely reason</th><th>What to do</th></tr></thead><tbody>
 <tr><td>Serial Monitor always says “No echo”</td><td>Incorrect wiring, no common ground, wrong pin numbers, weak target reflection or target outside useful range.</td><td>Check VCC/GND, confirm TRIG/ECHO match the sketch, then test a flat hard target at a moderate distance.</td></tr>
 <tr><td>Reading stays at zero or near zero</td><td>Pulse not measured correctly, target too close, or signal pin mismatch.</td><td>Confirm ECHO is connected to the pin configured in code; test at a distance comfortably above the minimum range.</td></tr>
