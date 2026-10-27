@@ -15,7 +15,8 @@
 <meta property="og:url" content="https://vayuyaan13.github.io/vayuyaan/hc-sr04-ultrasonic-sensor-guide/">
 <meta property="og:image" content="https://vayuyaan13.github.io/vayuyaan/assets/hc-sr04-guide-social.svg">
 <meta property="og:image:alt" content="HC-SR04 ultrasonic sensor guide covering pinout, Arduino wiring, range and code">
-<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:image:alt" content="HC-SR04 ultrasonic sensor guide covering pinout, Arduino wiring, range and code">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image:alt" content="HC-SR04 ultrasonic sensor guide covering pinout, Arduino wiring, range and code">
 <meta name="twitter:title" content="HC-SR04 Ultrasonic Sensor: Pinout, Range & Arduino Code">
 <meta name="twitter:description" content="Understand HC-SR04 pinout, Arduino wiring, the distance formula and common measurement problems.">
 <meta name="twitter:image" content="https://vayuyaan13.github.io/vayuyaan/assets/hc-sr04-guide-social.svg">
@@ -130,7 +131,8 @@ void loop() {
     Serial.println(" cm");
   }
 
-  delay(200);
+  // Leave more than 60 ms between triggers to reduce echo interference.
+  delay(60);
 }</code></pre>
 <h3>How to test the sketch</h3>
 <ol>
