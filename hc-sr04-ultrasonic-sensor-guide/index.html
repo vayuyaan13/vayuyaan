@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HC-SR04 Ultrasonic Sensor: Pinout, Range & Arduino Code | Vayuyaan</title>
+<meta name="description" content="Learn HC-SR04 ultrasonic sensor pinout, Arduino wiring, nominal range, distance formula, working principle, example code and troubleshooting tips.">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<link rel="canonical" href="https://vayuyaan13.github.io/vayuyaan/hc-sr04-ultrasonic-sensor-guide/">
+<meta property="og:locale" content="en_IN">
+<meta property="og:site_name" content="Vayuyaan Electronics & Robotics Guides">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HC-SR04 Ultrasonic Sensor: Pinout, Range & Arduino Code">
+<meta property="og:description" content="Practical HC-SR04 guide covering pinout, Arduino Uno wiring, distance formula, example code and troubleshooting.">
+<meta property="og:url" content="https://vayuyaan13.github.io/vayuyaan/hc-sr04-ultrasonic-sensor-guide/">
+<meta property="og:image" content="https://vayuyaan13.github.io/vayuyaan/assets/sensor-learning-hub.svg">
+<meta property="og:image:alt" content="Illustration of common sensor modules in the Vayuyaan learning hub">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="HC-SR04 Ultrasonic Sensor: Pinout, Range & Arduino Code">
+<meta name="twitter:description" content="Understand HC-SR04 pinout, Arduino wiring, the distance formula and common measurement problems.">
+<meta name="twitter:image" content="https://vayuyaan13.github.io/vayuyaan/assets/sensor-learning-hub.svg">
+<link rel="stylesheet" href="../style.css?v=20261024c">
+<style>
+.article-shell{max-width:1160px;margin:0 auto;padding:28px 28px 88px}.article-breadcrumb{display:flex;flex-wrap:wrap;gap:10px;align-items:center;color:#77818a;font-size:.82rem;margin:8px 0 38px}.article-breadcrumb a{color:#64717d;text-decoration:none}.blog-article{max-width:1040px;margin:0 auto}.article-header{max-width:850px;margin:0 auto 38px;padding:0 0 30px;border-bottom:1px solid #e5e9ed}.article-category{font-size:.72rem;letter-spacing:.15em;font-weight:800;color:#977000;margin:0 0 16px}.article-header h1{font-size:clamp(2.35rem,5vw,4.1rem);letter-spacing:-.055em;line-height:1.06;margin:0 0 22px;max-width:850px}.article-deck{font-size:1.15rem;line-height:1.8;color:#52606b;max-width:790px;margin:0}.article-byline{display:flex;flex-wrap:wrap;gap:11px;align-items:center;margin-top:22px;color:#7d8790;font-size:.8rem}.article-byline span:first-child{font-weight:700;color:#26313a}.article-layout{display:grid;grid-template-columns:205px minmax(0,740px);gap:50px;justify-content:center;align-items:start}.article-toc{position:sticky;top:112px;border-left:2px solid #e5e9ed;padding:4px 0 5px 17px;display:flex;flex-direction:column;gap:10px}.article-toc p{font-size:.66rem;letter-spacing:.14em;font-weight:800;color:#8a949d;margin:0 0 5px}.article-toc a{font-size:.82rem;line-height:1.45;text-decoration:none;color:#65717b}.article-content{min-width:0;color:#303b44;font-size:1.02rem;line-height:1.85}.article-content p{margin:0 0 20px}.article-content a{color:#805d00;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}.article-content .article-lead{font-size:1.15rem;line-height:1.8;color:#202b33}.article-content h2{font-size:clamp(1.65rem,3vw,2.15rem);letter-spacing:-.035em;line-height:1.2;margin:48px 0 16px;scroll-margin-top:110px}.article-content h3{font-size:1.18rem;line-height:1.4;margin:28px 0 9px;letter-spacing:-.02em}.article-content ul,.article-content ol{padding-left:25px;margin:0 0 24px}.article-content li{padding-left:4px;margin:0 0 9px}.article-note{margin:26px 0 34px;padding:22px 25px;background:#fff9e6;border-left:4px solid #ffc928;border-radius:0 9px 9px 0}.article-note p{margin:8px 0 0}.note-label{font-size:.68rem!important;letter-spacing:.14em;font-weight:800;color:#8d6a00;margin:0!important}.article-table-wrap{overflow-x:auto;margin:22px 0 28px}.article-table{width:100%;border-collapse:collapse;font-size:.87rem;line-height:1.55;min-width:560px}.article-table th,.article-table td{padding:12px 13px;text-align:left;vertical-align:top;border:1px solid #e3e7ea}.article-table th{background:#f5f7f8;color:#18232b;font-weight:700}.article-content pre{overflow:auto;padding:18px;background:#101820;color:#f6f7f8;border-radius:9px;font:.86rem/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;margin:16px 0 23px}.article-content code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.9em}.article-content pre code{font-size:1em}.article-end-cta{margin:44px 0 28px;padding:28px;background:#111820;color:#fff;border-radius:12px}.article-end-cta h2{font-size:1.7rem;margin:9px 0 12px;color:#fff}.article-end-cta p:not(.note-label){color:#c4cbd0}.article-button{display:inline-flex;align-items:center;gap:12px;background:#ffd23f;color:#111820!important;padding:12px 16px;border-radius:7px;text-decoration:none!important;font-weight:800;font-size:.9rem}.article-figure{margin:28px 0 34px}.article-figure img{display:block;width:100%;height:auto;border:1px solid #e0e6eb;border-radius:12px;background:#f7f9fb}.article-figure figcaption{font-size:.82rem;line-height:1.55;color:#77818a;text-align:center;margin:10px 8px 0}.article-faq{border-top:1px solid #e5e9ed;padding-top:12px;margin-top:18px}.article-faq h3{margin-top:22px}.article-sources{font-size:.82rem;color:#77818a;border-top:1px solid #e5e9ed;padding-top:20px;margin-top:34px!important}
+@media(max-width:820px){.article-layout{grid-template-columns:1fr;gap:28px}.article-toc{position:static;border:1px solid #e5e9ed;border-radius:10px;padding:16px 18px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px}.article-toc p{grid-column:1/-1}.article-header{margin-bottom:30px}.article-content h2{margin-top:40px}}
+@media(max-width:560px){.article-shell{padding:20px 20px 60px}.article-breadcrumb{margin-bottom:26px;font-size:.75rem}.article-header h1{font-size:2.4rem}.article-deck{font-size:1.03rem}.article-content{font-size:.98rem;line-height:1.8}.article-content .article-lead{font-size:1.07rem}.article-toc{grid-template-columns:1fr 1fr}.article-note{padding:19px}.article-end-cta{padding:22px}.article-table{font-size:.78rem}.article-table th,.article-table td{padding:9px 8px}}
+</style>
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@graph":[
+  {"@type":"BlogPosting","@id":"https://vayuyaan13.github.io/vayuyaan/hc-sr04-ultrasonic-sensor-guide/#article","mainEntityOfPage":{"@type":"WebPage","@id":"https://vayuyaan13.github.io/vayuyaan/hc-sr04-ultrasonic-sensor-guide/"},"headline":"HC-SR04 Ultrasonic Sensor: Pinout, Range and Arduino Code","description":"A practical guide to HC-SR04 pinout, Arduino Uno wiring, range, distance formula, sample code and troubleshooting.","image":"https://vayuyaan13.github.io/vayuyaan/assets/sensor-learning-hub.svg","datePublished":"2026-10-28","dateModified":"2026-10-28","author":{"@type":"Organization","name":"Vayuyaan Editorial Team"},"publisher":{"@type":"Organization","name":"Vayuyaan","logo":{"@type":"ImageObject","url":"https://vayuyaan13.github.io/vayuyaan/assets/vayuyaan-logo.png"}},"inLanguage":"en-IN","articleSection":["Arduino","Sensors","Robotics"],"keywords":["HC-SR04 ultrasonic sensor","HC-SR04 pinout","HC-SR04 Arduino code","HC-SR04 range","HC-SR04 distance formula","HC-SR04 troubleshooting"]},
+  {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vayuyaan13.github.io/vayuyaan/"},{"@type":"ListItem","position":2,"name":"Sensor Guides","item":"https://vayuyaan13.github.io/vayuyaan/sensors/"},{"@type":"ListItem","position":3,"name":"HC-SR04 Ultrasonic Sensor Guide","item":"https://vayuyaan13.github.io/vayuyaan/hc-sr04-ultrasonic-sensor-guide/"}]}
+ ]
+}
+</script>
+</head>
+<body>
+<header class="header"><nav class="nav">
+<a class="brand" href="../" aria-label="Vayuyaan learning hub home"><img src="../assets/vayuyaan-logo.png" alt="Vayuyaan logo"></a>
+<div class="navlinks"><a href="../">Home</a><a href="../write-for-us/">Write for Us</a><a href="../arduino/">Arduino Guides</a><a href="../sensors/" aria-current="page">Sensor Guides</a><a href="../robotics/">Robotics Projects</a><a href="../motor-drivers/">Motor Drivers</a><a href="../what-is-esp32/">ESP32</a><a href="https://vayuyaan.com/blog/">Electronics Blog</a><a href="https://vayuyaan.com/shop/">Shop Components</a><a class="nav-cta" href="https://vayuyaan.com/">Vayuyaan.com ↗</a></div>
+<button class="menu" type="button" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+</nav></header>
+<main class="article-shell">
+<div class="article-breadcrumb"><a href="../">Home</a><span>›</span><a href="../sensors/">Sensor Guides</a><span>›</span><span>HC-SR04 Guide</span></div>
+<article class="blog-article">
+<header class="article-header">
+<p class="article-category">ARDUINO • ULTRASONIC SENSORS • BEGINNER PROJECTS</p>
+<h1>HC-SR04 Ultrasonic Sensor: Pinout, Range &amp; Arduino Code</h1>
+<p class="article-deck">Learn what each HC-SR04 pin does, wire it to an Arduino Uno, calculate distance from echo time, and troubleshoot missed or unstable readings.</p>
+<div class="article-byline"><span>Vayuyaan Editorial Team</span><span>•</span><span>Practical electronics guide</span><span>•</span><span>Updated October 2026</span></div>
+</header>
+<div class="article-layout">
+<nav class="article-toc" aria-label="On this page"><p>ON THIS PAGE</p><a href="#quick-specs">Quick specifications</a><a href="#pinout">Pinout and wiring</a><a href="#working">How it works</a><a href="#range">Range and accuracy</a><a href="#formula">Distance formula</a><a href="#arduino-code">Arduino code</a><a href="#troubleshooting">Troubleshooting</a><a href="#applications">Applications</a><a href="#faqs">FAQs</a></nav>
+<div class="article-content">
+<p class="article-lead">The HC-SR04 ultrasonic sensor helps an Arduino estimate how far away an object is without touching it. It sends a short burst of high-frequency sound and measures how long the echo takes to return. This guide covers the four pins, wiring, distance formula, sample code and common fixes when readings do not look right.</p>
+<p>If you are new to distance sensing, start with our <a href="https://vayuyaan.com/blog/ultrasonic-sensor-a-quick-start-guide-for-beginners/">ultrasonic sensor range and distance formula guide</a>. For the board setup itself, see the <a href="https://vayuyaan.com/blog/arduino-uno-r3-complete-guide-for-beginners/">Arduino Uno R3 beginner's guide</a>. This article focuses specifically on the HC-SR04 module.</p>
+
+<h2 id="quick-specs">1. HC-SR04 specifications at a glance</h2>
+<div class="article-table-wrap"><table class="article-table"><thead><tr><th>Property</th><th>Typical module specification</th><th>Practical note</th></tr></thead><tbody>
+<tr><td>Operating supply</td><td>Typically 5 V DC</td><td>Check the documentation for your exact module.</td></tr>
+<tr><td>Ultrasonic frequency</td><td>About 40 kHz</td><td>Above the normal range of human hearing.</td></tr>
+<tr><td>Nominal measurement range</td><td>About 2–400 cm</td><td>Real results vary by target and environment; this is not a guarantee for every object.</td></tr>
+<tr><td>Interface</td><td>TRIG input and ECHO output</td><td>Use the pin labels on your board, which may vary in layout.</td></tr>
+<tr><td>Number of pins</td><td>4</td><td>VCC, TRIG, ECHO and GND.</td></tr>
+</tbody></table></div>
+<div class="article-note"><p class="note-label">IMPORTANT</p><p>The 2–400 cm figure is a common nominal specification, not a promise of reliable readings at every distance. Soft, narrow, angled or irregular targets may reflect too little sound back to the receiver.</p></div>
+
+<h2 id="pinout">2. HC-SR04 pinout and Arduino Uno wiring</h2>
+<p>The module has four pins. With a typical 5 V HC-SR04 and Arduino Uno R3, one example connection is shown below. Check the labels printed on your own board before powering it.</p>
+<div class="article-table-wrap"><table class="article-table"><thead><tr><th>HC-SR04 pin</th><th>Connect to Arduino Uno</th><th>Purpose</th></tr></thead><tbody>
+<tr><td>VCC</td><td>5V</td><td>Powers the module.</td></tr>
+<tr><td>TRIG</td><td>Digital pin 9</td><td>Arduino sends a short trigger pulse.</td></tr>
+<tr><td>ECHO</td><td>Digital pin 10</td><td>Module outputs a pulse whose duration represents echo time.</td></tr>
+<tr><td>GND</td><td>GND</td><td>Provides the common ground reference.</td></tr>
+</tbody></table></div>
+<p>These pin numbers are examples; the sketch and wiring must agree. The Echo output on a typical HC-SR04 is a 5 V logic signal. That is suitable for a classic 5 V Arduino Uno, but use an appropriate level shifter or divider when connecting it to a 3.3 V-only board such as many ESP32 variants.</p>
+
+<h2 id="working">3. How does the HC-SR04 work?</h2>
+<p>When the Arduino sends a trigger pulse, the module emits a brief burst of ultrasonic sound, typically around 40 kHz. The sound travels through the air, reflects from a target and returns to the receiver. The module then holds the ECHO signal high for a period related to the round-trip travel time.</p>
+<p>The Arduino measures that pulse duration. Since sound must travel to the object and back, the calculation divides the total travel distance by two. A longer echo time generally means the object is farther away.</p>
+
+<h2 id="range">4. HC-SR04 range and measurement accuracy</h2>
+<p>The common advertised range is approximately 2–400 cm. In practice, usable range depends on the sensor version, target material, target size, angle, nearby surfaces, temperature and background noise. Treat the rated range as a reference, then test the actual target and mounting setup.</p>
+<ul>
+<li><strong>Target angle:</strong> A surface tilted away from the sensor can reflect sound away from the receiver.</li>
+<li><strong>Soft material:</strong> Fabric, foam and other sound-absorbing surfaces can produce weak echoes.</li>
+<li><strong>Small targets:</strong> A narrow object may not reflect enough energy back to the two transducers.</li>
+<li><strong>Very close objects:</strong> The module needs time to transmit and receive a valid echo; objects closer than its rated minimum may give unreliable results.</li>
+<li><strong>Environment:</strong> Temperature changes the speed of sound slightly, so precision applications may need compensation.</li>
+</ul>
+<p>Do not describe every HC-SR04 as accurate to a guaranteed ±3 mm under all conditions. Repeatability and accuracy depend on the module, test setup and target. Validate measurements against a ruler or another trusted reference across the distances that matter for your project.</p>
+
+<h2 id="formula">5. HC-SR04 distance formula</h2>
+<p>Use the echo pulse duration to estimate distance. If the measured round-trip time is in microseconds and the speed of sound is approximated as 0.0343 cm per microsecond at around room temperature, calculate:</p>
+<pre><code>distance_cm = echo_time_us * 0.0343 / 2;</code></pre>
+<p>The division by two matters because the pulse travels from the sensor to the target and back. For example, an echo duration of 1,000 microseconds gives an approximate distance of 17.15 cm using this simplified calculation. This example illustrates the formula; it is not a measured test result.</p>
+
+<h2 id="arduino-code">6. HC-SR04 Arduino code</h2>
+<p>This sketch uses TRIG on digital pin 9 and ECHO on digital pin 10, matching the wiring table. It prints a distance in centimetres to Serial Monitor. The timeout prevents the program from waiting indefinitely if the sensor does not return an echo.</p>
+<pre><code>const int TRIG_PIN = 9;
+const int ECHO_PIN = 10;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(TRIG_PIN, OUTPUT);
+  pinMode(ECHO_PIN, INPUT);
+  digitalWrite(TRIG_PIN, LOW);
+}
+
+void loop() {
+  // Send a trigger pulse of about 10 microseconds.
+  digitalWrite(TRIG_PIN, LOW);
+  delayMicroseconds(2);
+  digitalWrite(TRIG_PIN, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG_PIN, LOW);
+
+  // Measure the returned HIGH pulse; timeout is 30 ms.
+  unsigned long echoTime = pulseIn(ECHO_PIN, HIGH, 30000UL);
+
+  if (echoTime == 0) {
+    Serial.println("No echo - check target, wiring and range");
+  } else {
+    float distanceCm = echoTime * 0.0343f / 2.0f;
+    Serial.print("Distance: ");
+    Serial.print(distanceCm, 1);
+    Serial.println(" cm");
+  }
+
+  delay(200);
+}</code></pre>
+<h3>How to test the sketch</h3>
+<ol>
+<li>Connect the module according to the pinout table and check for short circuits.</li>
+<li>Choose the Arduino Uno board and the correct port in Arduino IDE, then upload the sketch.</li>
+<li>Open Serial Monitor at 9600 baud.</li>
+<li>Hold a flat target directly in front of the two round transducers, first at a moderate distance.</li>
+<li>Move it slowly and compare the displayed distance with a ruler.</li>
+</ol>
+<p>If you have not installed the Arduino IDE yet, follow our <a href="https://youtu.be/ljO6YGKqIHk">step-by-step Arduino IDE installation video</a>.</p>
+
+<h2 id="troubleshooting">7. HC-SR04 troubleshooting: common problems and fixes</h2>
+<div class="article-table-wrap"><table class="article-table"><thead><tr><th>Symptom</th><th>Likely reason</th><th>What to do</th></tr></thead><tbody>
+<tr><td>Serial Monitor always says “No echo”</td><td>Incorrect wiring, no common ground, wrong pin numbers, weak target reflection or target outside useful range.</td><td>Check VCC/GND, confirm TRIG/ECHO match the sketch, then test a flat hard target at a moderate distance.</td></tr>
+<tr><td>Reading stays at zero or near zero</td><td>Pulse not measured correctly, target too close, or signal pin mismatch.</td><td>Confirm ECHO is connected to the pin configured in code; test at a distance comfortably above the minimum range.</td></tr>
+<tr><td>Distance jumps around</td><td>Angled or soft target, multiple nearby surfaces, unstable wiring or electrical noise.</td><td>Face a flat target squarely, tidy the wiring, and take several readings before deciding whether the value is stable.</td></tr>
+<tr><td>Distance is consistently wrong</td><td>Incorrect formula, wrong units, pin mismatch or timing conditions.</td><td>Use echo duration in microseconds, multiply by about 0.0343 cm/µs, and divide by two.</td></tr>
+<tr><td>Works with the Uno but not with ESP32</td><td>ESP32 GPIO is generally 3.3 V logic and may not tolerate a 5 V Echo signal.</td><td>Use an appropriate level shifter or voltage divider on ECHO and confirm the exact board's input limits.</td></tr>
+<tr><td>Unreliable readings near the maximum range</td><td>The target returns a weak echo or conditions exceed the practical range of that setup.</td><td>Move the target closer, increase the target's reflecting area or consider a sensor intended for the required range.</td></tr>
+</tbody></table></div>
+<h3>A short diagnostic checklist</h3>
+<ul>
+<li>Confirm the module is powered at its specified voltage and the ground is shared with the Arduino.</li>
+<li>Match the TRIG and ECHO pin definitions in the code to the actual wiring.</li>
+<li>Check the target is in front of the sensor and reflects sound back toward the receiver.</li>
+<li>Use a timeout so a missing echo does not stall the program.</li>
+<li>Test one change at a time and compare multiple readings with a known distance.</li>
+</ul>
+
+<h2 id="applications">8. What can you build with an HC-SR04?</h2>
+<p>The HC-SR04 works well for learning projects that need basic, non-contact distance sensing. Common examples include:</p>
+<ul>
+<li><strong>Smart dustbin:</strong> detect a hand or object near the lid and trigger a mechanism, with suitable safeguards against false triggers.</li>
+<li><strong>Obstacle-avoiding robot:</strong> detect some obstacles ahead and change direction based on the measured distance.</li>
+<li><strong>Parking distance indicator:</strong> show an approximate distance to a suitable target.</li>
+<li><strong>Level indicator:</strong> estimate the distance to a liquid surface when the sensor is mounted safely above it and the surface returns a useful echo.</li>
+<li><strong>Servo scanning demonstration:</strong> rotate the sensor on a servo to sample distances at different directions; this does not by itself produce a precise 3D map.</li>
+</ul>
+<p>For a practical build, try our <a href="https://vayuyaan.com/blog/smart-dustbin-using-arduino-and-ultrasonic-sensor/">Arduino smart dustbin tutorial</a> or explore <a href="https://vayuyaan.com/blog/top-10-ultrasonic-sensor-projects-for-engineering-students/">ultrasonic sensor project ideas</a>.</p>
+
+<h2 id="faqs">Frequently asked questions</h2>
+<div class="article-faq">
+<h3>What is the HC-SR04 ultrasonic sensor range?</h3>
+<p>Many HC-SR04 modules are specified for a nominal range of about 2–400 cm. The usable range depends on the module, target size and material, angle and environment.</p>
+<h3>What are the four pins of the HC-SR04?</h3>
+<p>VCC supplies power, TRIG receives the trigger pulse, ECHO outputs a pulse related to the echo travel time, and GND connects to circuit ground.</p>
+<h3>How long should the HC-SR04 trigger pulse be?</h3>
+<p>A trigger pulse of around 10 microseconds is commonly used. Do not hold TRIG high for 10 seconds; that is far longer than required.</p>
+<h3>How do I calculate distance from the echo pulse?</h3>
+<p>For approximate centimetres, multiply echo duration in microseconds by 0.0343 and divide by two. The speed-of-sound value is an approximation for air around room temperature.</p>
+<h3>Can I connect the HC-SR04 directly to an ESP32?</h3>
+<p>Do not assume the Echo signal is safe for every ESP32 board. Many HC-SR04 modules use a 5 V Echo output, while ESP32 GPIO inputs are typically 3.3 V. Use suitable level conversion and verify the board specifications.</p>
+<h3>Why does my HC-SR04 not detect cloth or an angled object?</h3>
+<p>Soft surfaces may absorb sound, while angled surfaces may reflect it away from the receiver. Test with a flat, hard target facing the sensor to separate target-related issues from wiring or code problems.</p>
+<h3>Is the HC-SR04 waterproof?</h3>
+<p>The common HC-SR04 board is not waterproof. For outdoor or wet use, choose a sensor specifically designed for that environment and follow its rated limits.</p>
+</div>
+
+<div class="article-end-cta"><p class="note-label">BUILD THE NEXT PROJECT</p><h2>Put distance sensing into practice</h2><p>Use the HC-SR04 with an Arduino Uno for a practical project, or compare its range and use cases with other sensors before choosing a module.</p><a class="article-button" href="https://vayuyaan.com/blog/smart-dustbin-using-arduino-and-ultrasonic-sensor/">Build an Arduino smart dustbin →</a><p><a href="https://vayuyaan.com/shop/sensor/ultrasonic-sensor-hc-sr04-module-distance-sensor/" style="color:#ffd23f">View the HC-SR04 module on Vayuyaan</a></p></div>
+<p class="article-sources">Technical note: This guide describes common HC-SR04-style modules. Confirm the printed pin labels and datasheet for your exact board. The 2–400 cm range and speed-of-sound constant are typical reference values; validate performance with your own target and setup.</p>
+</div>
+</div>
+</article>
+</main>
+<footer><div class="footer-brand"><img src="../assets/vayuyaan-logo.png" alt="Vayuyaan logo"><p>Electronics • Robotics • DIY</p></div><div class="footer-social"><b>Social Media</b><a href="https://www.instagram.com/vayuyaan_official/" target="_blank" rel="noopener noreferrer" aria-label="Vayuyaan on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle></svg>Instagram</a><a href="https://www.facebook.com/Vayuyaan.official/" target="_blank" rel="noopener noreferrer" aria-label="Vayuyaan on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-3.3 0-5 1.9-5 5v3H6v4h3v4h4v-4h3l1-4h-4V9c0-.7.3-1 1-1Z"></path></svg>Facebook</a><a href="https://x.com/VayuyaanTechHub" target="_blank" rel="noopener noreferrer" aria-label="Vayuyaan on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4l14 16M19 4L5 20"></path></svg>X (Twitter)</a><a href="https://www.linkedin.com/company/vayuyaan/" target="_blank" rel="noopener noreferrer" aria-label="Vayuyaan on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9v9M6 6.5v.1M10 18v-5a3 3 0 0 1 6 0v5M10 9v9"></path></svg>LinkedIn</a><a href="https://www.youtube.com/@vayuyaan" target="_blank" rel="noopener noreferrer" aria-label="Vayuyaan on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12s0-4-1-5-4-1-8-1-7-1-8-1-1 5-1 5 0 4 1 5 4 1 8 1 7-1 8-1 1-5 1-5Z"></path><path d="m10 9 5 3-5 3V9Z"></path></svg>YouTube</a></div><div><b>Explore</b><a href="../write-for-us/">Write for Us</a><a href="../arduino/">Arduino tutorials</a><a href="../what-is-esp32/">ESP32 guides</a><a href="../sensors/">Sensor tutorials</a><a href="../robotics/">Robotics tutorials</a><a href="https://vayuyaan.com/blog/">Electronics blog</a></div><div><b>Shop</b><a href="https://vayuyaan.com/product-category/electronic-modules/">Electronic modules</a><a href="https://vayuyaan.com/shop/">Shop electronics and robotics</a><a href="https://vayuyaan.com/faqs/">Help &amp; FAQs</a><a href="https://vayuyaan.com/">Electronic Component Shop</a></div></footer>
+<div class="footer-bottom"><span>© 2026 Vayuyaan. All rights reserved.</span><span>Electronics • Robotics • DIY</span></div>
+<script>
+(()=>{const menuButton=document.querySelector('.menu');const navigation=document.querySelector('.navlinks');if(menuButton&&navigation){menuButton.addEventListener('click',()=>{const opened=navigation.classList.toggle('mobile-open');menuButton.setAttribute('aria-expanded',String(opened));menuButton.setAttribute('aria-label',opened?'Close navigation menu':'Open navigation menu');});navigation.querySelectorAll('a').forEach(item=>item.addEventListener('click',()=>{navigation.classList.remove('mobile-open');menuButton.setAttribute('aria-expanded','false');menuButton.setAttribute('aria-label','Open navigation menu');}));}})();
+</script>
+</body></html>
