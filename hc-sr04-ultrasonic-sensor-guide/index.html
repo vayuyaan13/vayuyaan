@@ -54,7 +54,7 @@
 <nav class="article-toc" aria-label="On this page"><p>ON THIS PAGE</p><a href="#quick-specs">Quick specifications</a><a href="#pinout">Pinout and wiring</a><a href="#working">How it works</a><a href="#range">Range and accuracy</a><a href="#formula">Distance formula</a><a href="#arduino-code">Arduino code</a><a href="#troubleshooting">Troubleshooting</a><a href="#applications">Applications</a><a href="#faqs">FAQs</a></nav>
 <div class="article-content">
 <p class="article-lead">The HC-SR04 ultrasonic sensor helps an Arduino estimate how far away an object is without touching it. It sends a short burst of high-frequency sound and measures how long the echo takes to return. This guide covers the four pins, wiring, distance formula, sample code and common fixes when readings do not look right.</p>
-<p>If you are new to distance sensing, start with our <a href="https://vayuyaan.com/blog/ultrasonic-sensor-a-quick-start-guide-for-beginners/">ultrasonic sensor range and distance formula guide</a>. For the board setup itself, see the <a href="https://vayuyaan.com/blog/arduino-uno-r3-complete-guide-for-beginners/">Arduino Uno R3 beginner's guide</a>. This article focuses specifically on the HC-SR04 module.</p>
+<p>If you are new to distance sensing, start with our <a href="https://vayuyaan.com/blog/ultrasonic-sensor-a-quick-start-guide-for-beginners/">ultrasonic sensor range and distance formula guide</a>. For the board setup itself, see the <a href="https://vayuyaan.com/blog/arduino-uno-r3-complete-guide-for-beginners/">Arduino Uno R3 beginner's guide</a>. To compare the main sensor types, see our <a href="../sensors/">Arduino sensor guides</a>. This article focuses specifically on the HC-SR04 module.</p>
 
 <h2 id="quick-specs">1. HC-SR04 specifications at a glance</h2>
 <div class="article-table-wrap"><table class="article-table"><thead><tr><th>Property</th><th>Typical module specification</th><th>Practical note</th></tr></thead><tbody>
@@ -81,7 +81,7 @@
 <p>The Arduino measures that pulse duration. Since sound must travel to the object and back, the calculation divides the total travel distance by two. A longer echo time generally means the object is farther away.</p>
 
 <h2 id="range">4. HC-SR04 range and measurement accuracy</h2>
-<p>The common advertised range is approximately 2–400 cm. In practice, usable range depends on the sensor version, target material, target size, angle, nearby surfaces, temperature and background noise. Treat the rated range as a reference, then test the actual target and mounting setup.</p>
+<p>The common advertised range is approximately 2–400 cm. In practice, usable range depends on the sensor version, target material, target size, angle, nearby surfaces, temperature and background noise. Treat the rated range as a reference, then test the actual target and mounting setup. For a broader explanation of <a href="https://vayuyaan.com/blog/ultrasonic-sensor-a-quick-start-guide-for-beginners/">ultrasonic sensor range and distance measurement</a>, read our beginner guide.</p>
 <ul>
 <li><strong>Target angle:</strong> A surface tilted away from the sensor can reflect sound away from the receiver.</li>
 <li><strong>Soft material:</strong> Fabric, foam and other sound-absorbing surfaces can produce weak echoes.</li>
@@ -167,7 +167,7 @@ void loop() {
 <li><strong>Level indicator:</strong> estimate the distance to a liquid surface when the sensor is mounted safely above it and the surface returns a useful echo.</li>
 <li><strong>Servo scanning demonstration:</strong> rotate the sensor on a servo to sample distances at different directions; this does not by itself produce a precise 3D map.</li>
 </ul>
-<p>For a practical build, try our <a href="https://vayuyaan.com/blog/smart-dustbin-using-arduino-and-ultrasonic-sensor/">Arduino smart dustbin tutorial</a> or explore <a href="https://vayuyaan.com/blog/top-10-ultrasonic-sensor-projects-for-engineering-students/">ultrasonic sensor project ideas</a>.</p>
+<p>For a practical build, try our <a href="https://vayuyaan.com/blog/smart-dustbin-using-arduino-and-ultrasonic-sensor/">Arduino smart dustbin tutorial</a> or explore <a href="https://vayuyaan.com/blog/top-10-ultrasonic-sensor-projects-for-engineering-students/">ultrasonic sensor project ideas</a>. Robots can also use distance measurements for basic obstacle detection; see our guide to <a href="https://vayuyaan.com/blog/ultrasonic-sensor-in-robotics/">ultrasonic sensors in robotics</a>.</p>
 
 <h2 id="faqs">Frequently asked questions</h2>
 <div class="article-faq">
