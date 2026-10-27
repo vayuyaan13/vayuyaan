@@ -55,7 +55,7 @@
 <nav class="article-toc" aria-label="On this page"><p>ON THIS PAGE</p><a href="#quick-specs">Quick specifications</a><a href="#pinout">Pinout and wiring</a><a href="#working">How it works</a><a href="#range">Range and accuracy</a><a href="#formula">Distance formula</a><a href="#arduino-code">Arduino code</a><a href="#troubleshooting">Troubleshooting</a><a href="#applications">Applications</a><a href="#faqs">FAQs</a><a href="#references">References</a></nav>
 <div class="article-content">
 <p class="article-lead">The HC-SR04 ultrasonic sensor helps an Arduino estimate how far away an object is without touching it. It sends a short burst of high-frequency sound and measures how long the echo takes to return. This guide covers the four pins, wiring, distance formula, sample code and common fixes when readings do not look right.</p>
-<p>This guide focuses on the HC-SR04 module, from its four pins and Arduino wiring to distance calculations and troubleshooting. Follow the sections in order if this is your first ultrasonic sensor project.</p>
+<p>This guide focuses on the HC-SR04 module, from its four pins and Arduino wiring to distance calculations and troubleshooting. If you're comparing sensors before choosing one for a project, start with our <a href="../sensors/">sensor guides</a>, then use this page for the HC-SR04-specific setup.</p>
 
 <h2 id="quick-specs">1. HC-SR04 specifications at a glance</h2>
 <div class="article-table-wrap"><table class="article-table"><thead><tr><th>Property</th><th>Typical module specification</th><th>Practical note</th></tr></thead><tbody>
@@ -69,7 +69,7 @@
 
 <h2 id="pinout">2. HC-SR04 pinout and Arduino Uno wiring</h2>
 <figure class="article-figure"><img src="../assets/hc-sr04-pinout-wiring.svg" alt="Wiring diagram for HC-SR04 to Arduino Uno: VCC to 5V, TRIG to digital pin 9, ECHO to digital pin 10, and GND to GND" width="1200" height="650" loading="lazy" decoding="async"><figcaption>Figure 1. Example wiring for a typical HC-SR04 and 5 V Arduino Uno R3. Pin numbers in the sketch must match your wiring.</figcaption></figure>
-<p>The module has four pins. With a typical 5 V HC-SR04 and Arduino Uno R3, one example connection is shown below. Check the labels printed on your own board before powering it.</p>
+<p>The module has four pins. With a typical 5 V HC-SR04 and Arduino Uno R3, one example connection is shown below. Check the labels printed on your own board before powering it. If you are new to the board, our <a href="https://vayuyaan.com/blog/arduino-uno-r3-complete-guide-for-beginners/">Arduino Uno R3 beginner's guide</a> covers the board basics.</p>
 <div class="article-table-wrap"><table class="article-table"><thead><tr><th>HC-SR04 pin</th><th>Connect to Arduino Uno</th><th>Purpose</th></tr></thead><tbody>
 <tr><td>VCC</td><td>5V</td><td>Powers the module.</td></tr>
 <tr><td>TRIG</td><td>Digital pin 9</td><td>Arduino sends a short trigger pulse.</td></tr>
@@ -84,7 +84,7 @@
 <p>The Arduino measures that pulse duration. Since sound must travel to the object and back, the calculation divides the total travel distance by two. A longer echo time generally means the object is farther away.</p>
 
 <h2 id="range">4. HC-SR04 range and measurement accuracy</h2>
-<p>The common advertised range is approximately 2–400 cm. In practice, usable range depends on the sensor version, target material, target size, angle, nearby surfaces, temperature and background noise. Treat the rated range as a reference, then test the actual target and mounting setup. If you want a deeper explanation of range and distance calculations across ultrasonic modules, read our <a href="https://vayuyaan.com/blog/ultrasonic-sensor-a-quick-start-guide-for-beginners/">ultrasonic sensor quick-start guide</a>.</p>
+<p>The common advertised range is approximately 2–400 cm. In practice, usable range depends on the sensor version, target material, target size, angle, nearby surfaces, temperature and background noise. Treat the rated range as a reference, then test the actual target and mounting setup. Our <a href="https://vayuyaan.com/blog/ultrasonic-sensor-a-quick-start-guide-for-beginners/">ultrasonic sensor quick-start guide</a> explains the range and distance calculation in more detail.</p>
 <ul>
 <li><strong>Target angle:</strong> A surface tilted away from the sensor can reflect sound away from the receiver.</li>
 <li><strong>Soft material:</strong> Fabric, foam and other sound-absorbing surfaces can produce weak echoes.</li>
@@ -175,7 +175,7 @@ void loop() {
 <li><strong>Level indicator:</strong> estimate the distance to a liquid surface when the sensor is mounted safely above it and the surface returns a useful echo.</li>
 <li><strong>Servo scanning demonstration:</strong> rotate the sensor on a servo to sample distances at different directions; this does not by itself produce a precise 3D map.</li>
 </ul>
-<p>For a practical build, try our <a href="https://vayuyaan.com/blog/smart-dustbin-using-arduino-and-ultrasonic-sensor/">Arduino smart dustbin tutorial</a>. If you are still choosing a project, browse these <a href="https://vayuyaan.com/blog/top-10-ultrasonic-sensor-projects-for-engineering-students/">ultrasonic sensor project ideas</a>. For robot-specific use cases, our guide to <a href="https://vayuyaan.com/blog/ultrasonic-sensor-in-robotics/">ultrasonic sensors in robotics</a> explains how distance readings support basic obstacle detection.</p><p>Comparing sensor types for a different project? Explore the wider <a href="../sensors/">Vayuyaan sensor guide collection</a> before choosing a module.</p>
+<p>One beginner-friendly application is a <a href="https://vayuyaan.com/blog/smart-dustbin-using-arduino-and-ultrasonic-sensor/">smart dustbin using Arduino and an ultrasonic sensor</a>, where the reading can help detect a hand or object near the lid. For a mobile build, explore our <a href="https://vayuyaan.com/blog/ultrasonic-sensor-in-robotics/">ultrasonic sensor robotics guide</a> to see how distance readings can support obstacle detection.</p><p>Not sure what to build next? These <a href="https://vayuyaan.com/blog/top-10-ultrasonic-sensor-projects-for-engineering-students/">ultrasonic sensor project ideas</a> offer several directions, from simple demonstrations to more involved builds.</p>
 
 <h2 id="faqs">Frequently asked questions</h2>
 <div class="article-faq">
