@@ -12,17 +12,18 @@
 <meta property="og:title" content="Distance Sensor Types for Arduino: Ultrasonic vs IR vs ToF">
 <meta property="og:description" content="A practical comparison of HC-SR04 ultrasonic, IR proximity, ToF and waterproof ultrasonic sensors for Arduino projects.">
 <meta property="og:url" content="https://vayuyaan13.github.io/vayuyaan/distance-sensor-types-arduino/">
-<meta property="og:image" content="https://vayuyaan13.github.io/vayuyaan/assets/sensor-learning-hub.svg">
+<meta property="og:image" content="https://vayuyaan13.github.io/vayuyaan/assets/distance-sensor-types-hero.svg">
 <meta property="og:image:alt" content="Illustration of ultrasonic, infrared and light sensors for Arduino projects">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Distance Sensor Types for Arduino: Ultrasonic vs IR vs ToF">
 <meta name="twitter:description" content="Compare sensor technologies, practical range limits and Arduino compatibility before choosing a distance sensor.">
-<meta name="twitter:image" content="https://vayuyaan13.github.io/vayuyaan/assets/sensor-learning-hub.svg">
+<meta name="twitter:image" content="https://vayuyaan13.github.io/vayuyaan/assets/distance-sensor-types-hero.svg">
 <link rel="stylesheet" href="../style.css?v=20261024c">
 <style>
 .article-shell{max-width:1120px;margin:0 auto;padding:28px 26px 80px}.breadcrumbs{font-size:.84rem;color:#74808a;margin:8px 0 30px}.breadcrumbs a{color:inherit}.article-header{max-width:850px;margin:0 auto 34px;padding-bottom:26px;border-bottom:1px solid #e2e7eb}.eyebrow{font-size:.72rem;letter-spacing:.13em;font-weight:800;color:#927000}.article-header h1{font-size:clamp(2.1rem,5vw,3.8rem);line-height:1.08;letter-spacing:-.045em;margin:12px 0 18px}.dek{font-size:1.13rem;line-height:1.75;color:#53606b}.byline{font-size:.82rem;color:#77818a;margin-top:18px}.article-layout{display:grid;grid-template-columns:205px minmax(0,760px);gap:42px;justify-content:center;align-items:start}.toc{position:sticky;top:100px;border-left:2px solid #e1e6e9;padding:4px 0 4px 16px;display:flex;flex-direction:column;gap:9px}.toc strong{font-size:.7rem;letter-spacing:.12em;color:#7a858e}.toc a{font-size:.82rem;line-height:1.4;color:#5c6974;text-decoration:none}.content{font-size:1rem;line-height:1.85;color:#303b44;min-width:0}.content p{margin:0 0 18px}.content h2{font-size:clamp(1.55rem,3vw,2.05rem);line-height:1.2;letter-spacing:-.03em;margin:44px 0 14px;scroll-margin-top:100px}.content h3{font-size:1.18rem;line-height:1.4;margin:26px 0 9px}.content a{color:#795a00;text-decoration:underline;text-underline-offset:3px}.content ul,.content ol{padding-left:24px;margin:0 0 24px}.content li{padding-left:3px;margin:0 0 8px}.table-wrap{overflow-x:auto;margin:20px 0 26px}.compare{width:100%;border-collapse:collapse;min-width:650px;font-size:.86rem;line-height:1.55}.compare th,.compare td{border:1px solid #e0e5e8;padding:11px 12px;text-align:left;vertical-align:top}.compare th{background:#f4f6f7;color:#18232b}.note{background:#fff8df;border-left:4px solid #ffd23f;border-radius:0 8px 8px 0;padding:18px 21px;margin:22px 0 28px}.note strong{display:block;margin-bottom:5px}.content pre{background:#111a21;color:#f7f8f9;padding:16px;border-radius:8px;overflow:auto;font-size:.85rem}.cta{margin:36px 0;padding:24px;background:#111a21;color:white;border-radius:10px}.cta h2{margin:4px 0 10px;color:white}.cta p{color:#c8cfd4}.sources{font-size:.84rem;border-top:1px solid #e0e5e8;padding-top:18px;color:#6f7b84;margin-top:34px}
 @media(max-width:800px){.article-layout{grid-template-columns:1fr;gap:22px}.toc{position:static;border:1px solid #e0e5e8;border-radius:9px;padding:14px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.toc strong{grid-column:1/-1}.article-header{margin-bottom:26px}}
 @media(max-width:560px){.article-shell{padding:18px 18px 56px}.content{font-size:.97rem}.dek{font-size:1.03rem}.note{padding:16px}.compare{font-size:.79rem}.compare th,.compare td{padding:8px}}
+.article-figure{margin:1.5rem 0 2rem}.article-figure img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid #dbe2ea}.article-figure figcaption{font-size:.92rem;color:#5b6472;margin-top:.55rem;line-height:1.5}
 </style>
 <script type="application/ld+json">
 {
@@ -34,7 +35,7 @@
       "mainEntityOfPage":{"@type":"WebPage","@id":"https://vayuyaan13.github.io/vayuyaan/distance-sensor-types-arduino/"},
       "headline":"Distance Sensor Types for Arduino: Ultrasonic vs IR vs ToF",
       "description":"Compare Arduino distance sensor types with a practical selection matrix, HC-SR04 vs IR vs ToF guidance, wiring checks and a sensor test worksheet.",
-      "image":"https://vayuyaan13.github.io/vayuyaan/assets/sensor-learning-hub.svg",
+      "image":"https://vayuyaan13.github.io/vayuyaan/assets/distance-sensor-types-hero.svg",
       "datePublished":"2026-10-28",
       "dateModified":"2026-10-28",
       "author":{"@type":"Organization","name":"Vayuyaan Editorial Team"},
@@ -77,6 +78,7 @@
 <p>That difference matters. A low-cost IR obstacle module may only tell you whether an object is nearby; it does not necessarily return a distance in centimetres. A ToF module can return a numerical distance over a relatively compact field of view, while an ultrasonic sensor can be useful when you need to measure across a wider gap. None is best for every situation.</p>
 
 <h2 id="quick-answer">Quick answer: which distance sensor should you choose?</h2>
+<figure class="article-figure"><img src="../assets/distance-sensor-types-hero.svg" alt="Illustration comparing ultrasonic, reflective infrared and time-of-flight distance sensors" width="1200" height="630" loading="eager" decoding="async"><figcaption>Ultrasonic, reflective IR and time-of-flight sensors use different measurement principles.</figcaption></figure>
 <ul>
 <li><strong>For a beginner Arduino project on a tight budget:</strong> start with an HC-SR04 ultrasonic module when the target is suitable and the environment is controlled.</li>
 <li><strong>For basic line or object detection:</strong> use a reflective IR module if you only need a detection signal, not a calibrated distance measurement.</li>
@@ -87,6 +89,7 @@
 <div class="note"><strong>Important distinction</strong>“IR sensor” describes a broad family. A reflective IR obstacle sensor, an analog triangulation sensor and a ToF sensor that uses infrared light do not provide the same type of output. Check the exact module model rather than choosing by the word “IR” alone.</div>
 
 <h2 id="comparison">Distance sensor comparison table</h2>
+<figure class="article-figure"><img src="../assets/distance-sensor-types-comparison.svg" alt="Diagram comparing ultrasonic echo timing, reflective infrared detection and optical time-of-flight ranging" width="1000" height="460" loading="lazy" decoding="async"><figcaption>Choose a sensor by the type of signal and measurement your project needs.</figcaption></figure>
 <div class="table-wrap"><table class="compare"><thead><tr><th>Sensor type</th><th>What it measures</th><th>Best suited for</th><th>Key limitations</th><th>Integration notes</th></tr></thead><tbody>
 <tr><td>HC-SR04 ultrasonic</td><td>Round-trip travel time of sound</td><td>Beginner distance demos, obstacle detection and simple level experiments</td><td>Soft or angled targets, narrow objects, acoustic interference and close-range blind zone can affect readings</td><td>Typically uses TRIG and ECHO; a common module is powered at 5 V. Check logic-level compatibility.</td></tr>
 <tr><td>Reflective IR obstacle module</td><td>Amount of reflected infrared light, usually reported as a digital threshold</td><td>Line-following, nearby-object detection and simple switching</td><td>Response varies with surface colour, reflectivity, angle, ambient light and potentiometer setting</td><td>Often has VCC, GND and digital OUT; some boards also expose an analog output. Check the exact board.</td></tr>
@@ -97,6 +100,7 @@
 <p>The table is a selection guide, not a promise of performance. Sensor boards sold under the same general name may use different revisions or breakout circuits. Use the manufacturer documentation for the exact module you purchase.</p>
 
 <h2 id="ultrasonic">1. Ultrasonic distance sensors: when the HC-SR04 makes sense</h2>
+<figure class="article-figure"><img src="../assets/distance-sensor-ultrasonic-principle.svg" alt="Ultrasonic sensor sends a sound pulse toward a target and measures the returning echo" width="1000" height="420" loading="lazy" decoding="async"><figcaption>The echo time covers the sound trip to the target and back, so the calculation divides by two.</figcaption></figure>
 <p>An ultrasonic sensor sends a short burst of sound and measures how long the echo takes to return. For a typical HC-SR04, the Arduino triggers the module, measures the ECHO pulse and estimates the distance. Because sound travels to the target and back, the calculation divides the round-trip distance by two.</p>
 <pre><code>distance_cm = echo_time_us * 0.0343 / 2;</code></pre>
 <p>This approximation uses a speed of sound of about 0.0343 centimetres per microsecond near room temperature. Actual readings depend on temperature, target geometry, the module and the surrounding environment.</p>
