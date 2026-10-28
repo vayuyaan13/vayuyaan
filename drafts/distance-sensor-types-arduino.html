@@ -33,7 +33,7 @@
       "@id":"https://vayuyaan13.github.io/vayuyaan/distance-sensor-types-arduino/#article",
       "mainEntityOfPage":{"@type":"WebPage","@id":"https://vayuyaan13.github.io/vayuyaan/distance-sensor-types-arduino/"},
       "headline":"Distance Sensor Types for Arduino: Ultrasonic vs IR vs ToF",
-      "description":"Compare ultrasonic, IR, ToF and waterproof distance sensors for Arduino. Learn range limits, wiring, voltage compatibility and how to choose the right sensor.",
+      "description":"Compare Arduino distance sensor types with a practical selection matrix, HC-SR04 vs IR vs ToF guidance, wiring checks and a sensor test worksheet.",
       "image":"https://vayuyaan13.github.io/vayuyaan/assets/sensor-learning-hub.svg",
       "datePublished":"2026-10-28",
       "dateModified":"2026-10-28",
@@ -71,7 +71,7 @@
 <p class="byline">By Vayuyaan Editorial Team · Technical comparison · Updated October 2026</p>
 </header>
 <div class="article-layout">
-<nav class="toc" aria-label="On this page"><strong>ON THIS PAGE</strong><a href="#quick-answer">Quick answer</a><a href="#comparison">Comparison table</a><a href="#ultrasonic">Ultrasonic sensors</a><a href="#ir">IR sensors</a><a href="#tof">Time-of-Flight</a><a href="#waterproof">Waterproof sensors</a><a href="#choose">How to choose</a><a href="#wiring">Arduino compatibility</a><a href="#mistakes">Common mistakes</a><a href="#faqs">FAQs</a><a href="#references">References</a></nav>
+<nav class="toc" aria-label="On this page"><strong>ON THIS PAGE</strong><a href="#quick-answer">Quick answer</a><a href="#comparison">Comparison table</a><a href="#ultrasonic">Ultrasonic sensors</a><a href="#ir">IR sensors</a><a href="#tof">Time-of-Flight</a><a href="#waterproof">Waterproof sensors</a><a href="#choose">How to choose</a><a href="#wiring">Arduino compatibility</a><a href="#mistakes">Common mistakes</a><a href="#test-plan">Test worksheet</a><a href="#faqs">FAQs</a><a href="#references">References</a></nav>
 <div class="content">
 <p>Distance sensors help a microcontroller detect an object or estimate how far away it is. However, different sensor technologies measure different signals. An ultrasonic module measures the travel time of sound, a reflective infrared (IR) module detects reflected light, and a Time-of-Flight (ToF) sensor estimates distance from emitted light returning to its receiver.</p>
 <p>That difference matters. A low-cost IR obstacle module may only tell you whether an object is nearby; it does not necessarily return a distance in centimetres. A ToF module can return a numerical distance over a relatively compact field of view, while an ultrasonic sensor can be useful when you need to measure across a wider gap. None is best for every situation.</p>
@@ -105,7 +105,7 @@
 <ul><li>Easy to demonstrate with a basic Arduino sketch.</li><li>Returns a numerical distance estimate rather than only a yes/no signal.</li><li>Useful for many indoor obstacle-detection and educational projects.</li></ul>
 <h3>Limitations to plan for</h3>
 <ul><li>Soft materials can absorb sound, while angled surfaces may reflect it away from the receiver.</li><li>Small targets may not return a strong echo.</li><li>Nearby objects, mounting geometry and repeated pings can affect readings.</li><li>A common HC-SR04 Echo output is around 5 V logic; do not connect it directly to a 3.3 V-only GPIO unless the board documentation confirms compatibility.</li></ul>
-<p>If you decide the HC-SR04 fits your project, read the practical <a href="https://vayuyaan.com/blog/learn-everything-about-ultrasonic-sensor-hc-sr04/">HC-SR04 pinout and Arduino wiring guide</a> before building the circuit. Check your specific module's pin labels and timing requirements.</p>
+<p>If you decide the HC-SR04 fits your project, review the <a href="https://vayuyaan.com/shop/sensor/ultrasonic-sensor-hc-sr04-module-distance-sensor/">HC-SR04 ultrasonic sensor module</a> specifications before buying. Then use the practical <a href="https://vayuyaan.com/blog/learn-everything-about-ultrasonic-sensor-hc-sr04/">HC-SR04 pinout and Arduino wiring guide</a> before building the circuit. Check your specific module's pin labels and timing requirements.</p>
 
 <h2 id="ir">2. IR sensors: proximity detection is not always distance measurement</h2>
 <p>A common reflective IR obstacle sensor emits infrared light and detects some of the light reflected from a nearby object. Many low-cost modules compare the received signal with a threshold and switch their digital output when the signal crosses that threshold.</p>
@@ -113,7 +113,7 @@
 <p>Some IR distance sensors use analog output and signal-processing optics to estimate distance. Those are a different class of device from a basic obstacle-detection board. For analog models, use the exact model's datasheet curve; do not assume a linear relationship between voltage and distance.</p>
 <h3>Choose reflective IR when</h3>
 <ul><li>You need to detect a line, edge or nearby object.</li><li>The target path is predictable and you can calibrate the sensor in its real mounting position.</li><li>You can test the effect of different surfaces and ambient lighting.</li></ul>
-<p>For a moving robot, test the sensor at its final height and angle. A module that detects a white test card on a desk may behave differently over black tape, glossy flooring or bright sunlight.</p>
+<p>For a moving robot, test the sensor at its final height and angle. A module that detects a white test card on a desk may behave differently over black tape, glossy flooring or bright sunlight. For a project example, see our guide to <a href="https://vayuyaan.com/blog/ultrasonic-sensor-in-robotics/">ultrasonic sensors for obstacle detection</a>.</p>
 
 <h2 id="tof">3. Time-of-Flight sensors: compact optical ranging</h2>
 <p>Time-of-Flight (ToF) modules estimate distance from the travel time of emitted light. The VL53L0X from STMicroelectronics is one example. ST specifies measurement up to 2 metres for this device; that figure is a manufacturer specification, not a guarantee that every target and environment will deliver the same performance.</p>
@@ -181,7 +181,7 @@
 <li><a href="https://docs.arduino.cc/" target="_blank" rel="noopener noreferrer">Arduino documentation</a> — board and programming references; confirm the exact board's input/output limits.</li>
 <li><a href="https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf" target="_blank" rel="noopener noreferrer">HC-SR04 user guide (PDF)</a> — a common module's timing and measurement principle; seller versions may differ.</li>
 </ul>
-<div class="cta"><p class="eyebrow">NEXT STEP</p><h2>Turn sensor selection into a working project</h2><p>After choosing a sensor, validate its range, output and electrical compatibility before building the rest of your circuit. For a hands-on example, see how an ultrasonic sensor can be used in a robotics project.</p><p><a href="https://vayuyaan.com/blog/ultrasonic-sensor-in-robotics/" style="color:#ffd23f">Explore ultrasonic sensors in robotics →</a></p><p><a href="https://vayuyaan.com/shop/sensor/ultrasonic-sensor-hc-sr04-module-distance-sensor/" style="color:#ffd23f">Check the HC-SR04 ultrasonic sensor module →</a></p></div>
+<div class="cta"><p class="eyebrow">NEXT STEP</p><h2>Turn sensor selection into a working project</h2><p>After choosing a sensor, validate its range, output and electrical compatibility before building the rest of your circuit. For a hands-on example, see how an ultrasonic sensor can be used in a robotics project.</p></div>
 <p class="sources"><strong>Editorial note:</strong> This article compares common sensor categories, not every product in each category. Manufacturer range figures are reference specifications, not guarantees of performance in every environment. We have not presented unperformed tests as measured results.</p>
 </div>
 </div>
