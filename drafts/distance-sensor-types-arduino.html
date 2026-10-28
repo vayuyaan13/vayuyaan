@@ -100,6 +100,7 @@
 <p>An ultrasonic sensor sends a short burst of sound and measures how long the echo takes to return. For a typical HC-SR04, the Arduino triggers the module, measures the ECHO pulse and estimates the distance. Because sound travels to the target and back, the calculation divides the round-trip distance by two.</p>
 <pre><code>distance_cm = echo_time_us * 0.0343 / 2;</code></pre>
 <p>This approximation uses a speed of sound of about 0.0343 centimetres per microsecond near room temperature. Actual readings depend on temperature, target geometry, the module and the surrounding environment.</p>
+<p>If you want to understand the practical limits of ultrasonic measurements in more detail, read our <a href="https://vayuyaan.com/blog/ultrasonic-sensor-a-quick-start-guide-for-beginners/">ultrasonic sensor range and distance formula guide</a>. Use the stated range as a starting point, then test your own target and mounting setup.</p>
 <h3>Advantages</h3>
 <ul><li>Easy to demonstrate with a basic Arduino sketch.</li><li>Returns a numerical distance estimate rather than only a yes/no signal.</li><li>Useful for many indoor obstacle-detection and educational projects.</li></ul>
 <h3>Limitations to plan for</h3>
