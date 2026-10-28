@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Distance Sensor Types for Arduino: Ultrasonic vs IR vs ToF</title>
-<meta name="description" content="Compare ultrasonic, IR, ToF and waterproof distance sensors for Arduino. Learn range limits, wiring, voltage compatibility and how to choose the right sensor.">
+<meta name="description" content="Compare Arduino distance sensor types with a practical comparison table, HC-SR04 vs IR vs ToF guidance, wiring checks and a sensor test worksheet.">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <link rel="canonical" href="https://vayuyaan13.github.io/vayuyaan/distance-sensor-types-arduino/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Vayuyaan Electronics & Robotics Guides">
 <meta property="og:title" content="Distance Sensor Types for Arduino: Ultrasonic vs IR vs ToF">
-<meta property="og:description" content="A practical comparison of HC-SR04 ultrasonic, IR proximity, ToF and waterproof ultrasonic sensors for Arduino projects.">
+<meta property="og:description" content="Compare HC-SR04 ultrasonic, reflective IR, ToF and waterproof-probe sensors, with selection guidance and a blank test worksheet.">
 <meta property="og:url" content="https://vayuyaan13.github.io/vayuyaan/distance-sensor-types-arduino/">
 <meta property="og:image" content="https://vayuyaan13.github.io/vayuyaan/assets/distance-sensor-types-hero.svg">
 <meta property="og:image:alt" content="Illustration of ultrasonic, infrared and light sensors for Arduino projects">
@@ -34,7 +34,7 @@
       "@id":"https://vayuyaan13.github.io/vayuyaan/distance-sensor-types-arduino/#article",
       "mainEntityOfPage":{"@type":"WebPage","@id":"https://vayuyaan13.github.io/vayuyaan/distance-sensor-types-arduino/"},
       "headline":"Distance Sensor Types for Arduino: Ultrasonic vs IR vs ToF",
-      "description":"Compare Arduino distance sensor types with a practical selection matrix, HC-SR04 vs IR vs ToF guidance, wiring checks and a sensor test worksheet.",
+      "description":"Compare Arduino distance sensor types with a practical comparison table, HC-SR04 vs IR vs ToF guidance, wiring checks and a sensor test worksheet.",
       "image":"https://vayuyaan13.github.io/vayuyaan/assets/distance-sensor-types-hero.svg",
       "datePublished":"2026-10-28",
       "dateModified":"2026-10-28",
@@ -132,6 +132,14 @@
 <p>For a tank or water-level project, mount the probe securely above the surface, check that the tank geometry does not create unwanted echoes, and test the minimum measurable distance. Condensation, foam, turbulent surfaces and internal obstructions can affect the result. Never use a hobby module as the sole protection against overflow or another hazardous condition.</p>
 
 <h2 id="choose">5. How to choose the right distance sensor</h2>
+<p>Use this quick decision matrix as a shortlist, then verify the exact module's datasheet and test it with your target.</p>
+<div class="table-wrap"><table class="compare"><thead><tr><th>Project need</th><th>Good starting point</th><th>What to validate</th></tr></thead><tbody>
+<tr><td>Beginner robot avoiding obstacles</td><td>HC-SR04 ultrasonic</td><td>Target angle, blind zone, echo timing and 3.3 V controller input protection</td></tr>
+<tr><td>Line following or simple object-present signal</td><td>Reflective IR module</td><td>Surface colour, sensor height, ambient light and threshold adjustment</td></tr>
+<tr><td>Compact numerical distance reading</td><td>ToF module such as VL53L0X</td><td>Breakout-board voltage, I²C address, field of view and target/environment limits</td></tr>
+<tr><td>Water-level prototype or damp sensing face</td><td>Compatible waterproof-probe ultrasonic module</td><td>Exact revision, minimum range, output mode, mounting and whole-system water protection</td></tr>
+<tr><td>Safety-critical or outdoor industrial measurement</td><td>Purpose-rated industrial sensor/system</td><td>Required safety rating, environmental protection, failure modes and applicable standards</td></tr>
+</tbody></table></div>
 <ol>
 <li><strong>Define the measurement.</strong> Do you need a numerical distance, a simple object-present signal, line detection or level estimation? This choice rules out many unsuitable modules immediately.</li>
 <li><strong>Set the real distance range.</strong> Write down the nearest and farthest distance you must measure. Include a margin rather than designing around a module's advertised maximum.</li>
@@ -162,6 +170,22 @@
 <li><strong>Trusting one test reading:</strong> compare repeated measurements and test the real target, not only a convenient flat object.</li>
 <li><strong>Using a hobby sensor for safety protection:</strong> use an appropriately rated system for safety-critical monitoring.</li>
 </ul>
+
+<h2 id="test-plan">8. A distance-sensor test worksheet</h2>
+<p>Use this blank worksheet to compare candidate modules before committing to a design. It contains no measured results: fill it in with readings from your own hardware. Test the sensor in its final mounting position, with the actual target material and the expected lighting or environmental conditions.</p>
+<ol>
+<li>Measure and mark three reference distances within the sensor's stated operating range: near, middle and far. Avoid the minimum-range blind zone and the advertised maximum.</li>
+<li>At each point, collect 10 readings without changing the setup. Record invalid or missing readings instead of silently dropping them.</li>
+<li>Repeat with the real target, then with any important variation such as a dark surface, angled object or brighter ambient light.</li>
+<li>Compare the median reading with the reference distance. Calculate absolute error as <code>|measured distance − reference distance|</code> and record the invalid-reading rate.</li>
+<li>Repeat the test after remounting or restarting the system if that reflects normal use. Do not treat one successful reading as proof of reliable operation.</li>
+</ol>
+<div class="table-wrap"><table class="compare"><thead><tr><th>Test point</th><th>Reference distance</th><th>10 readings / median</th><th>Invalid readings (out of 10)</th><th>Target and conditions / notes</th></tr></thead><tbody>
+<tr><td>Near</td><td>_____ cm</td><td>________________</td><td>_____</td><td>________________</td></tr>
+<tr><td>Middle</td><td>_____ cm</td><td>________________</td><td>_____</td><td>________________</td></tr>
+<tr><td>Far</td><td>_____ cm</td><td>________________</td><td>_____</td><td>________________</td></tr>
+</tbody></table></div>
+<p><strong>Decision rule:</strong> choose the sensor that meets your project's required range, error tolerance and invalid-reading limit under realistic conditions—not simply the one with the largest advertised range.</p>
 
 <h2 id="faqs">Frequently asked questions</h2>
 <h3>Which distance sensor is best for Arduino?</h3>
