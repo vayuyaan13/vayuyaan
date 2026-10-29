@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">How to connect an LDR to an Arduino using a voltage divider</title>
+<desc id="desc">A simple circuit diagram with an LDR from five volts to an analog output node, and a fixed resistor from that node to ground. The node connects to Arduino analog input A0.</desc>
+<rect width="1200" height="630" rx="24" fill="#f8fafc"/>
+<rect x="34" y="34" width="1132" height="562" rx="20" fill="#fff" stroke="#e2e8f0" stroke-width="2"/>
+<rect x="68" y="64" width="220" height="38" rx="19" fill="#fff1b8"/>
+<text x="178" y="89" font-family="Arial,sans-serif" font-size="18" font-weight="700" text-anchor="middle" fill="#594500">ARDUINO BASICS</text>
+<text x="68" y="150" font-family="Arial,sans-serif" font-size="36" font-weight="700" fill="#17212b">LDR voltage-divider circuit</text>
+<text x="68" y="184" font-family="Arial,sans-serif" font-size="19" fill="#64748b">Read changing light levels as an analog voltage</text>
+<g stroke="#263746" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path d="M230 235 V275"/><path d="M230 355 V425"/><path d="M230 425 H450"/>
+<path d="M230 235 H450"/><path d="M450 235 H650 V310"/>
+<path d="M650 370 V425 H450"/>
+<path d="M650 340 H810"/>
+<path d="M810 340 H865"/>
+</g>
+<g fill="#263746" font-family="Arial,sans-serif">
+<text x="190" y="225" font-size="22" font-weight="700">5V</text>
+<text x="185" y="460" font-size="20">GND</text>
+</g>
+<g>
+<rect x="186" y="275" width="88" height="80" rx="9" fill="#fff1b8" stroke="#d6a800" stroke-width="4"/>
+<path d="M198 292 L260 338 M198 316 L244 350" stroke="#d6a800" stroke-width="4" stroke-linecap="round"/>
+<path d="M278 282 L302 258 M292 278 L302 258 L282 264" fill="none" stroke="#0d9488" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M298 305 L322 281 M312 301 L322 281 L302 287" fill="none" stroke="#0d9488" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="325" y="294" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#17212b">LDR</text>
+<text x="325" y="319" font-family="Arial,sans-serif" font-size="16" fill="#64748b">Photoresistor</text>
+</g>
+<g>
+<rect x="410" y="310" width="80" height="60" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="4"/>
+<path d="M450 310 V292 M450 370 V390" stroke="#263746" stroke-width="4"/>
+<text x="500" y="338" font-family="Arial,sans-serif" font-size="19" font-weight="700" fill="#17212b">Fixed resistor</text>
+<text x="500" y="361" font-family="Arial,sans-serif" font-size="16" fill="#64748b">e.g. 10 kΩ*</text>
+</g>
+<g>
+<rect x="865" y="286" width="235" height="110" rx="14" fill="#17212b"/>
+<text x="982" y="326" font-family="Arial,sans-serif" font-size="23" font-weight="700" fill="#fff" text-anchor="middle">Arduino Uno</text>
+<text x="982" y="360" font-family="Arial,sans-serif" font-size="22" fill="#fcd34d" text-anchor="middle">A0 · Analog input</text>
+</g>
+<g fill="#64748b" font-family="Arial,sans-serif" font-size="17">
+<text x="68" y="515">As light changes, LDR resistance changes and the A0 voltage shifts.</text>
+<text x="68" y="547">*10 kΩ is a common starting value, not a universal requirement.</text>
+</g>
+<circle cx="650" cy="340" r="8" fill="#0d9488" stroke="#fff" stroke-width="3"/>
+</svg>
