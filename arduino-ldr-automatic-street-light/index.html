@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arduino LDR Sensor Circuit: Automatic Street Light Using Arduino</title>
+<meta name="description" content="Build an Arduino automatic street light with an LDR. Follow the voltage-divider circuit, wiring, code, threshold calibration and troubleshooting steps.">
+<link rel="canonical" href="https://vayuyaan13.github.io/vayuyaan/arduino-ldr-automatic-street-light/">
+<meta name="robots" content="index,follow,max-image-preview:large"><meta name="theme-color" content="#ffc928">
+<meta property="og:type" content="article"><meta property="og:title" content="Arduino LDR Sensor Circuit: Automatic Street Light Using Arduino"><meta property="og:description" content="Build and calibrate an Arduino street-light prototype with an LDR, voltage divider and LED."><meta property="og:url" content="https://vayuyaan13.github.io/vayuyaan/arduino-ldr-automatic-street-light/"><meta property="og:image" content="https://vayuyaan13.github.io/vayuyaan/assets/arduino-ldr-street-light-overview.svg"><meta property="og:image:alt" content="Arduino Uno reading an LDR voltage divider and switching a street-light LED">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Arduino LDR Sensor Circuit: Automatic Street Light Using Arduino"><meta name="twitter:description" content="Circuit, Arduino code, threshold calibration and troubleshooting for an LDR street-light model."><meta name="twitter:image" content="https://vayuyaan13.github.io/vayuyaan/assets/arduino-ldr-street-light-overview.svg">
+<link rel="stylesheet" href="../style.css?v=20261101a">
+<style>
+.article-hero{max-width:1160px;margin:auto;padding:55px 28px 25px}.article-hero h1{font-size:clamp(2.5rem,5vw,4.2rem);line-height:1.06;letter-spacing:-.05em;max-width:950px;margin:12px 0}.article-hero p{max-width:850px;color:#5e6b76;font-size:1.12rem;line-height:1.75}.eyebrow{font-size:.78rem;font-weight:800;letter-spacing:.1em;color:#8b6700;text-transform:uppercase}.article-layout{max-width:1160px;margin:auto;padding:15px 28px 75px;display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:48px}.article-body h2{font-size:clamp(1.6rem,3vw,2.1rem);line-height:1.2;margin:45px 0 14px;scroll-margin-top:100px}.article-body h3{font-size:1.15rem;margin:25px 0 8px}.article-body p,.article-body li{line-height:1.8;color:#394650}.article-body a{color:#725400;text-underline-offset:3px}.article-body figure{margin:25px 0}.article-body figure img{width:100%;height:auto;display:block;border:1px solid #e0e6eb;border-radius:14px}.article-body figcaption{font-size:.84rem;color:#687580;margin-top:8px}.article-body pre{overflow-x:auto;background:#101820;color:#f2f5f7;padding:20px;border-radius:12px;font-size:.86rem;line-height:1.65}.article-body code{font-family:ui-monospace,Consolas,monospace}.article-body :not(pre)>code{background:#f0f2f4;padding:2px 5px;border-radius:4px}.article-body table{border-collapse:collapse;width:100%;min-width:500px}.article-body th,.article-body td{border:1px solid #e0e5e9;padding:10px 12px;text-align:left}.article-body th{background:#f5f7f8}.table-wrap{overflow-x:auto;margin:20px 0}.note{padding:18px 20px;background:#fff8df;border-left:4px solid #ffd23f;border-radius:0 9px 9px 0;margin:22px 0;line-height:1.75}.note.cool{background:#f2f6fa;border-color:#8498a9}.aside{position:sticky;top:110px;align-self:start;background:#f8fafb;border:1px solid #e4e9ed;border-radius:12px;padding:20px}.aside h2{font-size:1.1rem;margin:0 0 12px}.aside a{display:block;margin:11px 0;color:#725400;font-size:.9rem;font-weight:700}.breadcrumb{max-width:1160px;margin:auto;padding:16px 28px 0;font-size:.85rem}.breadcrumb a{color:#725400}.related{max-width:1104px;margin:0 auto 65px;padding:0 28px}.related h2{font-size:1.7rem}@media(max-width:850px){.article-layout{grid-template-columns:1fr}.aside{position:static;order:-1}}@media(max-width:600px){.article-hero{padding:35px 20px 18px}.article-layout{padding:8px 20px 55px}.breadcrumb,.related{padding-left:20px;padding-right:20px}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Arduino LDR Sensor Circuit: Automatic Street Light Using Arduino","description":"Build an Arduino automatic street-light prototype using an LDR voltage divider, LED, test sketch and threshold calibration.","mainEntityOfPage":{"@type":"WebPage","@id":"https://vayuyaan13.github.io/vayuyaan/arduino-ldr-automatic-street-light/"},"image":["https://vayuyaan13.github.io/vayuyaan/assets/arduino-ldr-street-light-overview.svg","https://vayuyaan13.github.io/vayuyaan/assets/arduino-ldr-voltage-divider.svg"],"author":{"@type":"Organization","name":"Vayuyaan Editorial Team"},"publisher":{"@type":"Organization","name":"Vayuyaan"},"datePublished":"2026-11-01","dateModified":"2026-11-01","inLanguage":"en-IN"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vayuyaan13.github.io/vayuyaan/"},{"@type":"ListItem","position":2,"name":"Sensor Guides","item":"https://vayuyaan13.github.io/vayuyaan/sensors/"},{"@type":"ListItem","position":3,"name":"Arduino LDR Automatic Street Light","item":"https://vayuyaan13.github.io/vayuyaan/arduino-ldr-automatic-street-light/"}]}]}</script>
+</head>
+<body>
+<header class="header"><nav class="nav"><a class="brand" href="../" aria-label="Vayuyaan home"><img src="../assets/vayuyaan-logo.png" alt="Vayuyaan logo"></a><div class="navlinks"><a href="../">Home</a><a href="../write-for-us/">Write for Us</a><a href="../arduino/">Arduino Guides</a><a href="../sensors/" aria-current="page">Sensor Guides</a><a href="../robotics/">Robotics Projects</a><a href="../motor-drivers/">Motor Drivers</a><a href="../what-is-esp32/">ESP32</a><a href="https://vayuyaan.com/blog/">Electronics Blog</a><a href="https://vayuyaan.com/shop/">Shop Components</a><a class="nav-cta" href="https://vayuyaan.com/">Vayuyaan.com ↗</a></div><button class="menu" type="button" aria-label="Open navigation menu" aria-expanded="false">☰</button></nav></header>
+<main>
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="../">Home</a> / <a href="../sensors/">Sensor Guides</a> / Arduino LDR Automatic Street Light</nav>
+<header class="article-hero"><div class="eyebrow">Arduino Project · Light Sensing</div><h1>Arduino LDR Sensor Circuit: Automatic Street Light Using Arduino</h1><p>Build a small street-light model that switches an LED on when the surroundings become dark. Follow the LDR voltage-divider circuit, Arduino wiring, code, threshold calibration and practical troubleshooting steps.</p></header>
+<div class="article-layout"><article class="article-body">
+<figure><img src="../assets/arduino-ldr-street-light-overview.svg" alt="Arduino Uno connected to an LDR voltage divider and an LED street-light model" width="1200" height="620" fetchpriority="high"><figcaption>Project overview: the Arduino reads the voltage-divider output and controls an LED that represents a street light.</figcaption></figure>
+<div class="note"><strong>What you will build:</strong> a low-voltage demonstration in which an LDR measures ambient light through a voltage divider. The Arduino reads the voltage at A0 and switches an LED when the reading crosses a threshold you calibrate.</div>
+<h2 id="working">How does an LDR automatic street light work?</h2>
+<p>An automatic street-light controller needs to distinguish between brighter and darker conditions. A light-dependent resistor provides a simple way to measure changes in ambient light.</p>
+<p>An LDR changes resistance as the light falling on its surface changes. In general, its resistance decreases in brighter light and increases in darkness. A fixed resistor connected with the LDR forms a voltage divider. This converts the resistance change into a voltage that an Arduino analog input can read.</p>
+<p>The Arduino compares the reading with a threshold. When the reading indicates darkness, the sketch turns the LED on. When it indicates enough light, the LED turns off. The direction of the analog reading depends on the order of the LDR and fixed resistor in the divider.</p>
+<p>For the component's basic working principle and terminology, read the <a href="https://vayuyaan.com/blog/what-is-ldr-sensor/">light dependent resistor</a> guide. It explains how light changes the component's resistance.</p>
+<figure><img src="../assets/arduino-ldr-voltage-divider.svg" alt="LDR voltage divider: LDR between 5 volts and A0 junction, 10 kilo-ohm resistor between junction and ground" width="1200" height="620" loading="lazy"><figcaption>Voltage-divider example: LDR to 5 V, fixed resistor to GND, and the junction connected to A0.</figcaption></figure>
+<h2 id="parts">Components required</h2>
+<div class="table-wrap"><table><thead><tr><th>Component</th><th>Quantity</th><th>Purpose</th></tr></thead><tbody><tr><td>Arduino Uno R3 or compatible 5 V board</td><td>1</td><td>Reads sensor voltage and controls the LED</td></tr><tr><td>LDR</td><td>1</td><td>Senses surrounding light</td></tr><tr><td>10 kΩ fixed resistor</td><td>1</td><td>Forms the voltage divider</td></tr><tr><td>LED</td><td>1</td><td>Represents the street light</td></tr><tr><td>220 Ω–330 Ω resistor</td><td>1</td><td>Limits LED current</td></tr><tr><td>Breadboard and jumper wires</td><td>As needed</td><td>Connects the circuit</td></tr><tr><td>USB cable</td><td>1</td><td>Powers the board and uploads code</td></tr></tbody></table></div>
+<p>Some LDR modules include a comparator, potentiometer and analog and digital outputs. Pin labels and behaviour vary, so check the documentation for your exact module. The wiring below uses a bare LDR and a fixed resistor.</p>
+<h2 id="wiring">Arduino LDR sensor circuit and wiring</h2>
+<p>Connect the LDR between 5 V and the sensor junction. Connect the 10 kΩ resistor between the same junction and GND. Run a jumper from the junction to analog pin A0.</p>
+<ol><li>Place the LDR and 10 kΩ resistor on the breadboard so one LDR leg and one resistor leg share a junction row.</li><li>Connect the other LDR leg to Arduino 5 V.</li><li>Connect the other resistor leg to Arduino GND.</li><li>Connect the shared junction to analog pin A0.</li><li>Connect the LED anode (long leg) to digital pin 9 through a 220 Ω–330 Ω resistor.</li><li>Connect the LED cathode (short leg) to GND.</li></ol>
+<div class="note cool"><strong>Check before powering:</strong> A0 must connect to the LDR–resistor junction, not directly to 5 V or GND. Confirm LED polarity and keep this circuit on a low-voltage breadboard.</div>
+<h2 id="code">Arduino code for the automatic street light</h2>
+<p>Upload this sketch after wiring the circuit. It prints the sensor reading in the Serial Monitor and switches the LED based on a threshold.</p>
+<pre><code>const int ldrPin = A0;
+const int ledPin = 9;
+
+// Starting value only. Calibrate it for your lighting.
+int lightThreshold = 500;
+
+// With this guide's wiring (LDR to 5V, resistor to GND),
+// the reading normally rises as the light gets brighter.
+const bool higherReadingMeansBrighter = true;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int lightValue = analogRead(ldrPin);
+
+  Serial.print("LDR reading: ");
+  Serial.println(lightValue);
+
+  bool isDark;
+  if (higherReadingMeansBrighter) {
+    isDark = lightValue < lightThreshold;
+  } else {
+    isDark = lightValue > lightThreshold;
+  }
+
+  digitalWrite(ledPin, isDark ? HIGH : LOW);
+  delay(250);
+}</code></pre>
+<div class="note"><strong>Why can the reading direction differ?</strong> This sketch assumes the LDR connects to 5 V and the fixed resistor connects to GND. Reversing their positions reverses the divider response. If your reading rises when you cover the LDR, set <code>higherReadingMeansBrighter</code> to <code>false</code> after checking the wiring.</div>
+<h2 id="calibration">Calibrate the LDR threshold</h2>
+<p>A threshold of 500 is only a starting point. Room lighting, the LDR, resistor tolerance, sensor position and board can all change the readings. Calibrate the actual circuit instead of relying on a copied value.</p>
+<ol><li>Upload the sketch and open Tools → Serial Monitor in the Arduino IDE.</li><li>Set the baud rate to 9600.</li><li>Expose the LDR to normal room light and note its readings for several seconds.</li><li>Shade the LDR with your hand or opaque card. Note the darker readings.</li><li>Choose a threshold between the typical bright and dark readings.</li><li>Change <code>lightThreshold</code>, upload again and repeat the test.</li></ol>
+<p>For example, if bright readings stay around 700–850 and dark readings around 150–300, a threshold near 500 may work. These numbers are illustrative; use your own Serial Monitor readings.</p>
+<figure><img src="../assets/arduino-ldr-calibration.svg" alt="LDR calibration illustration showing bright and shaded tests and a threshold between measured readings" width="1200" height="500" loading="lazy"><figcaption>Record real bright and dark readings, then choose a threshold between the two ranges.</figcaption></figure>
+<h2 id="testing">Test the automatic light</h2>
+<div class="table-wrap"><table><thead><tr><th>Test condition</th><th>Expected result</th><th>What to check</th></tr></thead><tbody><tr><td>LDR exposed to bright light</td><td>LED turns off</td><td>Reading is on the bright side of your threshold</td></tr><tr><td>LDR covered or shaded</td><td>LED turns on</td><td>Reading crosses the threshold into the dark range</td></tr><tr><td>Light changes near threshold</td><td>LED may switch repeatedly</td><td>Consider adding hysteresis after the basic circuit works</td></tr></tbody></table></div>
+<h2 id="troubleshooting">Troubleshooting common problems</h2>
+<h3>LED stays on all the time</h3><p>Check whether the analog reading stays below the threshold. Confirm the A0 junction and resistor connections. Verify whether your divider produces a higher or lower reading in bright light.</p>
+<h3>LED never turns on</h3><p>Shade the LDR and watch the Serial Monitor. If the value changes but never crosses the threshold, adjust the threshold. If it does not change, check the LDR wiring, breadboard rows and ground connection.</p>
+<h3>Readings jump around</h3><p>Keep the LDR away from flickering lamps, secure loose jumper wires and keep the sensor position consistent. You can average several readings after the basic circuit works.</p>
+<h3>My module has VCC, GND, AO and DO pins</h3><p>For this sketch, use the module's AO output with A0, along with VCC and GND according to the module's rated supply. DO is a digital comparator output and behaves differently. Some modules use an onboard potentiometer to set the digital switching point. Do not connect AO and DO to the same Arduino input.</p>
+<h2 id="improve">Ways to improve the project</h2>
+<ul><li><strong>Add hysteresis:</strong> use separate turn-on and turn-off thresholds to prevent rapid switching near one borderline value.</li><li><strong>Use an LDR module:</strong> a module with an adjustable comparator can provide a digital output, but check its voltage and pinout first.</li><li><strong>Build a model street:</strong> add low-current LEDs, each with its own current-limiting resistor, while staying within the board's electrical limits.</li><li><strong>Log readings:</strong> record values at different times to understand how placement and local lighting affect the sensor.</li></ul>
+<div class="note cool"><strong>Electrical safety:</strong> this is a low-voltage learning model. Do not connect a mains-powered street lamp or AC load directly to an Arduino pin or breadboard. A real installation needs a properly rated, isolated switching stage, protection, a suitable enclosure and installation by a qualified electrician.</div>
+<h2 id="faq">Frequently asked questions</h2>
+<h3>Can I use Arduino Uno R3 for an LDR street-light project?</h3><p>Yes. The Uno can read the voltage from an LDR voltage divider through an analog input and control a low-current LED from a digital output.</p>
+<h3>Which resistor is suitable for an LDR circuit?</h3><p>A 10 kΩ resistor is a common starting point. The best value depends on the LDR's resistance range and the light levels you need to distinguish.</p>
+<h3>Why does my LDR value change in the opposite direction?</h3><p>The direction depends on which component connects to the supply and which connects to ground. Swapping the LDR and fixed resistor positions reverses the voltage-divider response.</p>
+<h3>Can this circuit control a real street light?</h3><p>This breadboard circuit is a demonstration, not a mains-light controller. A real installation requires a properly rated, isolated switching stage and suitable electrical and weather protection.</p>
+<h2 id="next">What to learn next</h2>
+<p>If you are new to the controller, read <a href="https://vayuyaan.com/blog/arduino-uno-r3-complete-guide-for-beginners/">What is Arduino</a> to understand the Uno board, its pins and how sketches run. Then explore more projects in the <a href="../sensors/">Vayuyaan sensor learning hub</a>.</p>
+<div class="note"><strong>Project summary:</strong> You connected an LDR voltage divider to A0, read ambient light with Arduino and switched an LED when the reading crossed a calibrated threshold. Test under the lighting conditions where the project will operate.</div>
+<h2>Technical references</h2><ul><li><a href="https://docs.arduino.cc/tutorials/uno-rev3/AnalogReadSerial/" target="_blank" rel="noopener noreferrer">Arduino documentation: Analog Read Serial</a></li><li><a href="https://docs.arduino.cc/language-reference/en/functions/analog-io/analogRead/" target="_blank" rel="noopener noreferrer">Arduino reference: analogRead()</a></li><li><a href="https://docs.arduino.cc/language-reference/en/functions/digital-io/digitalwrite/" target="_blank" rel="noopener noreferrer">Arduino reference: digitalWrite()</a></li></ul>
+</article>
+<aside class="aside"><h2>On this page</h2><a href="#working">How it works</a><a href="#parts">Components</a><a href="#wiring">Circuit and wiring</a><a href="#code">Arduino code</a><a href="#calibration">Threshold calibration</a><a href="#testing">Testing</a><a href="#troubleshooting">Troubleshooting</a><a href="#improve">Improvements</a><a href="#faq">FAQs</a><hr><h2>Related guides</h2><a href="../sensors/">Sensor learning hub →</a><a href="../ldr-vs-photodiode/">LDR vs photodiode →</a><a href="../arduino/">Arduino guides →</a></aside>
+</div>
+</main>
+<footer><div class="footer-brand"><img src="../assets/vayuyaan-logo.png" alt="Vayuyaan logo"><p>Electronics • Robotics • DIY</p></div><div><b>Explore</b><a href="../arduino/">Arduino tutorials</a><a href="../sensors/">Sensor tutorials</a><a href="../robotics/">Robotics projects</a><a href="https://vayuyaan.com/blog/">Electronics blog</a></div><div><b>Shop</b><a href="https://vayuyaan.com/shop/">Shop electronics and robotics</a><a href="https://vayuyaan.com/">Vayuyaan.com</a></div></footer>
+<div class="footer-bottom"><span>© 2026 Vayuyaan. All rights reserved.</span><span>Electronics • Robotics • DIY</span></div>
+<script>(()=>{const b=document.querySelector('.menu'),n=document.querySelector('.navlinks');if(b&&n){b.addEventListener('click',()=>{const o=n.classList.toggle('mobile-open');b.setAttribute('aria-expanded',String(o));b.setAttribute('aria-label',o?'Close navigation menu':'Open navigation menu')});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('mobile-open');b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','Open navigation menu')}))}})();</script>
+</body></html>
