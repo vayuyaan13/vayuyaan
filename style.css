@@ -54,3 +54,10 @@ footer{max-width:1360px;margin:auto;border-top:1px solid var(--line);padding:38p
   .brand img{width:145px}
   .navlinks.mobile-open{padding-left:18px;padding-right:18px}
 }
+
+/* Homepage learning hub: align the added internal-link section with the site's shared content width and spacing. */
+.learning-hub{max-width:1360px;margin:0 auto;padding:92px 28px}
+.learning-hub .section-heading{max-width:780px;margin:0 0 42px}
+.learning-hub .section-heading h2{font-size:clamp(2.1rem,4vw,3.25rem);line-height:1.04;letter-spacing:-.045em;margin:9px 0 18px;color:var(--ink)}
+.learning-hub .section-heading p{max-width:740px;margin:0;color:var(--muted);line-height:1.7}
+@media(max-width:700px){.learning-hub{padding:75px 24px}.learning-hub .section-heading{margin-bottom:30px}}
