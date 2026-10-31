@@ -21,8 +21,8 @@
 footer{max-width:1360px;margin:auto;border-top:1px solid var(--line);padding:38px 28px 48px;display:grid;grid-template-columns:1.35fr 1fr 1.15fr 1fr;gap:55px;color:#75818b;font-size:.85rem}footer>div:not(.footer-brand){display:flex;flex-direction:column;gap:8px}footer b{color:var(--ink)}footer a{text-decoration:none}.footer-brand img{width:168px;height:auto;display:block;margin-bottom:10px}.footer-brand p{margin:8px 0;color:#89949d}.footer-social{display:flex;flex-direction:column;gap:8px}.footer-social b{margin-bottom:4px}.footer-social a{display:flex;align-items:center;gap:11px;width:max-content;line-height:1.35;text-decoration:none;color:#75818b}.footer-social a:hover{color:var(--ink)}.footer-social svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}.footer-bottom{max-width:1360px;margin:auto;border-top:1px solid var(--line);padding:16px 28px 22px;display:flex;justify-content:space-between;gap:20px;color:#929ba3;font-size:.72rem}.footer-bottom span:last-child{font-weight:600}
 @media(max-width:1150px){.nav{gap:22px}.navlinks{gap:18px}.navlinks a{font-size:.82rem}.brand img{width:150px}}
 @media(max-width:900px){.hero-inner{grid-template-columns:1fr}.hero-visual{height:340px}.topic-grid{grid-template-columns:repeat(2,1fr)}.project-section{grid-template-columns:1fr;gap:50px}.cta{margin-left:24px;margin-right:24px}.navlinks{gap:15px}}
-@media(max-width:700px){footer{grid-template-columns:1fr 1fr;gap:40px}.footer-brand{grid-column:1/-1}.navlinks{display:none}.menu{display:block}.hero-inner{padding-top:58px}.hero h1{font-size:3.4rem}.hero-visual{height:300px}.board{width:210px;height:260px}.orb{width:260px;height:260px}.chip{width:60px;height:60px;margin-top:20px}.c1{right:0}.c2{left:0}.section{padding:75px 24px}.section-top{display:block}.section-top>p{margin-top:20px}.guide-grid{grid-template-columns:1fr}.cta{display:block;padding:40px 30px}.cta .primary{margin-top:28px}footer{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}}
-@media(max-width:480px){footer{grid-template-columns:1fr;gap:28px}.footer-brand{grid-column:auto}.topic-grid{grid-template-columns:1fr}.hero h1{font-size:2.9rem}.stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}.stats div{padding:0 0 0 15px}.hero-visual{height:270px}.board{width:175px;height:220px}.circuit{font-size:.6rem}.c2{bottom:20px}.c1{top:10px}.footer-bottom{display:block}.footer-bottom span{display:block}.footer-bottom span+span{margin-top:5px}}
+@media(max-width:700px){footer{grid-template-columns:1fr 1fr;gap:40px}.footer-brand{grid-column:1/-1}.navlinks{display:none}.menu{display:block}.hero-inner{padding-top:58px}.hero h1{font-size:3.4rem}.hero-visual{height:300px}.board{width:210px;height:260px}.orb{width:260px;height:260px}.chip{width:60px;height:60px;margin-top:20px}.c1{right:0}.c2{left:0}.section{padding:75px 24px}.section-top{display:block}.section-top>p{margin-top:20px}.guide-grid{grid-template-columns:1fr}.cta{display:block;padding:40px 30px}.cta .primary{margin-top:28px}footer{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}.learning-hub{padding:75px 24px}.learning-hub .section-heading{margin-bottom:30px}}
+@media(max-width:480px){footer{grid-template-columns:1fr;gap:28px}.footer-brand{grid-column:auto}.topic-grid{grid-template-columns:1fr}.hero h1{font-size:2.9rem}.stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}.stats div{padding:0 0 0 15px}.hero-visual{height:270px}.board{width:175px;height:220px}.circuit{font-size:.6rem}.c2{bottom:20px}.c1{top:10px}.footer-bottom{display:block}.footer-bottom span{display:block}.footer-bottom span+span{margin-top:5px}.nav{min-height:72px;padding:10px 16px}.brand img{width:145px}.navlinks.mobile-open{padding-left:18px;padding-right:18px}}
 
 .navlinks a:focus-visible,.primary:focus-visible,.secondary:focus-visible,.viewall:focus-visible,.cta-link:focus-visible,.brand:focus-visible,.menu:focus-visible{outline:3px solid #ffc928;outline-offset:4px;border-radius:6px}
 /* Mobile menu rules are consolidated in the responsive shared-header block below. */
@@ -49,15 +49,11 @@ footer{max-width:1360px;margin:auto;border-top:1px solid var(--line);padding:38p
   .navlinks a{font-size:clamp(.74rem,.82vw,.9rem)}
   .menu{display:none!important}
 }
-@media(max-width:480px){
-  .nav{min-height:72px;padding:10px 16px}
-  .brand img{width:145px}
-  .navlinks.mobile-open{padding-left:18px;padding-right:18px}
-}
+
 
 /* Homepage learning hub: align the added internal-link section with the site's shared content width and spacing. */
 .learning-hub{max-width:1360px;margin:0 auto;padding:92px 28px}
 .learning-hub .section-heading{max-width:780px;margin:0 0 42px}
 .learning-hub .section-heading h2{font-size:clamp(2.1rem,4vw,3.25rem);line-height:1.04;letter-spacing:-.045em;margin:9px 0 18px;color:var(--ink)}
 .learning-hub .section-heading p{max-width:740px;margin:0;color:var(--muted);line-height:1.7}
-@media(max-width:700px){.learning-hub{padding:75px 24px}.learning-hub .section-heading{margin-bottom:30px}}
+
