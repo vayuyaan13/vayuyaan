@@ -34,7 +34,7 @@
 <h2 id="wiring">Arduino LDR sensor circuit and wiring</h2>
 <p>Connect the LDR between 5 V and the sensor junction. Connect the 10 kΩ resistor between the same junction and GND. Run a jumper from the junction to analog pin A0.</p>
 <ol><li>Place the LDR and 10 kΩ resistor on the breadboard so one LDR leg and one resistor leg share a junction row.</li><li>Connect the other LDR leg to Arduino 5 V.</li><li>Connect the other resistor leg to Arduino GND.</li><li>Connect the shared junction to analog pin A0.</li><li>Connect the LED anode (long leg) to digital pin 9 through a 220 Ω–330 Ω resistor.</li><li>Connect the LED cathode (short leg) to GND.</li></ol>
-<div class="note cool"><strong>Check before powering:</strong> A0 must connect to the LDR–resistor junction, not directly to 5 V or GND. Confirm LED polarity and keep this circuit on a low-voltage breadboard.</div>
+<figure><img src="../assets/arduino-ldr-circuit-schematic.svg" alt="Schematic showing the LDR and 10 kilo-ohm voltage divider connected to Arduino A0 and an LED on digital pin 9 through a current-limiting resistor" width="1200" height="620" loading="lazy"><figcaption>Pin-level schematic for this circuit. A0 connects to the junction between the LDR and 10 kΩ resistor.</figcaption></figure><figure><img src="../assets/arduino-ldr-breadboard-layout.svg" alt="Breadboard connection map showing the LDR, 10 kilo-ohm resistor, shared A0 junction, 5 volt rail and ground rail" width="1200" height="680" loading="lazy"><figcaption>Connection map for transferring the schematic to a breadboard. Follow the electrical connections because breadboard hole positions vary.</figcaption></figure><div class="note cool"><strong>Check before powering:</strong> A0 must connect to the LDR–resistor junction, not directly to 5 V or GND. Confirm LED polarity and keep this circuit on a low-voltage breadboard.</div>
 <h2 id="code">Arduino code for the automatic street light</h2>
 <p>Upload this sketch after wiring the circuit. It prints the sensor reading in the Serial Monitor and switches the LED based on a threshold.</p>
 <pre><code>const int ldrPin = A0;
@@ -74,7 +74,33 @@ void loop() {
 <ol><li>Upload the sketch and open Tools → Serial Monitor in the Arduino IDE.</li><li>Set the baud rate to 9600.</li><li>Expose the LDR to normal room light and note its readings for several seconds.</li><li>Shade the LDR with your hand or opaque card. Note the darker readings.</li><li>Choose a threshold between the typical bright and dark readings.</li><li>Change <code>lightThreshold</code>, upload again and repeat the test.</li></ol>
 <p>For example, if bright readings stay around 700–850 and dark readings around 150–300, a threshold near 500 may work. These numbers are illustrative; use your own Serial Monitor readings.</p>
 <figure><img src="../assets/arduino-ldr-calibration.svg" alt="LDR calibration illustration showing bright and shaded tests and a threshold between measured readings" width="1200" height="500" loading="lazy"><figcaption>Record real bright and dark readings, then choose a threshold between the two ranges.</figcaption></figure>
-<h2 id="testing">Test the automatic light</h2>
+<h2 id="hysteresis">Optional code: stop the LED flickering near the threshold</h2><p>If the light level stays close to one threshold, small sensor changes can make the LED switch on and off repeatedly. Hysteresis uses two thresholds: one to switch the LED on and another to switch it off. This version matches the wiring in this guide, where a lower reading means darker conditions.</p><pre><code>const int ldrPin = A0;
+const int ledPin = 9;
+
+// Example values only. Calibrate using your own readings.
+const int turnOnBelow = 450;  // Switch LED on as it gets darker
+const int turnOffAbove = 550; // Switch LED off as it gets brighter
+
+bool lightIsOn = false;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int lightValue = analogRead(ldrPin);
+  Serial.println(lightValue);
+
+  if (!lightIsOn && lightValue < turnOnBelow) {
+    lightIsOn = true;
+  } else if (lightIsOn && lightValue > turnOffAbove) {
+    lightIsOn = false;
+  }
+
+  digitalWrite(ledPin, lightIsOn ? HIGH : LOW);
+  delay(250);
+}</code></pre><div class="note cool"><strong>Calibrate both values.</strong> For this wiring, choose <code>turnOnBelow</code> in the darker range and <code>turnOffAbove</code> in the brighter range. Keep the turn-off value higher than the turn-on value. If you reverse the LDR and fixed resistor, reverse the comparison logic too. Replace the first sketch with this one; do not combine both sketches.</div><h2 id="testing">Test the automatic light</h2>
 <div class="table-wrap"><table><thead><tr><th>Test condition</th><th>Expected result</th><th>What to check</th></tr></thead><tbody><tr><td>LDR exposed to bright light</td><td>LED turns off</td><td>Reading is on the bright side of your threshold</td></tr><tr><td>LDR covered or shaded</td><td>LED turns on</td><td>Reading crosses the threshold into the dark range</td></tr><tr><td>Light changes near threshold</td><td>LED may switch repeatedly</td><td>Consider adding hysteresis after the basic circuit works</td></tr></tbody></table></div>
 <h2 id="troubleshooting">Troubleshooting common problems</h2>
 <h3>LED stays on all the time</h3><p>Check whether the analog reading stays below the threshold. Confirm the A0 junction and resistor connections. Verify whether your divider produces a higher or lower reading in bright light.</p>
@@ -86,15 +112,15 @@ void loop() {
 <div class="note cool"><strong>Electrical safety:</strong> this is a low-voltage learning model. Do not connect a mains-powered street lamp or AC load directly to an Arduino pin or breadboard. A real installation needs a properly rated, isolated switching stage, protection, a suitable enclosure and installation by a qualified electrician.</div>
 <h2 id="faq">Frequently asked questions</h2>
 <h3>Can I use Arduino Uno R3 for an LDR street-light project?</h3><p>Yes. The Uno can read the voltage from an LDR voltage divider through an analog input and control a low-current LED from a digital output.</p>
-<h3>Which resistor is suitable for an LDR circuit?</h3><p>A 10 kΩ resistor is a common starting point. The best value depends on the LDR's resistance range and the light levels you need to distinguish.</p>
+<h3>Which resistor is suitable for an LDR circuit?</h3><p>A 10 kΩ resistor is a practical starting point for many common LDRs, but it is not universal. The fixed resistor and LDR form a voltage divider, so their resistance values determine how much the A0 voltage changes. If your readings barely change across the lighting conditions you need to detect, try a nearby standard value such as 4.7 kΩ or 22 kΩ and compare the Serial Monitor readings. Keep the resistor value fixed while calibrating, and choose the value that gives useful separation between bright and dark readings.</p>
 <h3>Why does my LDR value change in the opposite direction?</h3><p>The direction depends on which component connects to the supply and which connects to ground. Swapping the LDR and fixed resistor positions reverses the voltage-divider response.</p>
 <h3>Can this circuit control a real street light?</h3><p>This breadboard circuit is a demonstration, not a mains-light controller. A real installation requires a properly rated, isolated switching stage and suitable electrical and weather protection.</p>
 <h2 id="next">What to learn next</h2>
-<p>If you are new to the controller, read <a href="https://vayuyaan.com/blog/arduino-uno-r3-complete-guide-for-beginners/">What is Arduino</a> to understand the Uno board, its pins and how sketches run. Then explore more projects in the <a href="../sensors/">Vayuyaan sensor learning hub</a>.</p>
+<p>If you are new to the controller, read <a href="https://vayuyaan.com/blog/arduino-uno-r3-complete-guide-for-beginners/">Arduino Uno R3</a> to understand the Uno board, its pins and how sketches run. Then explore more projects in the <a href="../sensors/">Vayuyaan sensor learning hub</a>.</p>
 <div class="note"><strong>Project summary:</strong> You connected an LDR voltage divider to A0, read ambient light with Arduino and switched an LED when the reading crossed a calibrated threshold. Test under the lighting conditions where the project will operate.</div>
 <h2>Technical references</h2><ul><li><a href="https://docs.arduino.cc/tutorials/uno-rev3/AnalogReadSerial/" target="_blank" rel="noopener noreferrer">Arduino documentation: Analog Read Serial</a></li><li><a href="https://docs.arduino.cc/language-reference/en/functions/analog-io/analogRead/" target="_blank" rel="noopener noreferrer">Arduino reference: analogRead()</a></li><li><a href="https://docs.arduino.cc/language-reference/en/functions/digital-io/digitalwrite/" target="_blank" rel="noopener noreferrer">Arduino reference: digitalWrite()</a></li></ul>
 </article>
-<aside class="aside"><h2>On this page</h2><a href="#working">How it works</a><a href="#parts">Components</a><a href="#wiring">Circuit and wiring</a><a href="#code">Arduino code</a><a href="#calibration">Threshold calibration</a><a href="#testing">Testing</a><a href="#troubleshooting">Troubleshooting</a><a href="#improve">Improvements</a><a href="#faq">FAQs</a><hr><h2>Related guides</h2><a href="../sensors/">Sensor learning hub →</a><a href="../ldr-vs-photodiode/">LDR vs photodiode →</a><a href="../arduino/">Arduino guides →</a></aside>
+<aside class="aside"><h2>On this page</h2><a href="#working">How it works</a><a href="#parts">Components</a><a href="#wiring">Circuit and wiring</a><a href="#code">Arduino code</a><a href="#calibration">Threshold calibration</a><a href="#hysteresis">Hysteresis code</a><a href="#testing">Testing</a><a href="#troubleshooting">Troubleshooting</a><a href="#improve">Improvements</a><a href="#faq">FAQs</a><hr><h2>Related guides</h2><a href="../sensors/">Sensor learning hub →</a><a href="../ldr-vs-photodiode/">LDR vs photodiode →</a><a href="../arduino/">Arduino guides →</a></aside>
 </div>
 </main>
 <footer><div class="footer-brand"><img src="../assets/vayuyaan-logo.png" alt="Vayuyaan logo"><p>Electronics • Robotics • DIY</p></div><div><b>Explore</b><a href="../arduino/">Arduino tutorials</a><a href="../sensors/">Sensor tutorials</a><a href="../robotics/">Robotics projects</a><a href="https://vayuyaan.com/blog/">Electronics blog</a></div><div><b>Shop</b><a href="https://vayuyaan.com/shop/">Shop electronics and robotics</a><a href="https://vayuyaan.com/">Vayuyaan.com</a></div></footer>
