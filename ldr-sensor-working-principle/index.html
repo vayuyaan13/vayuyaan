@@ -31,7 +31,7 @@
 <p>An automatic night lamp, a light-sensitive alarm and a simple brightness detector all need a way to respond to changing light. One low-cost component used in these circuits is the light-dependent resistor, usually called an LDR or photoresistor.</p>
 <p>An LDR does not measure light as a ready-made digital value. Its resistance changes with the light falling on its surface. A suitable circuit converts that resistance change into a voltage that a microcontroller can read.</p>
 <figure class="article-figure"><img src="../assets/ldr-resistance-light-response.svg" alt="Conceptual graph showing that an LDR's resistance generally decreases as light intensity increases" width="1200" height="650" fetchpriority="high" decoding="async"><figcaption>Conceptual relationship only: common LDRs have higher resistance in darkness and lower resistance in brighter conditions. The exact curve varies by part.</figcaption></figure>
-<p>If you need a beginner-friendly overview of the component's definition, construction and uses, read Vayuyaan's <a href="https://vayuyaan.com/blog/what-is-ldr-sensor/">LDR sensor working principle</a>. This article goes further into the circuit behaviour and Arduino measurements.</p>
+<p>If you need a beginner-friendly overview of the component's definition, construction and uses, read Vayuyaan's <a href="https://vayuyaan.com/blog/what-is-ldr-sensor/">beginner’s guide to LDR sensors</a>. This article goes further into the circuit behaviour and Arduino measurements.</p>
 
 <h2 id="what-is-ldr">What is an LDR?</h2>
 <p>An LDR is a passive electronic component whose resistance depends on incident light. Many common photoresistors use a photosensitive semiconductor material. When light reaches the material, it changes the number of available charge carriers, allowing current to flow more easily through the component.</p>
@@ -53,6 +53,7 @@
 <p>For the arrangement shown, with the LDR connected to the supply and the fixed resistor connected to ground, the output voltage is:</p>
 <p><strong>Vout = VCC × Rfixed ÷ (RLDR + Rfixed)</strong></p>
 <p>Here, VCC is the supply voltage, Rfixed is the fixed resistor value and RLDR is the LDR resistance. As the light increases, RLDR generally decreases, so Vout generally increases in this arrangement.</p>
+<p>For example, suppose the supply is 5 V, the fixed resistor is 10 kΩ and the LDR measures 10 kΩ at a particular light level. The output is 2.5 V:</p><p><strong>Vout = 5 × 10 ÷ (10 + 10) = 2.5 V</strong></p><p>On a standard Arduino Uno using its default 10-bit ADC reference range, 2.5 V is approximately halfway through the input range, or about 512 counts. This is an illustrative calculation; your LDR resistance and readings will change with the component and lighting conditions.</p>
 <p>If you swap the LDR and fixed resistor, the output voltage moves in the opposite direction. Both arrangements can work. Choose one, document it and calibrate the code to match the actual wiring.</p>
 
 <h2 id="choose-resistor">How to choose the fixed resistor</h2>
@@ -157,7 +158,7 @@ void loop() {
 
 <h2 id="conclusion">Key takeaways</h2>
 <p>An LDR detects changes in light by changing its resistance. A voltage divider converts that change into a voltage, and an Arduino analog input can measure the voltage as an ADC value. The circuit is simple, but reliable results depend on choosing a suitable resistor, checking the wiring and calibrating under real lighting conditions.</p>
-<p>For a broader component overview, read the <a href="https://vayuyaan.com/blog/what-is-ldr-sensor/">what an LDR sensor is and how it works</a>. Then continue with the practical's LDR guide. Then continue with the practical <a href="../arduino-ldr-automatic-street-light/">Arduino automatic street-light build</a> to apply the concept.</p>
+<p>Once you understand the divider and calibration process, put them into practice with the <a href="../arduino-ldr-automatic-street-light/">Arduino LDR automatic street-light project</a>. It shows how to use changing light readings in a practical low-voltage build.</p>
 <div class="article-callout"><p><strong>Editorial note:</strong> Circuit values and behaviour depend on the exact component and board. Verify pinouts, supply limits and electrical ratings against the relevant datasheets before building or connecting a load.</p></div>
 <h2>Technical references</h2>
 <ul>
