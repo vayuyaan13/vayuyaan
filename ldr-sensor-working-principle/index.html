@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How an LDR Sensor Works: Resistance, Voltage Divider & Arduino</title>
+<meta name="description" content="Understand how an LDR changes resistance with light, how a voltage divider converts that change into voltage, and how to read it with Arduino.">
+<link rel="canonical" href="https://vayuyaan13.github.io/vayuyaan/ldr-sensor-working-principle/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:title" content="How an LDR Sensor Works: Resistance, Voltage Divider & Arduino"><meta property="og:description" content="A practical explanation of photoresistor behaviour, voltage-divider circuits, Arduino readings, calibration and troubleshooting."><meta property="og:url" content="https://vayuyaan13.github.io/vayuyaan/ldr-sensor-working-principle/"><meta property="og:image" content="https://vayuyaan13.github.io/vayuyaan/assets/ldr-resistance-light-response.svg"><meta property="og:image:alt" content="Diagram showing LDR resistance falling as light intensity increases">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How an LDR Sensor Works: Resistance, Voltage Divider & Arduino"><meta name="twitter:description" content="Learn LDR resistance, voltage dividers, Arduino analog readings and practical calibration."><meta name="twitter:image" content="https://vayuyaan13.github.io/vayuyaan/assets/ldr-resistance-light-response.svg">
+<link rel="stylesheet" href="../style.css?v=20261113a">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How an LDR Sensor Works: Resistance, Voltage Divider and Arduino Applications","description":"A practical technical guide to light-dependent resistors, voltage-divider circuits, Arduino analog readings, calibration and troubleshooting.","mainEntityOfPage":{"@type":"WebPage","@id":"https://vayuyaan13.github.io/vayuyaan/ldr-sensor-working-principle/"},"author":{"@type":"Organization","name":"Vayuyaan Editorial Team"},"publisher":{"@type":"Organization","name":"Vayuyaan"},"inLanguage":"en-IN","datePublished":"2026-11-13","dateModified":"2026-11-13"}</script>
+<style>
+.article-shell{max-width:1160px;margin:0 auto;padding:28px 28px 84px}.article-breadcrumb{display:flex;flex-wrap:wrap;gap:10px;color:#77818a;font-size:.84rem;margin:8px 0 30px}.article-breadcrumb a{color:#64717d;text-decoration:none}.article-layout{display:grid;grid-template-columns:minmax(0,1fr) 265px;gap:34px;align-items:start}.article-content{min-width:0;background:#fff;border:1px solid #e3e8ec;border-radius:14px;padding:clamp(22px,4vw,48px);box-shadow:0 8px 30px rgba(20,30,40,.035)}.article-content h1{font-size:clamp(2rem,4vw,3.15rem);line-height:1.12;letter-spacing:-.035em;color:#101820;margin:0 0 20px}.article-content h2{font-size:clamp(1.45rem,2.6vw,2rem);line-height:1.2;margin:38px 0 14px;color:#17212a}.article-content h3{font-size:1.17rem;margin:25px 0 10px;color:#202b34}.article-content p,.article-content li{color:#45525d;line-height:1.8;font-size:1rem}.article-content p{margin:0 0 17px}.article-content ul,.article-content ol{padding-left:24px}.article-content a{color:#705300;text-decoration:underline;text-underline-offset:3px}.article-content strong{color:#202830}.article-content code{background:#f1f4f6;padding:2px 5px;border-radius:4px}.article-figure{margin:24px 0 30px}.article-figure img{display:block;width:100%;height:auto;border:1px solid #e2e7eb;border-radius:12px;background:#fff}.article-figure figcaption{margin-top:9px;color:#687580;font-size:.88rem;line-height:1.6}.table-wrap{overflow-x:auto;margin:20px 0 28px}.article-content table{width:100%;border-collapse:collapse;min-width:520px;font-size:.93rem}.article-content th,.article-content td{padding:12px 14px;border:1px solid #e2e7eb;text-align:left;vertical-align:top;line-height:1.55}.article-content th{background:#fff5cc;color:#202830}.article-aside{position:sticky;top:20px;background:#f7f8f9;border:1px solid #e3e8ec;border-radius:12px;padding:21px}.article-aside h2{font-size:1rem;margin:0 0 12px}.article-aside p{font-size:.9rem;line-height:1.65;color:#596672}.article-aside a{color:#493900;font-weight:700}.article-callout{margin-top:26px;background:#fff8df;border-left:4px solid #ffd23f;padding:18px 20px;border-radius:0 10px 10px 0}.article-callout p{margin:0}.article-content h2{scroll-margin-top:20px}
+@media(max-width:820px){.article-layout{grid-template-columns:1fr}.article-aside{position:static;order:-1}.article-shell{padding:22px 18px 60px}.article-content{padding:24px 20px}}
+</style>
+</head>
+<body>
+<header class="header"><nav class="nav">
+<a class="brand" href="../" aria-label="Vayuyaan learning hub home"><img src="../assets/vayuyaan-logo.png" alt="Vayuyaan logo"></a>
+<div class="navlinks"><a href="../">Home</a><a href="../write-for-us/">Write for Us</a><a href="../arduino/">Arduino Guides</a><a href="../sensors/" aria-current="page">Sensor Guides</a><a href="../robotics/">Robotics Projects</a><a href="../motor-drivers/">Motor Drivers</a><a href="../what-is-esp32/">ESP32</a><a href="https://vayuyaan.com/blog/">Electronics Blog</a><a href="https://vayuyaan.com/shop/">Shop Components</a><a class="nav-cta" href="https://vayuyaan.com/">Vayuyaan.com ↗</a></div>
+<button class="menu" type="button" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+</nav></header>
+<main><div class="article-shell">
+<nav class="article-breadcrumb" aria-label="Breadcrumb"><a href="../">Home</a><span>›</span><a href="../sensors/">Sensor Guides</a><span>›</span><span aria-current="page">LDR Working Principle</span></nav>
+<div class="article-layout">
+<article class="article-content">
+<h1>How an LDR Sensor Works: Resistance, Voltage Divider and Arduino Applications</h1>
+<p>An automatic night lamp, a light-sensitive alarm and a simple brightness detector all need a way to respond to changing light. One low-cost component used in these circuits is the light-dependent resistor, usually called an LDR or photoresistor.</p>
+<p>An LDR does not measure light as a ready-made digital value. Its resistance changes with the light falling on its surface. A suitable circuit converts that resistance change into a voltage that a microcontroller can read.</p>
+<figure class="article-figure"><img src="../assets/ldr-resistance-light-response.svg" alt="Conceptual graph showing that an LDR's resistance generally decreases as light intensity increases" width="1200" height="650" fetchpriority="high" decoding="async"><figcaption>Conceptual relationship only: common LDRs have higher resistance in darkness and lower resistance in brighter conditions. The exact curve varies by part.</figcaption></figure>
+<p>If you need a beginner-friendly overview of the component's definition, construction and uses, read Vayuyaan's <a href="https://vayuyaan.com/blog/what-is-ldr-sensor/">LDR sensor working principle and applications guide</a>. This article goes further into the circuit behaviour and Arduino measurements.</p>
+
+<h2 id="what-is-ldr">What is an LDR?</h2>
+<p>An LDR is a passive electronic component whose resistance depends on incident light. Many common photoresistors use a photosensitive semiconductor material. When light reaches the material, it changes the number of available charge carriers, allowing current to flow more easily through the component.</p>
+<p>As a result, the resistance of a typical LDR falls as illumination increases. In darkness, its resistance rises. This behaviour is called photoconductivity.</p>
+<p>The LDR itself has no polarity in the way an LED does, so either lead can be placed on either side of a simple voltage-divider circuit. However, the position of the LDR relative to the fixed resistor determines whether the Arduino reading rises or falls as the light gets brighter.</p>
+
+<h2 id="resistance">How light changes LDR resistance</h2>
+<p>Think of resistance as opposition to current. In low light, a typical LDR offers high resistance. In brighter light, its resistance becomes lower. The change is not usually linear, so doubling the light does not necessarily halve the resistance.</p>
+<div class="table-wrap"><table><thead><tr><th>Lighting condition</th><th>Typical LDR response</th><th>What it means for a circuit</th></tr></thead><tbody>
+<tr><td>Dark or very dim</td><td>High resistance</td><td>Current through the divider is relatively low.</td></tr>
+<tr><td>Indoor lighting</td><td>Lower resistance than in darkness</td><td>The divider output shifts as the room gets brighter.</td></tr>
+<tr><td>Bright light</td><td>Generally lower resistance</td><td>The divider output shifts further, depending on resistor placement.</td></tr>
+</tbody></table></div>
+<p>These are relative behaviours, not resistance specifications. Actual values depend on the LDR model, light spectrum, illumination, temperature, age and measurement method. Check the datasheet for the part you have.</p>
+
+<h2 id="voltage-divider">Why an LDR needs a voltage divider</h2>
+<p>An Arduino analog input measures voltage, not resistance directly. To read an LDR, connect it in series with a fixed resistor between the supply and ground. The junction between the two components becomes the measurement point.</p>
+<figure class="article-figure"><img src="../assets/ldr-voltage-divider-principle.svg" alt="LDR and fixed resistor connected in series between VCC and ground, with the midpoint voltage sent to an Arduino analog input" width="1200" height="650" loading="lazy" decoding="async"><figcaption>A voltage divider converts the LDR's changing resistance into a changing output voltage. This drawing shows the LDR on the supply side.</figcaption></figure>
+<p>For the arrangement shown, with the LDR connected to the supply and the fixed resistor connected to ground, the output voltage is:</p>
+<p><strong>Vout = VCC × Rfixed ÷ (RLDR + Rfixed)</strong></p>
+<p>Here, VCC is the supply voltage, Rfixed is the fixed resistor value and RLDR is the LDR resistance. As the light increases, RLDR generally decreases, so Vout generally increases in this arrangement.</p>
+<p>If you swap the LDR and fixed resistor, the output voltage moves in the opposite direction. Both arrangements can work. Choose one, document it and calibrate the code to match the actual wiring.</p>
+
+<h2 id="choose-resistor">How to choose the fixed resistor</h2>
+<p>The fixed resistor affects the voltage range and sensitivity of the divider. A 10 kΩ resistor is a common starting point for simple experiments, but it is not the correct value for every LDR or lighting condition.</p>
+<ul>
+<li>Check the LDR datasheet for its resistance under specified illumination and its dark resistance.</li>
+<li>Choose a fixed resistor in a similar range to the LDR resistance around the light level you want to detect.</li>
+<li>Measure the output in the real environment rather than selecting a threshold from an example online.</li>
+<li>Use a resistor with a suitable power rating and keep the divider current within safe limits.</li>
+</ul>
+<p>For a simple day/night switch, you usually need a repeatable threshold rather than a laboratory-grade lux measurement.</p>
+
+<h2 id="arduino">Connect an LDR to an Arduino Uno</h2>
+<p>The following example uses a bare LDR, a 10 kΩ fixed resistor and an Arduino Uno. It is a low-voltage learning circuit. Do not connect mains-powered lamps directly to an Arduino pin. Use a correctly rated driver and suitable electrical protection for any real load.</p>
+<figure class="article-figure"><img src="../assets/arduino-ldr-analog-wiring.svg" alt="Arduino Uno wiring diagram: LDR from 5 volts to A0 junction, 10 kilo-ohm resistor from A0 junction to ground" width="1200" height="720" loading="lazy" decoding="async"><figcaption>Example wiring: LDR between 5 V and A0; a 10 kΩ resistor between A0 and GND. The junction is the analog measurement point.</figcaption></figure>
+<h3>Components</h3>
+<ul><li>Arduino Uno or a compatible 5 V board</li><li>One LDR / photoresistor</li><li>One 10 kΩ resistor as a starting value</li><li>Breadboard and jumper wires</li><li>USB cable for power and uploading the sketch</li></ul>
+<h3>Wiring steps</h3>
+<ol>
+<li>Connect one LDR lead to the Arduino 5 V pin.</li>
+<li>Connect the other LDR lead to a breadboard row used as the measurement junction.</li>
+<li>Connect one end of the 10 kΩ resistor to that same junction.</li>
+<li>Connect the other end of the resistor to Arduino GND.</li>
+<li>Connect the junction to analog input A0.</li>
+</ol>
+<p>Before powering the circuit, check that 5 V and GND are not connected directly together. If you use an LDR module rather than a bare photoresistor, follow the module's pin labels and documentation; its onboard circuit may behave differently.</p>
+
+<h2 id="arduino-code">Arduino code to read an LDR</h2>
+<p>This sketch reads the analog input and prints the raw value to the Serial Monitor. It does not assume that a particular ADC value equals a particular lux level.</p>
+<pre><code>const int ldrPin = A0;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int ldrValue = analogRead(ldrPin);
+
+  Serial.print("LDR reading: ");
+  Serial.println(ldrValue);
+
+  delay(250);
+}</code></pre>
+<p>Upload the sketch, open the Serial Monitor at 9600 baud and observe the readings. Cover the LDR, then expose it to brighter light. With the wiring shown above, the reading will generally increase as the light gets brighter. Your results may vary with the board, component and surroundings.</p>
+<p>On a standard Arduino Uno using its default 10-bit ADC configuration, <code>analogRead()</code> returns a value from 0 to 1023. These are ADC counts representing the input voltage range; they are not direct resistance or lux readings. See the official <a href="https://docs.arduino.cc/language-reference/en/functions/analog-io/analogRead/">Arduino analogRead() reference</a> for details.</p>
+
+<h2 id="calibration">Calibrate the LDR for a real project</h2>
+<p>Do not copy a threshold value without testing your own circuit. LDRs vary, and the light level at a desk can differ greatly from the light level near a window or outdoors.</p>
+<ol>
+<li>Record several readings with the sensor covered or in the darkest expected condition.</li>
+<li>Record readings in the brightest expected condition.</li>
+<li>Repeat the test at the light level where you want the project to switch.</li>
+<li>Choose a threshold between the measured dark and bright ranges.</li>
+<li>Test the circuit over several cycles and adjust the threshold if it switches too early or too late.</li>
+</ol>
+<p>If readings fluctuate around the threshold, average a small number of samples or use hysteresis. Hysteresis means using one threshold to switch the output on and a different threshold to switch it off. This reduces rapid toggling when the light level is close to the switching point.</p>
+
+<h2 id="applications">Where are LDRs used?</h2>
+<ul>
+<li><strong>Automatic night lights:</strong> detect low ambient light and switch a low-voltage light circuit on.</li>
+<li><strong>Display brightness control:</strong> provide an input for adjusting display or indicator brightness.</li>
+<li><strong>Light-sensitive alarms:</strong> detect a change when a beam is interrupted, where the LDR's response speed is suitable.</li>
+<li><strong>Basic robotics:</strong> help a small robot respond to light direction or changing illumination.</li>
+<li><strong>Classroom experiments:</strong> demonstrate resistance, voltage dividers and analog-to-digital conversion.</li>
+</ul>
+<p>For a complete build, follow the <a href="../arduino-ldr-automatic-street-light/">Arduino LDR automatic street-light project</a>. It covers the circuit, parts, code and threshold calibration for a low-voltage demonstration.</p>
+
+<h2 id="limitations">LDR limitations to understand</h2>
+<p>An LDR is inexpensive and easy to use, but it is not the best choice for every light-measurement task.</p>
+<ul>
+<li><strong>Slow response:</strong> many LDRs respond more slowly than photodiodes, so they are unsuitable for detecting very fast light pulses.</li>
+<li><strong>Part-to-part variation:</strong> two LDRs may produce different resistance values under similar lighting.</li>
+<li><strong>Spectral response:</strong> sensitivity depends on wavelength, so an LDR does not respond equally to every light source.</li>
+<li><strong>Environmental effects:</strong> temperature, sensor placement, shadows and reflections can change readings.</li>
+<li><strong>No direct lux output:</strong> an analog reading needs calibration and a suitable model before it can be interpreted as illuminance.</li>
+</ul>
+<p>If you need faster optical detection, compare the component with a photodiode. Our guide to <a href="../ldr-vs-photodiode/">LDR vs photodiode</a> explains the differences in output, response and circuit requirements.</p>
+
+<h2 id="troubleshooting">Common LDR circuit problems</h2>
+<h3>The reading never changes</h3>
+<p>Check that the A0 wire connects to the junction between the LDR and fixed resistor. Confirm that the sensor is not bypassed by an incorrect breadboard connection and that the Arduino and circuit share ground.</p>
+<h3>The reading moves in the opposite direction</h3>
+<p>This may be normal if the LDR and fixed resistor are arranged in the opposite order. Check the voltage-divider formula and adjust your code to match the circuit.</p>
+<h3>The output flickers near the switching point</h3>
+<p>Try averaging readings, improving the physical placement of the sensor, shielding it from unwanted reflections or adding hysteresis to the switching logic.</p>
+<h3>The sensor behaves differently outdoors</h3>
+<p>Sunlight, shade, reflections and changing weather can affect the sensor. Calibrate it at the installation location and protect the electronics from moisture and temperature extremes.</p>
+
+<h2 id="ldr-vs-other-sensors">LDR, photodiode or digital light sensor?</h2>
+<p>Choose the component according to what you need to measure. An LDR is useful for simple light/dark detection. A photodiode is generally better for faster optical response, but it needs a suitable current-to-voltage circuit. A digital ambient-light sensor may be more appropriate when a project needs a calibrated illuminance reading.</p>
+<p>For a broader comparison, read <a href="../ldr-vs-photodiode/">LDR vs photodiode: which light sensor should you choose?</a>. You can also browse the <a href="../sensors/">Vayuyaan sensor learning hub</a> for ultrasonic and IR sensor guides.</p>
+
+<h2 id="faq">Frequently asked questions</h2>
+<h3>Does LDR resistance increase or decrease in light?</h3>
+<p>For common LDRs, resistance generally decreases as light intensity increases and rises in darkness. Always check the datasheet for the exact component.</p>
+<h3>Can an LDR connect directly to an Arduino analog pin?</h3>
+<p>A bare LDR should normally be used with a fixed resistor to create a voltage divider. Connect the divider's midpoint to the analog input. Some ready-made LDR modules include this circuit already.</p>
+<h3>Does an Arduino LDR reading show lux?</h3>
+<p>No. A raw analog reading is an ADC value representing voltage. Estimating lux requires a suitable sensor model, calibration and consideration of spectral response.</p>
+<h3>Which resistor should I use with an LDR?</h3>
+<p>A 10 kΩ resistor is a common starting point, not a universal rule. Choose a value based on the LDR's resistance around the light level you want to detect.</p>
+
+<h2 id="conclusion">Key takeaways</h2>
+<p>An LDR detects changes in light by changing its resistance. A voltage divider converts that change into a voltage, and an Arduino analog input can measure the voltage as an ADC value. The circuit is simple, but reliable results depend on choosing a suitable resistor, checking the wiring and calibrating under real lighting conditions.</p>
+<p>Use the <a href="https://vayuyaan.com/blog/what-is-ldr-sensor/">Vayuyaan LDR sensor guide</a> for the component overview, then continue with the practical <a href="../arduino-ldr-automatic-street-light/">Arduino automatic street-light build</a> to apply the concept.</p>
+<div class="article-callout"><p><strong>Editorial note:</strong> Circuit values and behaviour depend on the exact component and board. Verify pinouts, supply limits and electrical ratings against the relevant datasheets before building or connecting a load.</p></div>
+<h2>Technical references</h2>
+<ul>
+<li><a href="https://docs.arduino.cc/language-reference/en/functions/analog-io/analogRead/">Arduino documentation: analogRead()</a></li>
+<li><a href="https://www.arduino.cc/en/Tutorial/AnalogInput/">Arduino tutorial: Analog Input</a></li>
+<li><a href="https://www.allaboutcircuits.com/textbook/direct-current/chpt-5/voltage-divider/">All About Circuits: Voltage Divider</a></li>
+</ul>
+</article>
+<aside class="article-aside"><h2>Continue learning</h2>
+<p><a href="../sensors/">Browse all sensor guides →</a></p>
+<p><a href="../arduino-ldr-automatic-street-light/">Build an Arduino LDR street light →</a></p>
+<p><a href="../ldr-vs-photodiode/">Compare LDR and photodiode →</a></p>
+<p><a href="../arduino/">Explore Arduino tutorials →</a></p>
+<p><a href="https://vayuyaan.com/blog/what-is-ldr-sensor/">Read the Vayuyaan LDR sensor guide →</a></p>
+</aside>
+</div></div></main>
+<footer><div class="footer-brand"><img src="../assets/vayuyaan-logo.png" alt="Vayuyaan logo"><p>Electronics • Robotics • DIY</p></div><div><b>Explore</b><a href="../sensors/">Sensor guides</a><a href="../arduino/">Arduino tutorials</a><a href="../robotics/">Robotics projects</a><a href="https://vayuyaan.com/blog/">Electronics blog</a></div><div><b>Shop</b><a href="https://vayuyaan.com/shop/">Shop electronics and robotics</a><a href="https://vayuyaan.com/">Vayuyaan.com</a></div></footer>
+<div class="footer-bottom"><span>© 2026 Vayuyaan. All rights reserved.</span><span>Electronics • Robotics • DIY</span></div>
+<script>(()=>{const b=document.querySelector('.menu'),n=document.querySelector('.navlinks');if(b&&n){b.addEventListener('click',()=>{const o=n.classList.toggle('mobile-open');b.setAttribute('aria-expanded',String(o));b.setAttribute('aria-label',o?'Close navigation menu':'Open navigation menu')});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('mobile-open');b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','Open navigation menu')}))}})();</script>
+</body></html>
