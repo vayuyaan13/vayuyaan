@@ -75,3 +75,47 @@ Do not create another general IR working-principle page. Keep the difference bet
 Before making claims about GitHub organic performance, add and verify the exact GitHub Pages URL-prefix property in Google Search Console. The existing Windsor.ai connection used for this audit reports the main `vayuyaan.com` property and is not evidence of GitHub Pages performance.
 
 Review this map when new GitHub pages are proposed or when query ownership materially changes. Do not create a new article solely to target a keyword already served by a relevant page.
+
+
+## GitHub Pages Search Console baseline (13 November 2026)
+
+Source: Google Search Console exports for the exact property `https://vayuyaan13.github.io/vayuyaan/`, Search type Web, Last 28 days (19 October–10 November 2026). These figures are GitHub Pages data, not the main `vayuyaan.com` property.
+
+### Property-level snapshot
+
+- Clicks: 6
+- Impressions: 311
+- CTR: 1.93%
+- Indexed pages shown in the coverage chart: 11
+- Not-indexed pages shown in the coverage chart: 1
+- Reported issue: Crawled – currently not indexed (1 URL; the export summary does not identify the URL).
+
+### Page-level performance
+
+| GitHub Pages URL | Clicks | Impressions | CTR | Average position |
+|---|---:|---:|---:|---:|
+| `arduino-line-follower-ir-sensor-calibration/` | 3 | 76 | 3.95% | 8.20 |
+| `arduino-ldr-automatic-street-light/` | 1 | 43 | 2.33% | 12.35 |
+| `esp32/` | 1 | 13 | 7.69% | 14.08 |
+| Homepage | 1 | 5 | 20.00% | 10.00 |
+| `ir-sensor-vs-ultrasonic-sensor/` | 0 | 69 | 0.00% | 7.90 |
+| `what-is-esp32/` | 0 | 41 | 0.00% | 32.85 |
+| `arduino/` | 0 | 26 | 0.00% | 11.35 |
+| `hc-sr04-ultrasonic-sensor-guide/` | 0 | 26 | 0.00% | 13.62 |
+| `robotics/` | 0 | 11 | 0.00% | 15.55 |
+| `write-for-us/` | 0 | 10 | 0.00% | 26.40 |
+| `sensors/` | 0 | 8 | 0.00% | 36.25 |
+
+### Query observations
+
+The exported query table contains only 19 rows and should not be treated as a complete list of queries. Visible queries include `what is esp32` (9 impressions; average position 40.22), `esp32 explained` (8; 79.12), and `ir sensor calibration` (1 click from 1 impression; position 11). Small query counts are directional signals only.
+
+### Actions and interpretation
+
+1. Preserve the IR calibration article's practical content; it currently contributes half of the property's reported clicks.
+2. Refine the IR-vs-ultrasonic search snippet because it has 69 impressions at average position 7.90 but no clicks. The title and description were adjusted on the working branch for review; do not assume the change improves CTR until new data is available.
+3. Keep the LDR project focused on the working circuit, threshold calibration and troubleshooting. Its current title and description already describe that intent; avoid unnecessary rewriting.
+4. Keep the HC-SR04 guide focused on pinout, wiring, distance calculation and troubleshooting. Its metadata already matches the page's practical intent; wait for more impressions before changing its title.
+5. The `/esp32/` path received 13 impressions and 1 click. It is an intentional legacy redirect to `/what-is-esp32/`; do not create a second article or optimize the redirect as a standalone landing page.
+6. The coverage export reports one crawled-but-not-indexed URL but does not expose its address. Identify it in the detailed Search Console issue report before changing or removing anything.
+7. These totals are based on a short, low-volume baseline. Compare future 28-day periods using the same property and date range, and assess page/query changes over enough impressions to avoid reacting to noise.
