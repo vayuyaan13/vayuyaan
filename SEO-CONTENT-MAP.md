@@ -119,3 +119,14 @@ The exported query table contains only 19 rows and should not be treated as a co
 5. The `/esp32/` path received 13 impressions and 1 click. It is an intentional legacy redirect to `/what-is-esp32/`; do not create a second article or optimize the redirect as a standalone landing page.
 6. The coverage export reports one crawled-but-not-indexed URL but does not expose its address. Identify it in the detailed Search Console issue report before changing or removing anything.
 7. These totals are based on a short, low-volume baseline. Compare future 28-day periods using the same property and date range, and assess page/query changes over enough impressions to avoid reacting to noise.
+
+## GitHub Pages indexing coverage update (14 November 2026)
+
+Source: Google Search Console Coverage drilldown for the exact GitHub Pages property `https://vayuyaan13.github.io/vayuyaan/`, issue `Crawled - currently not indexed`.
+
+- The single remaining URL in this issue is `https://vayuyaan13.github.io/vayuyaan/sitemap.xml`.
+- Google last crawled that sitemap URL on 25 October 2026.
+- This is a sitemap discovery file, not an article or search landing page. Its absence from Google's search index is not, by itself, an indexing defect.
+- Keep the sitemap available at the URL declared in `robots.txt`; do not request indexing for the sitemap or remove it to clear the report.
+- The repository sitemap contains 14 indexable page URLs. The two intentional legacy redirect pages remain `noindex,follow` and are excluded.
+- No article URL was identified as the remaining affected page in this drilldown. Recheck individual article URLs through Search Console URL Inspection if a page-specific indexing concern appears.

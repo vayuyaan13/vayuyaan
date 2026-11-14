@@ -27,6 +27,7 @@ class PageParser(HTMLParser):
         self.h1_count = 0
         self.ids: set[str] = set()
         self.links: list[str] = []
+        self.images_missing_alt = 0
         self.jsonld_parts: list[str] = []
         self._in_title = False
         self._in_jsonld = False
@@ -38,6 +39,8 @@ class PageParser(HTMLParser):
             self._in_title = True
         if tag == "h1":
             self.h1_count += 1
+        if tag == "img" and "alt" not in a:
+            self.images_missing_alt += 1
         if a.get("id"):
             self.ids.add(a["id"])
         if tag == "a" and a.get("name"):
@@ -160,6 +163,8 @@ def main() -> int:
                 errors.append(f"{rel}: canonical is not self-referencing ({parser.canonicals[0]})")
             if parser.h1_count != 1:
                 errors.append(f"{rel}: expected exactly one H1, found {parser.h1_count}")
+            if parser.images_missing_alt:
+                errors.append(f"{rel}: {parser.images_missing_alt} image(s) are missing an alt attribute")
             if path not in sitemap_paths:
                 errors.append(f"{rel}: indexable page is missing from sitemap")
 
@@ -177,6 +182,23 @@ def main() -> int:
         parser = parsed_pages.get(path)
         if parser and "noindex" in " ".join(parser.robots):
             errors.append(f"{path.relative_to(ROOT)}: noindex page must not be in sitemap")
+
+    seen_titles: dict[str, str] = {}
+    seen_descriptions: dict[str, str] = {}
+    for path, parser in parsed_pages.items():
+        if "noindex" in " ".join(parser.robots):
+            continue
+        rel = path.relative_to(ROOT).as_posix()
+        title = "".join(parser.title_parts).strip()
+        description = parser.description[0].strip() if parser.description else ""
+        if title in seen_titles:
+            errors.append(f"{rel}: duplicate title also used by {seen_titles[title]}")
+        else:
+            seen_titles[title] = rel
+        if description and description in seen_descriptions:
+            errors.append(f"{rel}: duplicate meta description also used by {seen_descriptions[description]}")
+        elif description:
+            seen_descriptions[description] = rel
 
     for page, parser in parsed_pages.items():
         rel = page.relative_to(ROOT).as_posix()
