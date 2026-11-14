@@ -130,3 +130,23 @@ Source: Google Search Console Coverage drilldown for the exact GitHub Pages prop
 - Keep the sitemap available at the URL declared in `robots.txt`; do not request indexing for the sitemap or remove it to clear the report.
 - The repository sitemap contains 14 indexable page URLs. The two intentional legacy redirect pages remain `noindex,follow` and are excluded.
 - No article URL was identified as the remaining affected page in this drilldown. Recheck individual article URLs through Search Console URL Inspection if a page-specific indexing concern appears.
+
+## Performance export reviewed (14 November 2026)
+
+The uploaded Search Console workbook is for the exact GitHub Pages property `https://vayuyaan13.github.io/vayuyaan/`, Search type Web, Last 28 days. Its daily chart runs from 19 October through 11 November 2026.
+
+- Property totals remain 6 clicks, 311 impressions and 1.93% CTR.
+- The highest-impression page with no clicks is `ir-sensor-vs-ultrasonic-sensor/`: 69 impressions, average position 7.90.
+- The comparison page's title and description were changed in PR #5, merged on 13 November. The workbook's latest chart date is 11 November, so this export predates that change and cannot measure its effect. Do not rewrite the snippet again based on this report; collect a fresh post-change period first.
+- `arduino-line-follower-ir-sensor-calibration/` remains the strongest page: 3 clicks, 76 impressions, 3.95% CTR and average position 8.20. Preserve its practical content.
+- `arduino-ldr-automatic-street-light/`: 1 click, 43 impressions, average position 12.35. Keep its existing circuit, threshold-calibration and troubleshooting focus.
+- `what-is-esp32/`: 0 clicks, 41 impressions, average position 32.85. Visible queries include `what is esp32` (9 impressions, average position 40.22) and `esp32 explained` (8 impressions, average position 79.12). These low counts and weak positions do not justify a broad rewrite yet.
+- `hc-sr04-ultrasonic-sensor-guide/`: 0 clicks, 26 impressions, average position 13.62. Keep its focused pinout, wiring, distance formula, code and troubleshooting coverage; gather more data before changing its snippet.
+- The query export contains only 19 visible rows. Treat query observations as incomplete and directional, not as a full query inventory.
+
+### Changes made from this review
+
+- Added a direct contextual path from the Arduino hub to the GitHub-hosted HC-SR04 implementation guide, instead of relying only on the broad main-site overview.
+- Added relevant links from the Arduino and robotics learning paths to the IR-vs-ultrasonic comparison.
+- Added the sensor comparison as a related resource on the IR calibration guide.
+- No new article was created because the existing pages already cover the identified intents. No page was rewritten merely to increase word count.
