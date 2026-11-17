@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HC-SR04 Wrong Distance Readings? Arduino Debugging Guide | Vayuyaan</title>
-<meta name="description" content="Diagnose HC-SR04 distance errors on Arduino. Test echo timing, wiring, target angle and noisy readings with a practical diagnostic sketch and checklist.">
+<title>Why Is Your HC-SR04 Ultrasonic Sensor Giving Incorrect Distance Readings? | Vayuyaan</title>
+<meta name="description" content="Troubleshoot incorrect HC-SR04 distance readings on Arduino. Check Trig and Echo wiring, measurement range, target angle, interference and a practical diagnostic sketch.">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <link rel="canonical" href="https://vayuyaan13.github.io/vayuyaan/hc-sr04-wrong-readings-arduino/">
 <meta property="og:locale" content="en_IN">
 <meta property="og:site_name" content="Vayuyaan Electronics & Robotics Guides">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HC-SR04 Wrong Distance Readings? Arduino Debugging Guide">
-<meta property="og:description" content="A practical diagnostic workflow for inaccurate, unstable or missing HC-SR04 readings on Arduino.">
+<meta property="og:title" content="Why Is Your HC-SR04 Ultrasonic Sensor Giving Incorrect Distance Readings?">
+<meta property="og:description" content="A practical guide to diagnosing incorrect HC-SR04 readings, wiring mistakes, range limits, target angle and interference.">
 <meta property="og:url" content="https://vayuyaan13.github.io/vayuyaan/hc-sr04-wrong-readings-arduino/">
 <meta property="og:image" content="https://vayuyaan13.github.io/vayuyaan/assets/hc-sr04-guide-social.svg">
 <meta property="og:image:alt" content="HC-SR04 ultrasonic sensor and Arduino diagnostic guide">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="HC-SR04 Wrong Distance Readings? Arduino Debugging Guide">
-<meta name="twitter:description" content="Find why an HC-SR04 returns zero, jumps around or measures the wrong distance. Includes a diagnostic Arduino sketch.">
+<meta name="twitter:title" content="Why Is Your HC-SR04 Ultrasonic Sensor Giving Incorrect Distance Readings?">
+<meta name="twitter:description" content="Find why an HC-SR04 returns incorrect distances. Check Trig/Echo wiring, range, target angle and interference with a practical Arduino sketch.">
 <meta name="twitter:image" content="https://vayuyaan13.github.io/vayuyaan/assets/hc-sr04-guide-social.svg">
 <meta name="twitter:image:alt" content="HC-SR04 ultrasonic sensor and Arduino diagnostic guide">
 <link rel="stylesheet" href="../style.css?v=20261031d">
@@ -30,7 +30,7 @@
 {
  "@context":"https://schema.org",
  "@graph":[
-  {"@type":"BlogPosting","@id":"https://vayuyaan13.github.io/vayuyaan/hc-sr04-wrong-readings-arduino/#article","mainEntityOfPage":{"@type":"WebPage","@id":"https://vayuyaan13.github.io/vayuyaan/hc-sr04-wrong-readings-arduino/"},"headline":"HC-SR04 Wrong Distance Readings? Arduino Debugging Guide","description":"Diagnose inaccurate, unstable or missing HC-SR04 distance readings on Arduino with a repeatable test, troubleshooting table and diagnostic sketch.","image":"https://vayuyaan13.github.io/vayuyaan/assets/hc-sr04-guide-social.svg","datePublished":"2026-11-17","dateModified":"2026-11-17","author":{"@type":"Organization","name":"Vayuyaan Editorial Team"},"publisher":{"@type":"Organization","name":"Vayuyaan","logo":{"@type":"ImageObject","url":"https://vayuyaan13.github.io/vayuyaan/assets/vayuyaan-logo.png"}},"inLanguage":"en-IN","articleSection":["Arduino","Sensors","Troubleshooting"],"citation":["https://docs.arduino.cc/language-reference/en/functions/advanced-io/pulseIn/","https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf","https://docs.sunfounder.com/projects/umsk/en/latest/01_components_basic/23-component_ultrasonic.html"],"keywords":["HC-SR04 wrong readings","HC-SR04 Arduino troubleshooting","ultrasonic sensor gives zero","HC-SR04 unstable distance","Arduino ultrasonic sensor debugging"]},
+  {"@type":"BlogPosting","@id":"https://vayuyaan13.github.io/vayuyaan/hc-sr04-wrong-readings-arduino/#article","mainEntityOfPage":{"@type":"WebPage","@id":"https://vayuyaan13.github.io/vayuyaan/hc-sr04-wrong-readings-arduino/"},"headline":"Why Is Your HC-SR04 Ultrasonic Sensor Giving Incorrect Distance Readings?","description":"Troubleshoot incorrect HC-SR04 distance readings on Arduino with wiring checks, range limits, target testing and a diagnostic sketch.","image":"https://vayuyaan13.github.io/vayuyaan/assets/hc-sr04-guide-social.svg","datePublished":"2026-11-17","dateModified":"2026-11-18","author":{"@type":"Organization","name":"Vayuyaan Editorial Team"},"publisher":{"@type":"Organization","name":"Vayuyaan","logo":{"@type":"ImageObject","url":"https://vayuyaan13.github.io/vayuyaan/assets/vayuyaan-logo.png"}},"inLanguage":"en-IN","articleSection":["Arduino","Sensors","Troubleshooting"],"citation":["https://docs.arduino.cc/language-reference/en/functions/advanced-io/pulseIn/","https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf","https://docs.sunfounder.com/projects/umsk/en/latest/01_components_basic/23-component_ultrasonic.html"],"keywords":["HC-SR04 wrong readings","HC-SR04 Arduino troubleshooting","ultrasonic sensor gives zero","HC-SR04 unstable distance","Arduino ultrasonic sensor debugging"]},
   {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vayuyaan13.github.io/vayuyaan/"},{"@type":"ListItem","position":2,"name":"Arduino Guides","item":"https://vayuyaan13.github.io/vayuyaan/arduino/"},{"@type":"ListItem","position":3,"name":"HC-SR04 Wrong Readings: Arduino Diagnostics","item":"https://vayuyaan13.github.io/vayuyaan/hc-sr04-wrong-readings-arduino/"}]}
  ]
 }
@@ -45,11 +45,11 @@
 <div class="article-shell">
 <nav class="article-breadcrumb" aria-label="Breadcrumb"><a href="../">Home</a><span>›</span><a href="../arduino/">Arduino Guides</a><span>›</span><span>HC-SR04 Diagnostics</span></nav>
 <main class="blog-article">
-<header class="article-header"><p class="article-category">ARDUINO · ULTRASONIC SENSOR · DEBUGGING</p><h1>HC-SR04 Wrong Distance Readings? How to Diagnose Them with Arduino</h1><p class="article-deck">A practical workflow for investigating zero readings, sudden jumps and measurements that do not match a ruler. Test the sensor, target and timing before changing your project logic.</p><div class="article-byline"><span>Vayuyaan Editorial Team</span><span>·</span><span>Updated 17 November 2026</span><span>·</span><span>8–10 minute read</span></div></header>
+<header class="article-header"><p class="article-category">ARDUINO · ULTRASONIC SENSOR · DEBUGGING</p><h1>Why Is Your HC-SR04 Ultrasonic Sensor Giving Incorrect Distance Readings?</h1><p class="article-deck">A practical workflow for investigating zero readings, sudden jumps and measurements that do not match a ruler. Test the sensor, target and timing before changing your project logic.</p><div class="article-byline"><span>Vayuyaan Editorial Team</span><span>·</span><span>Updated 18 November 2026</span><span>·</span><span>8–10 minute read</span></div></header>
 <div class="article-layout">
-<aside class="article-toc" aria-label="On this page"><p>ON THIS PAGE</p><a href="#start">Start with a controlled test</a><a href="#diagnostic-sketch">Diagnostic sketch</a><a href="#symptoms">Symptom-to-cause guide</a><a href="#timing">Timing and filtering</a><a href="#measurement">Compare with a ruler</a><a href="#project-use">Use readings in a project</a><a href="#faq">FAQs</a><a href="#references">References</a></aside>
+<aside class="article-toc" aria-label="On this page"><p>ON THIS PAGE</p><a href="#start">Start with a controlled test</a><a href="#wiring-range">Check wiring and measurement range</a><a href="#diagnostic-sketch">Diagnostic sketch</a><a href="#symptoms">Symptom-to-cause guide</a><a href="#timing">Timing and filtering</a><a href="#measurement">Compare with a ruler</a><a href="#project-use">Use readings in a project</a><a href="#faq">FAQs</a><a href="#references">References</a></aside>
 <article class="article-content">
-<p class="article-lead">An HC-SR04 can show a distance that jumps, stays at zero or differs from a ruler even when the Arduino sketch uploads successfully. The useful first step is to separate a sensor problem from a wiring, target or timing problem. If you are still choosing a module or learning the broader distance-sensing basics, Vayuyaan's <a href="https://vayuyaan.com/blog/ultrasonic-sensor-a-quick-start-guide-for-beginners/">ultrasonic sensor quick-start guide</a> provides that background; this article concentrates on diagnosing an HC-SR04 already connected to an Arduino.</p>
+<p class="article-lead">An HC-SR04 can show a distance that jumps, stays at zero or differs from a ruler even when the Arduino sketch uploads successfully. The useful first step is to separate a sensor problem from a wiring, target or timing problem. If you need the underlying operating principle before troubleshooting, read the <a href="https://vayuyaan.com/blog/learn-everything-about-ultrasonic-sensor-hc-sr04/">HC-SR04 ultrasonic sensor working principle and Arduino guide</a>. This article focuses on diagnosing incorrect readings from a sensor already connected to an Arduino.</p>
 
 <p>This is a focused companion to the <a href="../hc-sr04-ultrasonic-sensor-guide/">HC-SR04 pinout, wiring and Arduino code guide</a>. Use that guide for the four-pin connection and basic distance formula. Use this one when the readings from your own setup are unreliable.</p>
 <figure class="article-figure"><img src="../assets/hc-sr04-diagnostic-setup.svg" width="1200" height="560" alt="HC-SR04 diagnostic setup showing Arduino Uno connections, ultrasonic sensor, echo waves and a flat test target" loading="eager" fetchpriority="high" decoding="async"><figcaption><strong>Figure 1.</strong> A controlled test setup: verify the wiring and keep a flat target square to the sensor.</figcaption></figure>
@@ -64,6 +64,10 @@
 <li>Begin at a moderate distance within the sensor's nominal operating range, then compare readings with a ruler.</li>
 <li>Keep the sensor and target still while collecting a short series of readings.</li>
 </ol>
+<h3 id="wiring-range">Check Trig, Echo and the usable measurement range</h3>
+<p>For the example sketch below, connect the module's VCC pin to the Arduino Uno 5 V pin, GND to GND, TRIG to digital pin D9 and ECHO to digital pin D10. The TRIG line is an Arduino output: it sends the short trigger pulse. The ECHO line is an Arduino input: it carries the pulse whose duration represents the sound's round-trip travel time. If TRIG and ECHO are swapped, the Arduino cannot trigger and measure the sensor as intended. Check the labels printed on your module and make the pin constants in the sketch match the physical connections.</p>
+<p>Many common HC-SR04 modules are specified for a nominal range of about 2 cm to 400 cm. Treat those figures as a module specification, not a promise of reliable readings in every setup. Very close targets can fall inside the sensor's near-field blind zone; distant targets may return weak or missing echoes. Different board revisions and clones can have different limits, so use the datasheet supplied for your module and test across the distances your project actually needs.</p>
+<p>Most standard HC-SR04 boards use a 5 V ECHO signal. Do not connect that signal directly to a 3.3 V-only GPIO input such as a typical ESP32 input. Use a correctly sized voltage divider or logic-level shifter, and confirm the receiving board's input limits. A common ground is required.</p>
 <div class="article-note"><p class="note-label">IMPORTANT</p><p>Do not test first against fabric, foam, a narrow rod or a sharply angled surface. These targets may return a weak echo. A failed echo does not automatically mean the sensor is defective.</p></div>
 <figure class="article-figure"><img src="../assets/hc-sr04-target-angle.svg" width="1200" height="520" alt="Diagram comparing a flat target that reflects ultrasonic sound toward the HC-SR04 with an angled target that may reflect sound away" loading="lazy" decoding="async"><figcaption><strong>Figure 2.</strong> A broad, perpendicular target is a better first test than a sharply angled surface.</figcaption></figure>
 
@@ -186,7 +190,7 @@ float medianCm = readings[2]; // 50.0 cm for this illustrative sorted set</code>
 </ul>
 <p class="article-sources">Specifications and behaviour can vary between HC-SR04-compatible modules. Check the documentation supplied with your exact board and verify measurements in the environment where the project will operate.</p>
 
-<div class="article-end-cta"><p class="note-label">KEEP BUILDING</p><h2>Continue with the complete sensor guide</h2><p>Review the module pins, wiring, distance formula and first Arduino sketch, then return here when you need to diagnose the readings from your own setup.</p><a class="article-button" href="../hc-sr04-ultrasonic-sensor-guide/">Open the HC-SR04 pinout and code guide →</a></div>
+
 </article>
 </div>
 </main>
