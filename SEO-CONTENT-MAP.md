@@ -1,6 +1,6 @@
 # Search-intent and content ownership map
 
-Last reviewed: 13 November 2026
+Last reviewed: 17 November 2026
 
 ## Scope and data limitation
 
