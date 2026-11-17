@@ -1,6 +1,6 @@
 # Search-intent and content ownership map
 
-Last reviewed: 13 November 2026
+Last reviewed: 17 November 2026
 
 ## Scope and data limitation
 
@@ -150,3 +150,16 @@ The uploaded Search Console workbook is for the exact GitHub Pages property `htt
 - Added relevant links from the Arduino and robotics learning paths to the IR-vs-ultrasonic comparison.
 - Added the sensor comparison as a related resource on the IR calibration guide.
 - No new article was created because the existing pages already cover the identified intents. No page was rewritten merely to increase word count.
+
+
+## HC-SR04 diagnostic guide addition (17 November 2026)
+
+New proposed GitHub Pages URL: `hc-sr04-wrong-readings-arduino/`.
+
+- Search intent: troubleshoot inaccurate, unstable, zero or missing HC-SR04 distance readings in an Arduino setup.
+- Ownership boundary: the existing `hc-sr04-ultrasonic-sensor-guide/` remains the primary guide for module pinout, wiring, operating range, distance formula and first example sketch. The new page is a diagnostic companion focused on a repeatable test workflow, raw echo timing, timeout interpretation, target/reflection conditions, measurement logs and handling invalid readings in projects.
+- Main-site context link: one early contextual link to the main Vayuyaan ultrasonic sensor quick-start guide, because it covers broader distance-sensing background. It is not presented as a ranking guarantee or forced exact-match link.
+- Internal links: to the Arduino hub, the HC-SR04 implementation guide, the IR-vs-ultrasonic comparison and the Robotics hub. The Arduino hub links to the new diagnostic page from the existing HC-SR04 learning path.
+- Technical references: Arduino `pulseIn()` reference, HC-SR04 datasheet and SunFounder ultrasonic guide.
+- Canonical remains the GitHub Pages URL. The page is included in the GitHub Pages sitemap.
+- This is a focused companion, not another generic ultrasonic sensor explainer. Review query overlap and post-publication Search Console data before proposing additional HC-SR04 articles.
