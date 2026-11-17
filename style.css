@@ -60,7 +60,7 @@ footer{max-width:1360px;margin:auto;border-top:1px solid var(--line);padding:38p
 
 
 /* WCAG AA: improve contrast for secondary text on light backgrounds. */
-.stats small,.kicker,.topic b,.guide>span,.project-list>a>span,.project-list small,.circuit span,footer,.footer-brand p,.footer-bottom,footer .footer-social a{color:#5f6b75}
+.stats small,.kicker,.topic b,.guide>span,.project-list>a>span,.project-list small,.circuit span,footer,.footer-brand p,.footer-bottom,footer .footer-social a{color:#5f6b75!important}
 .article-breadcrumb,.article-byline,.article-toc p,.article-figure figcaption,.article-sources,.article-meta{color:#5f6b75!important}
 
 /* Make footer links comfortable tap targets on touch screens. */
