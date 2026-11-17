@@ -163,3 +163,13 @@ New proposed GitHub Pages URL: `hc-sr04-wrong-readings-arduino/`.
 - Technical references: Arduino `pulseIn()` reference, HC-SR04 datasheet and SunFounder ultrasonic guide.
 - Canonical remains the GitHub Pages URL. The page is included in the GitHub Pages sitemap.
 - This is a focused companion, not another generic ultrasonic sensor explainer. Review query overlap and post-publication Search Console data before proposing additional HC-SR04 articles.
+
+
+### Visual assets added (17 November 2026)
+
+The HC-SR04 diagnostics article includes three original, repository-hosted SVG diagrams:
+- Controlled diagnostic bench setup showing the Arduino, HC-SR04, signal lines and flat target.
+- Trigger/ECHO timing diagram explaining pulse width and timeout behaviour.
+- Target-angle comparison showing why a flat, perpendicular target is a better first test.
+
+Each image has descriptive alt text and a caption explaining its instructional purpose. These are explanatory diagrams, not photographs or claims of measured test results.
