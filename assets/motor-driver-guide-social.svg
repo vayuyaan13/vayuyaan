@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">Arduino motor driver guide: L293D vs L298N</title>
+<desc id="desc">A Vayuyaan electronics guide graphic showing an Arduino controller connected through a motor driver to a DC motor.</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#111820"/><stop offset="1" stop-color="#263746"/></linearGradient></defs>
+<rect width="1200" height="630" fill="url(#bg)"/>
+<rect x="64" y="58" width="10" height="514" rx="5" fill="#ffd700"/>
+<text x="112" y="112" fill="#ffd700" font-family="Arial,sans-serif" font-size="24" font-weight="700" letter-spacing="5">VAYUYAAN • ELECTRONICS &amp; ROBOTICS</text>
+<text x="112" y="228" fill="#ffffff" font-family="Arial,sans-serif" font-size="62" font-weight="700">ARDUINO MOTOR</text>
+<text x="112" y="302" fill="#ffffff" font-family="Arial,sans-serif" font-size="62" font-weight="700">DRIVER GUIDE</text>
+<text x="114" y="365" fill="#dce5eb" font-family="Arial,sans-serif" font-size="30">L293D vs L298N • Wiring • PWM control</text>
+<g transform="translate(830 150)">
+<rect x="0" y="0" width="230" height="180" rx="18" fill="#e7edf1" stroke="#ffd700" stroke-width="5"/>
+<rect x="62" y="38" width="106" height="100" rx="10" fill="#1c2933"/>
+<path d="M75 28v-24 M98 28v-24 M121 28v-24 M144 28v-24 M75 152v24 M98 152v24 M121 152v24 M144 152v24" stroke="#c5d0d7" stroke-width="8" stroke-linecap="round"/>
+<text x="115" y="94" fill="#ffd700" font-family="Arial,sans-serif" font-size="20" font-weight="700" text-anchor="middle">H-BRIDGE</text>
+<text x="115" y="120" fill="#fff" font-family="Arial,sans-serif" font-size="15" text-anchor="middle">DRIVER</text>
+<path d="M-85 90H0 M230 90h78" stroke="#ffd700" stroke-width="8" stroke-linecap="round"/>
+<path d="M-100 90l18-12v24z M326 90l-18-12v24z" fill="#ffd700"/>
+<rect x="-205" y="45" width="112" height="90" rx="12" fill="#2c4557" stroke="#8da5b5" stroke-width="3"/>
+<text x="-149" y="82" fill="#fff" font-family="Arial,sans-serif" font-size="18" font-weight="700" text-anchor="middle">ARDUINO</text>
+<text x="-149" y="107" fill="#cbd8df" font-family="Arial,sans-serif" font-size="14" text-anchor="middle">CONTROL</text>
+<circle cx="390" cy="90" r="58" fill="#e7edf1" stroke="#ffd700" stroke-width="5"/>
+<circle cx="390" cy="90" r="27" fill="#263746"/>
+<path d="M390 31v-25 M390 149v25 M331 90h-25 M449 90h25" stroke="#ffd700" stroke-width="8" stroke-linecap="round"/>
+<text x="390" y="190" fill="#dce5eb" font-family="Arial,sans-serif" font-size="18" text-anchor="middle">DC MOTOR</text>
+</g>
+<rect x="112" y="458" width="490" height="62" rx="12" fill="#ffd700"/>
+<text x="142" y="498" fill="#111820" font-family="Arial,sans-serif" font-size="25" font-weight="700">LEARN • WIRE • TEST SAFELY</text>
+<text x="112" y="570" fill="#b8c5ce" font-family="Arial,sans-serif" font-size="18">Practical guides for makers and Arduino learners</text>
+</svg>
