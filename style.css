@@ -57,3 +57,11 @@ footer{max-width:1360px;margin:auto;border-top:1px solid var(--line);padding:38p
 .learning-hub .section-heading h2{font-size:clamp(2.1rem,4vw,3.25rem);line-height:1.04;letter-spacing:-.045em;margin:9px 0 18px;color:var(--ink)}
 .learning-hub .section-heading p{max-width:740px;margin:0;color:var(--muted);line-height:1.7}
 
+
+
+/* WCAG AA: improve contrast for secondary text on light backgrounds. */
+.stats small,.kicker,.topic b,.guide>span,.project-list>a>span,.project-list small,.circuit span,footer,.footer-brand p,.footer-bottom,footer .footer-social a{color:#5f6b75!important}
+.article-breadcrumb,.article-byline,.article-toc p,.article-figure figcaption,.article-sources,.article-meta{color:#5f6b75!important}
+
+/* Make footer links comfortable tap targets on touch screens. */
+footer a{display:inline-flex;align-items:center;min-height:40px;padding:4px 0}
