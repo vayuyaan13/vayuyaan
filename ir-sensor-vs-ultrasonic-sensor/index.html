@@ -232,6 +232,7 @@ void loop() {
 <ul><li>Verify VCC, GND and OUT wiring.</li><li>Check whether the module uses active-LOW or active-HIGH output.</li><li>Adjust its threshold slowly if it has a potentiometer.</li><li>Test a different target and change the sensor height or angle.</li><li>Try to shield the sensor from strong direct sunlight during the initial test.</li></ul>
 <h3>The ultrasonic sensor prints zero or jumps between values</h3>
 <ul><li>Confirm TRIG and ECHO are connected to the pins used in the sketch.</li><li>Check the target is within the usable range and facing the sensor.</li><li>Move away nearby objects that could return an unwanted echo.</li><li>Make sure the target is large and reflective enough for the sensor to detect.</li><li>Check power and ground; keep signal wires secure.</li></ul>
+<p>For a more detailed diagnosis, use the <a href="../hc-sr04-wrong-readings-arduino/">HC-SR04 wrong-reading troubleshooting guide</a>, which walks through Arduino diagnostics and common causes of inaccurate measurements.</p>
 <h3>My robot turns too late or misses an obstacle</h3>
 <p>Test the sensor while the motors are stopped, then test again with the motors running. Motor noise, power dips, vibration, sensor placement and control-loop delays can affect the result. Slow the robot down while debugging and make sure the code handles missing or implausible readings safely.</p>
 
