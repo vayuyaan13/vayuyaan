@@ -22,6 +22,8 @@ class PageParser(HTMLParser):
         super().__init__(convert_charrefs=True)
         self.title_parts: list[str] = []
         self.description: list[str] = []
+        self.og_images: list[str] = []
+        self.twitter_images: list[str] = []
         self.canonicals: list[str] = []
         self.robots: list[str] = []
         self.h1_count = 0
@@ -50,6 +52,12 @@ class PageParser(HTMLParser):
                 self.description.append(a["content"].strip())
             if a.get("name", "").lower() == "robots" and a.get("content"):
                 self.robots.append(a["content"].lower())
+            if a.get("property", "").lower() == "og:image" and a.get("content"):
+                self.og_images.append(a["content"].strip())
+                self.links.append(a["content"].strip())
+            if a.get("name", "").lower() == "twitter:image" and a.get("content"):
+                self.twitter_images.append(a["content"].strip())
+                self.links.append(a["content"].strip())
         if tag == "link" and "canonical" in a.get("rel", "").lower().split():
             if a.get("href"):
                 self.canonicals.append(a["href"].strip())
@@ -165,6 +173,10 @@ def main() -> int:
                 errors.append(f"{rel}: expected exactly one H1, found {parser.h1_count}")
             if parser.images_missing_alt:
                 errors.append(f"{rel}: {parser.images_missing_alt} image(s) are missing an alt attribute")
+            if len(parser.og_images) != 1:
+                errors.append(f"{rel}: expected exactly one Open Graph image, found {len(parser.og_images)}")
+            if len(parser.twitter_images) != 1:
+                errors.append(f"{rel}: expected exactly one X/Twitter image, found {len(parser.twitter_images)}")
             if path not in sitemap_paths:
                 errors.append(f"{rel}: indexable page is missing from sitemap")
 
