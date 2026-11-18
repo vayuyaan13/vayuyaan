@@ -51,11 +51,20 @@ footer{max-width:1360px;margin:auto;border-top:1px solid var(--line);padding:38p
 }
 
 
-/* Homepage learning hub: align the added internal-link section with the site's shared content width and spacing. */
-.learning-hub{max-width:1360px;margin:0 auto;padding:92px 28px}
-.learning-hub .section-heading{max-width:780px;margin:0 0 42px}
-.learning-hub .section-heading h2{font-size:clamp(2.1rem,4vw,3.25rem);line-height:1.04;letter-spacing:-.045em;margin:9px 0 18px;color:var(--ink)}
-.learning-hub .section-heading p{max-width:740px;margin:0;color:var(--muted);line-height:1.7}
+/* Homepage learning hub: one shared content rail, aligned heading and cards, and responsive keyword-led navigation. */
+.learning-hub{width:calc(100% - 56px);max-width:1360px;box-sizing:border-box;margin:0 auto;padding:76px 0}
+.learning-hub .section-heading{width:100%;max-width:none;margin:0 0 34px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);column-gap:56px;align-items:end}
+.learning-hub .section-heading .eyebrow{grid-column:1/-1;margin:0 0 8px}
+.learning-hub .section-heading h2{max-width:760px;font-size:clamp(2rem,3.6vw,3rem);line-height:1.08;letter-spacing:-.045em;margin:0;color:var(--ink)}
+.learning-hub .section-heading p{max-width:560px;margin:0 0 4px;color:var(--muted);line-height:1.7}
+.learning-hub .guide-grid{width:100%;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.learning-hub .guide{min-width:0;min-height:170px;height:auto;padding:24px 25px}
+.learning-hub .guide h3{margin:0 0 10px;font-size:1.2rem;line-height:1.3}
+.learning-hub .guide h3 a{color:var(--ink);text-decoration:none}
+.learning-hub .guide h3 a:hover,.learning-hub .guide h3 a:focus-visible{text-decoration:underline;text-decoration-color:#d5a900;text-underline-offset:4px}
+.learning-hub .guide p{margin:0;line-height:1.6}
+@media(max-width:900px){.learning-hub .section-heading{grid-template-columns:1fr;gap:14px}.learning-hub .section-heading p{max-width:720px}.learning-hub .guide-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.learning-hub{width:calc(100% - 40px);padding:54px 0}.learning-hub .section-heading{margin-bottom:24px;gap:12px}.learning-hub .section-heading h2{font-size:clamp(1.9rem,8vw,2.45rem)}.learning-hub .guide-grid{grid-template-columns:1fr;gap:12px}.learning-hub .guide{min-height:0;padding:21px 20px}}
 
 
 
