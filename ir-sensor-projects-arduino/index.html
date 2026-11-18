@@ -59,6 +59,12 @@
 @media(max-width:850px){.site-footer{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}}
 @media(max-width:520px){.site-footer{grid-template-columns:1fr;gap:26px;padding:38px 22px}.footer-about{max-width:none}.footer-bottom{flex-direction:column;gap:7px;padding:16px 22px}}
 </style>
+<style id="vayuyaan-footer-contrast">
+.footer-logo{display:inline-flex;align-items:center;background:#fff;border-radius:8px;padding:8px 12px;max-width:100%}
+.footer-logo img{width:260px;max-width:100%;height:auto;object-fit:contain}
+.site-footer .footer-social a{color:#e4e9ed!important;opacity:1!important}
+.site-footer .footer-social a:hover,.site-footer .footer-social a:focus-visible{color:#ffd700!important}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -173,7 +179,6 @@ void loop() {
 <div class="footer-column"><h2>Shop</h2><a href="https://vayuyaan.com/shop/">Shop electronics</a><a href="https://vayuyaan.com/product-category/electronic-modules/">Electronic modules</a><a href="https://vayuyaan.com/faqs/">Help &amp; FAQs</a><a href="https://vayuyaan.com/">Vayuyaan.com</a></div>
 <div class="footer-column footer-social"><h2>Socials</h2><a href="https://www.instagram.com/vayuyaan_official/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.facebook.com/Vayuyaan.official/" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.linkedin.com/company/vayuyaan/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://x.com/VayuyaanTechHub" target="_blank" rel="noopener noreferrer">X / Twitter</a><a href="https://www.youtube.com/@vayuyaan" target="_blank" rel="noopener noreferrer">YouTube</a></div>
 </footer>
-<div class="footer-bottom"><span>© 2026 Vayuyaan. All rights reserved.</span><span>Electronics • Robotics • DIY</span></div>
 <div class="footer-bottom"><span>© 2026 Vayuyaan. All rights reserved.</span><span>Electronics • Robotics • DIY</span></div>
 <script>
 (()=>{const menuButton=document.querySelector('.menu');const navigation=document.querySelector('.navlinks');if(!menuButton||!navigation)return;const closeMenu=()=>{navigation.classList.remove('mobile-open');menuButton.setAttribute('aria-expanded','false');menuButton.setAttribute('aria-label','Open navigation menu');};menuButton.addEventListener('click',()=>{const opened=navigation.classList.toggle('mobile-open');menuButton.setAttribute('aria-expanded',String(opened));menuButton.setAttribute('aria-label',opened?'Close navigation menu':'Open navigation menu');});navigation.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu));document.addEventListener('keydown',event=>{if(event.key==='Escape'&&navigation.classList.contains('mobile-open')){closeMenu();menuButton.focus();}});})();
