@@ -85,22 +85,30 @@
 </ul>
 <p>Do not treat every pulse as a valid distance. Your sketch should use a timeout, reject missing or out-of-range readings and avoid moving a robot based on a single implausible value.</p>
 
-<h2 id="comparison">IR vs ultrasonic sensor: practical comparison</h2>
+<h2 id="comparison">Obstacle-detection behaviour: what changes in the real world?</h2>
+<p>For a moving robot, the useful question is not simply which sensor has a longer range. It is whether the sensor detects the obstacle that matters, early enough for the robot to respond, and whether it keeps doing so as the target and environment change.</p>
 <div class="table-wrap"><table class="compare">
-<thead><tr><th>Factor</th><th>Reflective IR module</th><th>HC-SR04 ultrasonic</th></tr></thead>
+<thead><tr><th>Obstacle condition</th><th>Reflective IR module</th><th>HC-SR04 ultrasonic</th><th>What to test</th></tr></thead>
 <tbody>
-<tr><td>What it senses</td><td>Reflected infrared light</td><td>Time taken for an ultrasonic echo to return</td></tr>
-<tr><td>Typical output</td><td>Often digital HIGH/LOW from a comparator; some modules expose an analogue signal</td><td>Echo pulse duration, converted into an estimated distance</td></tr>
-<tr><td>Distance measurement</td><td>Not directly measured by a basic obstacle module</td><td>Provides an approximate distance within its useful operating conditions</td></tr>
-<tr><td>Surface dependence</td><td>Strongly affected by reflectivity and colour</td><td>Less dependent on visible colour, but affected by shape, angle and acoustic reflection</td></tr>
-<tr><td>Lighting</td><td>Ambient infrared can affect some modules</td><td>Not based on light, so visible brightness is not the sensing variable</td></tr>
-<tr><td>Common uses</td><td>Line following, edge detection, close object presence</td><td>Distance thresholds, obstacle experiments, level measurement prototypes</td></tr>
-<tr><td>Arduino interface</td><td>Often one digital input per module; check the exact board pinout</td><td>TRIG output and ECHO input, plus power and ground</td></tr>
-<tr><td>Main limitation</td><td>Detection threshold varies with target reflectivity and alignment</td><td>Echo quality varies with target geometry, distance and surroundings</td></tr>
+<tr><td>Dark, matte target</td><td>May return less infrared energy and fail to cross the set threshold</td><td>Visible colour is not the sensing variable; echo depends on shape and acoustic reflection</td><td>Repeat at the same distance with light and dark samples</td></tr>
+<tr><td>Shiny or angled surface</td><td>Reflected light may travel away from the receiver</td><td>Sound may reflect away from the receiver, causing a weak or missing echo</td><td>Change target angle in small, recorded steps</td></tr>
+<tr><td>Thin or narrow obstacle</td><td>Detection depends on whether the object enters the module's optical field</td><td>The target may not return enough sound to the receiver</td><td>Test the actual object width and approach direction</td></tr>
+<tr><td>Sunlit environment</td><td>Ambient infrared can affect some modules and thresholds</td><td>Not affected by optical brightness, but still subject to acoustic and environmental limits</td><td>Compare shaded and sunlit trials without changing other setup variables</td></tr>
+<tr><td>Robot moving toward an obstacle</td><td>Usually gives a threshold event, not a distance-to-stop value</td><td>Provides an estimated distance that can be compared with a stop threshold</td><td>Measure detection repeatability and available stopping distance</td></tr>
 </tbody></table></div>
-<p>There is no universal winner. The comparison is about the sensing task, not which technology is always more accurate. A well-mounted IR module can be more useful than an ultrasonic sensor for following a high-contrast line. An ultrasonic module is more appropriate when the code needs an estimated distance rather than a reflectance threshold.</p>
-
-<h2 id="arduino-wiring">Connecting each sensor to an Arduino</h2>
+<p>This is a practical guide to common hobby modules, not a universal performance specification. Module design, mounting, supply voltage and the exact obstacle all matter. For a broader explanation of sensor principles, wiring and general project selection, use the <a href="../ir-sensor-vs-ultrasonic-sensor/">IR sensor vs ultrasonic sensor comparison guide</a>.</p>
+<h2 id="field-test">A repeatable obstacle-detection test</h2>
+<p>Use the same test procedure for both modules. The goal is to compare repeatability under the conditions the robot will encounter, not to claim a laboratory accuracy figure.</p>
+<ol>
+<li><strong>Fix the geometry:</strong> mount each module at its intended height and angle. Mark a straight approach path and measure target distance from the sensor face.</li>
+<li><strong>Choose representative targets:</strong> include the actual obstacle materials, colours, widths and surface finishes expected in use.</li>
+<li><strong>Test several distances:</strong> record detection or no-detection for the IR module and the reported distance or timeout for the HC-SR04. Repeat each position at least ten times.</li>
+<li><strong>Vary one condition at a time:</strong> change target angle, lighting or approach direction while keeping the other variables fixed.</li>
+<li><strong>Test while moving:</strong> run the robot at its intended speed and measure the distance remaining when the stop response begins and when the robot actually stops.</li>
+<li><strong>Record failures:</strong> note missed detections, false triggers, invalid echoes and readings that jump unexpectedly. Do not discard failed readings from the comparison.</li>
+</ol>
+<div class="note"><strong>Simple result sheet:</strong> Record target type, distance, angle, lighting, successful detections, false triggers, invalid echoes and stopping distance. The better sensor is the one that meets the project's requirements consistently—not the one with the best single reading.</div>
+<h2 id="arduino-wiring">Basic connections for a controlled bench test</h2>
 <h3>Typical reflective IR module connection</h3>
 <ul><li>VCC: connect to the supply voltage supported by your module.</li><li>GND: connect to Arduino GND.</li><li>OUT: connect to a digital input, such as D2.</li></ul>
 <p>Module pin labels and voltage requirements vary. Check the board documentation before connecting it. Some modules provide both analogue and digital outputs; use the output that matches the experiment.</p>
@@ -156,16 +164,15 @@ void loop() {
 }</code></pre>
 <p>The timeout prevents the program from waiting indefinitely for an echo. A zero duration is treated as no valid echo, not as an object at zero centimetres. For a moving robot, add filtering and a safe response to missing readings before controlling the motors.</p>
 
-<h2 id="project-choice">Which sensor is better for common Arduino projects?</h2>
-<h3>Line-following robot: reflective IR</h3>
-<p>A line follower needs to distinguish the track from the surrounding surface. Reflective IR sensors are commonly used because the contrast between a dark line and a lighter floor changes the received reflection. Mounting height, sensor spacing, floor material and threshold adjustment matter. Calibrate on the actual track and check each sensor independently before tuning motor speeds. See the <a href="../arduino-line-follower-ir-sensor-calibration/">Arduino line-follower IR sensor calibration guide</a>.</p>
-<h3>Obstacle distance threshold: ultrasonic</h3>
-<p>If a robot should slow down or stop when an object is closer than a chosen distance, the HC-SR04 provides a distance estimate that can be compared with that threshold. It still needs sensible handling for missing echoes, angled targets and noisy readings. For a deeper method comparison, see the <a href="../ir-sensor-vs-ultrasonic-sensor/">IR sensor vs ultrasonic sensor comparison guide</a>.</p>
-<h3>Simple object presence: either, depending on conditions</h3>
-<p>For a fixed mechanism that only needs to know whether an object has entered a small, controlled area, an IR module may be sufficient. If the project needs a distance estimate, use an ultrasonic sensor. If objects vary widely in material or shape, test both against the real objects before choosing.</p>
-<h3>Outdoor detection: test before committing</h3>
-<p>Strong sunlight can affect some reflective IR modules. Ultrasonic sensing avoids optical interference, but wind, temperature, target angle and acoustic reflections can still affect readings. Neither sensor should be assumed reliable outdoors without testing in the installation environment.</p>
-
+<h2 id="project-choice">Choose for the robot's obstacle-detection job</h2>
+<h3>Use reflective IR for a controlled near-field trigger</h3>
+<p>IR is a sensible choice when the robot needs a simple presence signal at a fixed, short distance—for example, detecting an edge or checking whether an object has entered a defined zone. It is less suitable when obstacle materials vary widely or when the controller needs a meaningful distance value. Calibrate the threshold on the actual floor and target, not just on a workbench.</p>
+<h3>Use ultrasonic when the response depends on distance</h3>
+<p>The HC-SR04 is useful when the robot should slow down or stop at a distance threshold. Its reading is still an estimate: a missing echo must not be interpreted as a clear path. Define a safe response for invalid readings, filter implausible jumps and allow enough time between measurements.</p>
+<h3>Decide using the robot's stopping distance</h3>
+<p>A sensor can detect an obstacle and still be unsuitable if the robot cannot stop in time. Measure the distance travelled after the stop command at the intended speed, on the actual floor and with the actual load. Set the trigger threshold beyond that measured stopping distance, with a margin for variation. Do not treat a hobby sensor and a basic sketch as a certified safety system.</p>
+<h3>When neither module is a reliable fit</h3>
+<p>If the robot must detect a wide range of materials, thin objects, transparent surfaces or obstacles in changing outdoor conditions, test alternatives designed for the application. A single forward-facing module also leaves blind areas; sensor placement and field of view matter as much as the module choice.</p>
 <h2 id="troubleshooting">Troubleshooting: when detection does not work</h2>
 <h3>IR module always reports an obstacle</h3>
 <ul><li>Turn the sensitivity potentiometer gradually while watching the output.</li><li>Check whether the module is facing a nearby surface or reflecting object.</li><li>Test under the expected lighting and on the actual target material.</li><li>Confirm the module's output polarity and supply voltage.</li></ul>
