@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - fix/social-preview-raster-cards-20261118
+    paths:
+      - 'assets/*.svg'
+      - 'assets/*-social.png'
+      - scripts/generate_social_cards.py
 
 permissions:
   contents: write
