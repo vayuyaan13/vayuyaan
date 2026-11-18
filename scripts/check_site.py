@@ -254,6 +254,7 @@ def main() -> int:
 
     seen_titles: dict[str, str] = {}
     seen_descriptions: dict[str, str] = {}
+    seen_social_images: dict[str, str] = {}
     for path, parser in parsed_pages.items():
         if "noindex" in " ".join(parser.robots):
             continue
