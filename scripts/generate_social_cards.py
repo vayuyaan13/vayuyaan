@@ -10,6 +10,24 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 ROOT = Path(__file__).resolve().parents[1]
 SITE = "https://vayuyaan13.github.io/vayuyaan/"
 OUT = ROOT / "assets" / "social"
+SOURCE_ART = {
+    "home": "assets/homepage-social.svg",
+    "arduino": "assets/arduino-learning-workspace.svg",
+    "sensors": "assets/sensor-learning-hub.svg",
+    "robotics": "assets/robotics-social.svg",
+    "motor-drivers": "assets/motor-driver-guide-social.png",
+    "what-is-esp32": "assets/what-is-esp32.svg",
+    "ir-sensor-projects-arduino": "assets/ir-sensor-projects-arduino.svg",
+    "write-for-us": "assets/write-for-us-social.png",
+    "ir-sensor-vs-ultrasonic-sensor": "assets/ir-vs-ultrasonic-comparison.svg",
+    "ir-vs-ultrasonic-obstacle-detection": "assets/obstacle-detection-social.svg",
+    "arduino-line-follower-ir-sensor-calibration": "assets/ir-sensor-reflection-calibration.svg",
+    "ldr-vs-photodiode": "assets/ldr-vs-photodiode.svg",
+    "hc-sr04-ultrasonic-sensor-guide": "assets/hc-sr04-guide-social.svg",
+    "arduino-ldr-automatic-street-light": "assets/arduino-ldr-street-light-overview.svg",
+    "ldr-sensor-working-principle": "assets/ldr-resistance-light-response.svg",
+    "hc-sr04-wrong-readings-arduino": "assets/hc-sr04-guide-social.svg",
+}
 OUT.mkdir(parents=True, exist_ok=True)
 
 def get_font(size: int, bold: bool = False):
@@ -47,11 +65,8 @@ def main():
         og = re.search(r'<meta\s+property=["\']og:image["\']\s+content=["\']([^"\']+)', html, re.I)
         if not og:
             raise RuntimeError(f"Missing og:image in {page}")
-        source_url = og.group(1)
-        source_rel = urlsplit(source_url).path.split("/vayuyaan/", 1)[-1]
-        source_path = ROOT / source_rel
-        if page.parts[-2] == "what-is-esp32":
-            source_path = ROOT / "assets" / "what-is-esp32.svg"
+        slug = "home" if page.name == "index.html" and page.parent == ROOT else page.parent.name
+        source_path = ROOT / SOURCE_ART[slug]
         if not source_path.is_file():
             raise RuntimeError(f"Missing source artwork: {source_path}")
         if source_path.suffix.lower() == ".svg":
@@ -78,7 +93,6 @@ def main():
         draw.text((60, 565), text, font=font, fill=(255, 255, 255, 255))
         draw.text((60, 608), "VAYUYAAN  |  ELECTRONICS • ARDUINO • ROBOTICS", font=get_font(15, True), fill=(255, 215, 0, 255))
         image = Image.alpha_composite(image.convert("RGBA"), overlay).convert("RGB")
-        slug = "home" if page.name == "index.html" and page.parent == ROOT else page.parent.name
         target = OUT / f"{slug}.jpg"
         image.save(target, "JPEG", quality=88, optimize=True, progressive=True)
         public_url = SITE + "assets/social/" + target.name
