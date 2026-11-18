@@ -225,7 +225,7 @@ void loop() {
 <h3>What are the four pins of the HC-SR04?</h3>
 <p>VCC supplies power, TRIG receives the trigger pulse, ECHO outputs a pulse related to the echo travel time, and GND connects to circuit ground.</p>
 <h3>How long should the HC-SR04 trigger pulse be?</h3>
-<p>A trigger pulse of around 10 microseconds is commonly used. Do not hold TRIG high for 10 seconds; that is far longer than required.</p>
+<p>A HIGH trigger pulse of at least about 10 microseconds is commonly used. This is the trigger pulse width, not the interval between measurements. For typical HC-SR04 modules, leave more than 60 milliseconds between measurement cycles to reduce the chance of echo interference.</p>
 <h3>How do I calculate distance from the echo pulse?</h3>
 <p>For approximate centimetres, multiply echo duration in microseconds by 0.0343 and divide by two. The speed-of-sound value is an approximation for air around room temperature.</p>
 <h3>Can I connect the HC-SR04 directly to an ESP32?</h3>
