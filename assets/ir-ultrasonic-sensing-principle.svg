@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+<title id="title">How reflective IR and ultrasonic sensors detect an object</title>
+<desc id="desc">Original side-by-side technical illustration. A reflective infrared module emits light towards an object and detects some returned light. An HC-SR04 sends an ultrasonic burst towards a target and measures the returning echo time.</desc>
+<rect width="1200" height="650" rx="26" fill="#f5f7f8"/>
+<text x="58" y="62" font-family="Arial,sans-serif" font-size="32" font-weight="700" fill="#15212a">Two sensors, two different signals</text>
+<text x="60" y="98" font-family="Arial,sans-serif" font-size="18" fill="#64717d">Conceptual illustration · not to scale</text>
+<rect x="42" y="130" width="545" height="455" rx="20" fill="#fff" stroke="#dce3e8" stroke-width="2"/>
+<rect x="613" y="130" width="545" height="455" rx="20" fill="#fff" stroke="#dce3e8" stroke-width="2"/>
+<text x="75" y="177" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#805d00">REFLECTIVE INFRARED (IR)</text>
+<text x="645" y="177" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#155ca8">ULTRASONIC (HC-SR04)</text>
+<!-- IR module -->
+<rect x="78" y="270" width="155" height="110" rx="14" fill="#263640"/>
+<circle cx="132" cy="324" r="24" fill="#ffd23f" stroke="#fff" stroke-width="5"/>
+<circle cx="190" cy="324" r="24" fill="#9fb5c2" stroke="#fff" stroke-width="5"/>
+<text x="155" y="410" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#263640">IR module</text>
+<text x="132" y="330" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#493800">LED</text>
+<text x="190" y="330" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#17232c">RX</text>
+<!-- IR rays -->
+<path d="M236 300 L435 250 M236 324 L435 324 M236 348 L435 398" fill="none" stroke="#d49a00" stroke-width="5" stroke-dasharray="11 8"/>
+<path d="M435 250 L236 300 M435 324 L236 324 M435 398 L236 348" fill="none" stroke="#2f80b7" stroke-width="4" stroke-dasharray="8 8"/>
+<rect x="435" y="238" width="22" height="172" rx="5" fill="#8799a4"/>
+<text x="446" y="438" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#52606b">Object</text>
+<text x="280" y="230" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#9b7000">IR light out</text>
+<text x="280" y="465" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#155c91">Reflected light back</text>
+<rect x="78" y="495" width="475" height="60" rx="10" fill="#fff4d2"/>
+<text x="98" y="520" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#6c5200">Output: threshold / detection state</text>
+<text x="98" y="542" font-family="Arial,sans-serif" font-size="14" fill="#6c5200">Not a direct distance reading on common modules</text>
+<!-- Ultrasonic -->
+<rect x="650" y="270" width="165" height="110" rx="14" fill="#263640"/>
+<circle cx="700" cy="324" r="28" fill="#c9d4db" stroke="#fff" stroke-width="5"/>
+<circle cx="765" cy="324" r="28" fill="#c9d4db" stroke="#fff" stroke-width="5"/>
+<text x="732" y="410" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#263640">HC-SR04</text>
+<path d="M818 285 Q900 220 985 285 M818 324 Q900 280 985 324 M818 363 Q900 428 985 363" fill="none" stroke="#2f80b7" stroke-width="5" stroke-dasharray="11 8"/>
+<path d="M985 285 Q900 220 818 285 M985 324 Q900 368 818 324 M985 363 Q900 428 818 363" fill="none" stroke="#d49a00" stroke-width="4" stroke-dasharray="8 8"/>
+<rect x="985" y="238" width="22" height="172" rx="5" fill="#8799a4"/>
+<text x="996" y="438" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#52606b">Target</text>
+<text x="845" y="230" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#155ca8">Ultrasonic burst</text>
+<text x="845" y="465" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#9b7000">Returning echo</text>
+<rect x="650" y="495" width="475" height="60" rx="10" fill="#e8f3fb"/>
+<text x="670" y="520" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#15518a">Output: echo pulse duration</text>
+<text x="670" y="542" font-family="Arial,sans-serif" font-size="14" fill="#15518a">Distance is estimated from round-trip travel time</text>
+<text x="600" y="620" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" fill="#64717d">Actual detection depends on module design, target properties and surroundings.</text>
+</svg>
