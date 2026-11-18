@@ -260,6 +260,15 @@ def main() -> int:
         rel = path.relative_to(ROOT).as_posix()
         title = "".join(parser.title_parts).strip()
         description = parser.description[0].strip() if parser.description else ""
+        if parser.og_images:
+            image_url = parser.og_images[0]
+            if image_url in seen_social_images:
+                errors.append(f"{rel}: social preview image is shared with {seen_social_images[image_url]}")
+            else:
+                seen_social_images[image_url] = rel
+            image_path, _ = local_target(path, image_url)
+            if image_path and image_path.is_file() and image_path.stat().st_size >= 1_000_000:
+                errors.append(f"{rel}: social preview image must be smaller than 1 MB")
         if title in seen_titles:
             errors.append(f"{rel}: duplicate title also used by {seen_titles[title]}")
         else:
