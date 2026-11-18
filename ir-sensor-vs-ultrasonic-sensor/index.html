@@ -167,8 +167,7 @@
 <p>Reflective IR sensors are usually the natural starting point. They can detect the contrast between a track and its background when mounted at a suitable height. Their output still depends on track material, sensor spacing and module polarity. Test each sensor over both surfaces before tuning the motor logic.</p>
 <p>For a complete build example, use this tutorial on a <a href="https://vayuyaan.com/blog/line-follower-robot-using-arduino/">line follower robot using Arduino</a>. It complements this comparison by showing how sensing becomes part of a moving robot.</p>
 <h3>Obstacle detection for a small robot</h3>
-<p>Either sensor may work, depending on the job. An IR module can be enough when you only need a simple close-range trigger. The HC-SR04 is useful when the robot needs an approximate distance to a reflecting obstacle so it can stop or change direction before reaching it.</p>
-<p>Do not assume one front-facing sensor can see every obstacle. Thin objects, angled surfaces and objects outside the sensor's field can be missed. Test the robot at a low speed in a clear area before relying on the result.</p>
+<p>For a basic choice, use reflective IR when the robot needs a close-range presence signal; use the HC-SR04 when its control logic depends on an approximate distance. A moving robot needs additional checks for target shape, missed echoes and stopping distance. See our <a href="../ir-vs-ultrasonic-obstacle-detection/">IR vs ultrasonic obstacle-detection guide</a> for a repeatable robot-focused test and selection workflow.</p>
 <h3>Distance measurement or a tank-level prototype</h3>
 <p>An ultrasonic sensor is generally the more suitable choice when the project needs a distance estimate rather than a simple trigger. For liquid-level prototypes, mount the sensor as instructed and check whether the tank geometry, condensation and surface movement affect the echo. Do not use a hobby module as a safety-rated or industrial level instrument.</p>
 <h3>Object counter or automatic trigger</h3>
@@ -274,7 +273,7 @@ void loop() {
 <ul><li>Confirm TRIG and ECHO are connected to the pins used in the sketch.</li><li>Check the target is within the usable range and facing the sensor.</li><li>Move away nearby objects that could return an unwanted echo.</li><li>Make sure the target is large and reflective enough for the sensor to detect.</li><li>Check power and ground; keep signal wires secure.</li></ul>
 <p>For a more detailed diagnosis, use the <a href="../hc-sr04-wrong-readings-arduino/">HC-SR04 wrong-reading troubleshooting guide</a>, which walks through Arduino diagnostics and common causes of inaccurate measurements.</p>
 <h3>My robot turns too late or misses an obstacle</h3>
-<p>Test the sensor while the motors are stopped, then test again with the motors running. Motor noise, power dips, vibration, sensor placement and control-loop delays can affect the result. Slow the robot down while debugging and make sure the code handles missing or implausible readings safely.</p>
+<p>This can involve sensor placement, motor noise, power dips, control-loop delay or insufficient stopping distance. Follow the <a href="../ir-vs-ultrasonic-obstacle-detection/">robot obstacle-detection test procedure</a> and change one condition at a time.</p>
 
 <h2 id="faq">Frequently asked questions</h2>
 <div class="article-faq">
