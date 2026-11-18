@@ -24,6 +24,10 @@ class PageParser(HTMLParser):
         self.description: list[str] = []
         self.og_images: list[str] = []
         self.twitter_images: list[str] = []
+        self.og_image_types: list[str] = []
+        self.og_image_widths: list[str] = []
+        self.og_image_heights: list[str] = []
+        self.og_image_alts: list[str] = []
         self.canonicals: list[str] = []
         self.robots: list[str] = []
         self.h1_count = 0
@@ -71,6 +75,14 @@ class PageParser(HTMLParser):
             if a.get("property", "").lower() == "og:image" and a.get("content"):
                 self.og_images.append(a["content"].strip())
                 self.links.append(a["content"].strip())
+            if a.get("property", "").lower() == "og:image:type" and a.get("content"):
+                self.og_image_types.append(a["content"].strip())
+            if a.get("property", "").lower() == "og:image:width" and a.get("content"):
+                self.og_image_widths.append(a["content"].strip())
+            if a.get("property", "").lower() == "og:image:height" and a.get("content"):
+                self.og_image_heights.append(a["content"].strip())
+            if a.get("property", "").lower() == "og:image:alt" and a.get("content"):
+                self.og_image_alts.append(a["content"].strip())
             if a.get("name", "").lower() == "twitter:image" and a.get("content"):
                 self.twitter_images.append(a["content"].strip())
                 self.links.append(a["content"].strip())
@@ -124,6 +136,38 @@ def local_target(page: Path, raw_url: str) -> tuple[Path | None, str]:
     elif not target.exists() and not target.suffix:
         target = target / "index.html"
     return target, parts.fragment
+
+
+def jpeg_dimensions(path: Path) -> tuple[int, int] | None:
+    """Read JPEG dimensions without adding an imaging dependency to site checks."""
+    data = path.read_bytes()
+    if not data.startswith(b"\\xff\\xd8"):
+        return None
+    index = 2
+    sof_markers = {0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7, 0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF}
+    while index + 4 < len(data):
+        if data[index] != 0xFF:
+            index += 1
+            continue
+        while index < len(data) and data[index] == 0xFF:
+            index += 1
+        if index >= len(data):
+            break
+        marker = data[index]
+        index += 1
+        if marker in (0xD8, 0xD9, 0x01) or 0xD0 <= marker <= 0xD7:
+            continue
+        if index + 2 > len(data):
+            break
+        segment_length = int.from_bytes(data[index:index + 2], "big")
+        if segment_length < 2 or index + segment_length > len(data):
+            break
+        if marker in sof_markers and segment_length >= 7:
+            height = int.from_bytes(data[index + 3:index + 5], "big")
+            width = int.from_bytes(data[index + 5:index + 7], "big")
+            return width, height
+        index += segment_length
+    return None
 
 
 def main() -> int:
@@ -196,6 +240,18 @@ def main() -> int:
                 errors.append(f"{rel}: expected exactly one Open Graph image, found {len(parser.og_images)}")
             if len(parser.twitter_images) != 1:
                 errors.append(f"{rel}: expected exactly one X/Twitter image, found {len(parser.twitter_images)}")
+            if len(parser.og_images) == 1:
+                image_url = parser.og_images[0]
+                if not image_url.lower().endswith((".jpg", ".jpeg")):
+                    errors.append(f"{rel}: social preview must use a JPEG raster image")
+                if parser.twitter_images != parser.og_images:
+                    errors.append(f"{rel}: Open Graph and X/Twitter images must match")
+            if parser.og_image_types != ["image/jpeg"]:
+                errors.append(f"{rel}: expected og:image:type image/jpeg")
+            if parser.og_image_widths != ["1200"] or parser.og_image_heights != ["630"]:
+                errors.append(f"{rel}: expected social image dimensions 1200x630")
+            if len(parser.og_image_alts) != 1 or not parser.og_image_alts[0]:
+                errors.append(f"{rel}: expected one descriptive og:image:alt")
             if path not in sitemap_paths:
                 errors.append(f"{rel}: indexable page is missing from sitemap")
 
@@ -230,12 +286,22 @@ def main() -> int:
 
     seen_titles: dict[str, str] = {}
     seen_descriptions: dict[str, str] = {}
+    seen_social_images: dict[str, str] = {}
     for path, parser in parsed_pages.items():
         if "noindex" in " ".join(parser.robots):
             continue
         rel = path.relative_to(ROOT).as_posix()
         title = "".join(parser.title_parts).strip()
         description = parser.description[0].strip() if parser.description else ""
+        if parser.og_images:
+            image_url = parser.og_images[0]
+            if image_url in seen_social_images:
+                errors.append(f"{rel}: social preview image is shared with {seen_social_images[image_url]}")
+            else:
+                seen_social_images[image_url] = rel
+            image_path, _ = local_target(path, image_url)
+            if image_path and image_path.is_file() and image_path.stat().st_size >= 1_000_000:
+                errors.append(f"{rel}: social preview image must be smaller than 1 MB")
         if title in seen_titles:
             errors.append(f"{rel}: duplicate title also used by {seen_titles[title]}")
         else:
