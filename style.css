@@ -95,3 +95,27 @@ footer a{display:inline-flex;align-items:center;min-height:40px;padding:4px 0}
   .cta p{font-size:.98rem;line-height:1.6}
   .internal-learning .guide{padding:20px 18px}
 }
+
+
+/* Tighten the ESP32 feature cards: keep links close to their descriptions. */
+#esp32 .guide-grid{align-items:stretch;gap:16px}
+#esp32 .guide{min-height:0;padding:24px;gap:0}
+#esp32 .guide>span{margin-bottom:8px}
+#esp32 .guide h3{margin:4px 0 8px;line-height:1.25}
+#esp32 .guide p{line-height:1.55}
+#esp32 .guide strong{margin-top:16px;line-height:1.4}
+@media(max-width:700px){
+  #esp32.section{padding-top:54px;padding-bottom:54px}
+  #esp32 .section-top{margin-bottom:24px}
+  #esp32 .guide{padding:21px 20px}
+  #esp32 .guide strong{margin-top:14px}
+  .cta{padding:30px 26px;gap:22px}
+  .cta h2{font-size:clamp(1.9rem,7vw,2.5rem);line-height:1.08}
+  .cta p{font-size:1rem;line-height:1.55}
+  .cta-actions{gap:14px}
+  .cta .primary.light{white-space:normal;display:inline-flex;width:auto;max-width:100%;padding:13px 17px;font-size:1rem;line-height:1.35;gap:10px}
+}
+@media(max-width:480px){
+  .cta{padding:26px 20px}
+  .cta .primary.light{width:100%;justify-content:space-between}
+}
