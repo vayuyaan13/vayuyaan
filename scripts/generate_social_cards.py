@@ -89,7 +89,7 @@ def main():
         html, n = re.subn(r'<meta\s+name=["\']twitter:image["\']\s+content=["\'][^"\']+["\']\s*/?>', f'<meta name="twitter:image" content="{public_url}">', html, count=1, flags=re.I)
         if n != 1:
             raise RuntimeError(f"Could not update Twitter image in {page}")
-        html = re.sub(r"<meta\\s+property=['\"]og:image:alt['\"][^>]*>", "", html, flags=re.I)
+        html = re.sub(r'<meta\s+property=["\']og:image:alt["\'][^>]*>', "", html, flags=re.I)
         metadata = (
             f'\n<meta property="og:image:type" content="image/jpeg">'
             f'\n<meta property="og:image:width" content="1200">'
