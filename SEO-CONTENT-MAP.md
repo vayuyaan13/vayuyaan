@@ -1,6 +1,6 @@
 # Search-intent and content ownership map
 
-Last reviewed: 17 November 2026
+Last reviewed: 18 November 2026
 
 ## Scope and data limitation
 
@@ -185,3 +185,8 @@ The repository now has two separate comparison pages. Keep their search intent d
 - Keep the two canonical URLs. Do not merge, redirect or canonicalise one to the other solely because they share sensor terminology.
 - Social preview metadata is maintained per page. The homepage currently uses the existing logo PNG; the obstacle-detection article currently uses the repository-hosted comparison illustration. Replace these with dedicated 1200 × 630 PNG assets when suitable binary image creation and validation is available. SVG social cards are not used as a substitute.
 - This content plan and its changes apply only to this GitHub Pages repository. The main `vayuyaan.com` site and its WordPress content are outside scope.
+
+
+## Social preview assets
+
+Dedicated 1200 × 630 social preview artwork is maintained for the homepage (`assets/homepage-social.svg`), Robotics hub (`assets/robotics-social.svg`) and IR-vs-ultrasonic obstacle-detection article (`assets/obstacle-detection-social.svg`). The corresponding Open Graph and X/Twitter metadata uses these page-specific assets. The homepage uses `summary_large_image` so the preview is not reduced to a small logo card.
