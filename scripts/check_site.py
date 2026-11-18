@@ -138,6 +138,38 @@ def local_target(page: Path, raw_url: str) -> tuple[Path | None, str]:
     return target, parts.fragment
 
 
+def jpeg_dimensions(path: Path) -> tuple[int, int] | None:
+    """Read JPEG dimensions without adding an imaging dependency to site checks."""
+    data = path.read_bytes()
+    if not data.startswith(b"\\xff\\xd8"):
+        return None
+    index = 2
+    sof_markers = {0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7, 0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF}
+    while index + 4 < len(data):
+        if data[index] != 0xFF:
+            index += 1
+            continue
+        while index < len(data) and data[index] == 0xFF:
+            index += 1
+        if index >= len(data):
+            break
+        marker = data[index]
+        index += 1
+        if marker in (0xD8, 0xD9, 0x01) or 0xD0 <= marker <= 0xD7:
+            continue
+        if index + 2 > len(data):
+            break
+        segment_length = int.from_bytes(data[index:index + 2], "big")
+        if segment_length < 2 or index + segment_length > len(data):
+            break
+        if marker in sof_markers and segment_length >= 7:
+            height = int.from_bytes(data[index + 3:index + 5], "big")
+            width = int.from_bytes(data[index + 5:index + 7], "big")
+            return width, height
+        index += segment_length
+    return None
+
+
 def main() -> int:
     errors: list[str] = []
     html_files = sorted(p for p in ROOT.rglob("*.html") if ".git" not in p.parts)
