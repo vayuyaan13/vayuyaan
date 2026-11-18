@@ -72,3 +72,26 @@ footer a{display:inline-flex;align-items:center;min-height:40px;padding:4px 0}
 .skip-link{position:absolute;left:16px;top:-100px;z-index:1000;padding:12px 16px;background:#101820;color:#fff;border-radius:7px;font-weight:700;text-decoration:none}
 .skip-link:focus{top:12px}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+
+/* 2026-11 mobile polish: prevent CTA overflow and reduce empty homepage card space. */
+@media(max-width:700px){
+  .cta{width:auto;max-width:calc(100% - 32px);margin:0 16px 36px;padding:30px 22px;overflow:hidden}
+  .cta-actions{display:flex;flex-direction:column;align-items:stretch;gap:16px;width:100%;min-width:0;margin-top:22px}
+  .cta .primary.light{display:flex;width:100%;max-width:100%;min-width:0;white-space:normal;overflow-wrap:anywhere;word-break:normal;justify-content:space-between;align-items:center;gap:12px;margin-top:0;padding:14px 16px;font-size:clamp(.9rem,4vw,1.05rem);line-height:1.35;text-align:left}
+  .cta-link{display:inline-flex;align-items:center;min-height:44px;line-height:1.4}
+  .internal-learning{padding-top:54px!important;padding-bottom:54px!important}
+  .internal-learning .section-heading{margin-bottom:22px!important}
+  .internal-learning .guide-grid{grid-template-columns:1fr;gap:14px}
+  .internal-learning .guide{min-height:0;padding:22px 20px;gap:0;border-radius:13px}
+  .internal-learning .guide h3{font-size:1.2rem;line-height:1.3;margin:0 0 9px}
+  .internal-learning .guide h3 a{color:var(--ink);text-decoration:none}
+  .internal-learning .guide h3 a:hover{text-decoration:underline;text-decoration-color:var(--yellow)}
+  .internal-learning .guide p{font-size:.92rem;line-height:1.55;margin:0}
+}
+@media(max-width:480px){
+  .cta{padding:28px 18px}
+  .cta h2{font-size:clamp(1.8rem,8vw,2.35rem)}
+  .cta p{font-size:.98rem;line-height:1.6}
+  .internal-learning .guide{padding:20px 18px}
+}
