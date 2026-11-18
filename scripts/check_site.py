@@ -166,7 +166,8 @@ def main() -> int:
     for path in html_files:
         parser = PageParser()
         try:
-            parser.feed(path.read_text(encoding="utf-8"))
+            source = path.read_text(encoding="utf-8")
+            parser.feed(source)
             parser.close()
         except (UnicodeDecodeError, ValueError) as exc:
             errors.append(f"{path.relative_to(ROOT)}: HTML could not be read: {exc}")
@@ -207,6 +208,10 @@ def main() -> int:
                 errors.append(f"{rel}: missing primary-navigation id")
             if not parser.menu_controls_navigation:
                 errors.append(f"{rel}: menu button must control #primary-navigation")
+            if "Escape" not in source:
+                errors.append(f"{rel}: mobile navigation must close with Escape")
+            if ".focus()" not in source:
+                errors.append(f"{rel}: closing mobile navigation with Escape must return focus to the menu button")
 
         if indexable:
             for block in parser.jsonld_parts:
