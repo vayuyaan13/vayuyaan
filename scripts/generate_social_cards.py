@@ -55,7 +55,13 @@ def main():
         if not source_path.is_file():
             raise RuntimeError(f"Missing source artwork: {source_path}")
         if source_path.suffix.lower() == ".svg":
-            png_bytes = cairosvg.svg2png(url=str(source_path), output_width=1200, output_height=630)
+            svg_data = source_path.read_bytes()
+            # A few legacy SVG labels contain bare ampersands; escape them before XML parsing.
+            svg_data = re.sub(rb"&(?!#\\d+;|#x[0-9A-Fa-f]+;|amp;|lt;|gt;|quot;|apos;)", b"&amp;", svg_data)
+            try:
+                png_bytes = cairosvg.svg2png(bytestring=svg_data, output_width=1200, output_height=630)
+            except Exception as exc:
+                raise RuntimeError(f"Could not rasterize {source_path}: {exc}") from exc
             import io
             image = Image.open(io.BytesIO(png_bytes)).convert("RGB")
         else:
