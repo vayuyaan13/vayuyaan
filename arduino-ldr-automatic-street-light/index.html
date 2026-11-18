@@ -2,15 +2,15 @@
 <html lang="en-IN">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Arduino LDR Sensor Circuit: Automatic Street Light Using Arduino</title>
-<meta name="description" content="Build an Arduino automatic street light with an LDR. Follow the voltage-divider circuit, wiring, code, threshold calibration and troubleshooting steps.">
+<title>Arduino LDR Automatic Street Light: Circuit &amp; Code | Vayuyaan</title>
+<meta name="description" content="Build an Arduino LDR street-light model with a voltage-divider circuit, wiring, code, threshold calibration and practical troubleshooting.">
 <link rel="canonical" href="https://vayuyaan13.github.io/vayuyaan/arduino-ldr-automatic-street-light/">
 <meta name="robots" content="index,follow,max-image-preview:large"><meta name="theme-color" content="#ffc928">
-<meta property="og:type" content="article"><meta property="og:title" content="Arduino LDR Sensor Circuit: Automatic Street Light Using Arduino"><meta property="og:description" content="Build and calibrate an Arduino street-light prototype with an LDR, voltage divider and LED."><meta property="og:url" content="https://vayuyaan13.github.io/vayuyaan/arduino-ldr-automatic-street-light/"><meta property="og:image" content="https://vayuyaan13.github.io/vayuyaan/assets/social/arduino-ldr-automatic-street-light.jpg">
+<meta property="og:type" content="article"><meta property="og:title" content="Arduino LDR Automatic Street Light: Circuit &amp; Code | Vayuyaan"><meta property="og:description" content="Build an Arduino LDR street-light model with a voltage-divider circuit, wiring, code, threshold calibration and practical troubleshooting."><meta property="og:url" content="https://vayuyaan13.github.io/vayuyaan/arduino-ldr-automatic-street-light/"><meta property="og:image" content="https://vayuyaan13.github.io/vayuyaan/assets/social/arduino-ldr-automatic-street-light.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Arduino LDR Sensor Circuit: Automatic Street Light Using Arduino">
+<meta property="og:image:alt" content="Arduino LDR Automatic Street Light: Circuit & Code | Vayuyaan">
 
 
 
@@ -31,7 +31,7 @@
 
 
 
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Arduino LDR Sensor Circuit: Automatic Street Light Using Arduino"><meta name="twitter:description" content="Circuit, Arduino code, threshold calibration and troubleshooting for an LDR street-light model."><meta name="twitter:image" content="https://vayuyaan13.github.io/vayuyaan/assets/social/arduino-ldr-automatic-street-light.jpg">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Arduino LDR Automatic Street Light: Circuit & Code | Vayuyaan"><meta name="twitter:description" content="Build an Arduino LDR street-light model with a voltage-divider circuit, wiring, code, threshold calibration and practical troubleshooting."><meta name="twitter:image" content="https://vayuyaan13.github.io/vayuyaan/assets/social/arduino-ldr-automatic-street-light.jpg">
 <link rel="stylesheet" href="../style.css?v=20261118-mobile2">
 <style>
 .article-hero{max-width:1160px;margin:auto;padding:55px 28px 25px}.article-hero h1{font-size:clamp(2.5rem,5vw,4.2rem);line-height:1.06;letter-spacing:-.05em;max-width:950px;margin:12px 0}.article-hero p{max-width:850px;color:#5e6b76;font-size:1.12rem;line-height:1.75}.eyebrow{font-size:.78rem;font-weight:800;letter-spacing:.1em;color:#8b6700;text-transform:uppercase}.article-layout{max-width:1160px;margin:auto;padding:15px 28px 75px;display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:48px}.article-body h2{font-size:clamp(1.6rem,3vw,2.1rem);line-height:1.2;margin:45px 0 14px;scroll-margin-top:100px}.article-body h3{font-size:1.15rem;margin:25px 0 8px}.article-body p,.article-body li{line-height:1.8;color:#394650}.article-body a{color:#725400;text-underline-offset:3px}.article-body figure{margin:25px 0}.article-body figure img{width:100%;height:auto;display:block;border:1px solid #e0e6eb;border-radius:14px}.article-body figcaption{font-size:.84rem;color:#687580;margin-top:8px}.article-body pre{overflow-x:auto;background:#101820;color:#f2f5f7;padding:20px;border-radius:12px;font-size:.86rem;line-height:1.65}.article-body code{font-family:ui-monospace,Consolas,monospace}.article-body :not(pre)>code{background:#f0f2f4;padding:2px 5px;border-radius:4px}.article-body table{border-collapse:collapse;width:100%;min-width:500px}.article-body th,.article-body td{border:1px solid #e0e5e9;padding:10px 12px;text-align:left}.article-body th{background:#f5f7f8}.table-wrap{overflow-x:auto;margin:20px 0}.note{padding:18px 20px;background:#fff8df;border-left:4px solid #ffd23f;border-radius:0 9px 9px 0;margin:22px 0;line-height:1.75}.note.cool{background:#f2f6fa;border-color:#8498a9}.aside{position:sticky;top:110px;align-self:start;background:#f8fafb;border:1px solid #e4e9ed;border-radius:12px;padding:20px}.aside h2{font-size:1.1rem;margin:0 0 12px}.aside a{display:block;margin:11px 0;color:#725400;font-size:.9rem;font-weight:700}.breadcrumb{max-width:1160px;margin:auto;padding:16px 28px 0;font-size:.85rem}.breadcrumb a{color:#725400}.related{max-width:1104px;margin:0 auto 65px;padding:0 28px}.related h2{font-size:1.7rem}@media(max-width:850px){.article-layout{grid-template-columns:1fr}.aside{position:static;order:-1}}@media(max-width:600px){.article-hero{padding:35px 20px 18px}.article-layout{padding:8px 20px 55px}.breadcrumb,.related{padding-left:20px;padding-right:20px}}
