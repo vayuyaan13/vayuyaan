@@ -36,12 +36,13 @@
 <meta name="google-site-verification" content="V6Ub0F7xQiZ6AZht1TPbpDEzftl8NoScATR2pZcJCOI">
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 <header class="header"><nav class="nav">
 <a class="brand" href="./" aria-label="Vayuyaan learning hub home"><img src="assets/vayuyaan-logo.png" alt="Vayuyaan logo" width="394" height="109"></a>
-<div class="navlinks"><a href="./">Home</a><a href="write-for-us/" >Write for Us</a><a href="arduino/" >Arduino Guides</a><a href="sensors/" >Sensor Guides</a><a href="robotics/" >Robotics Projects</a><a href="motor-drivers/" >Motor Drivers</a><a href="what-is-esp32/" >ESP32</a><a href="https://vayuyaan.com/blog/">Electronics Blog</a><a href="https://vayuyaan.com/shop/">Shop Components</a><a class="nav-cta" href="https://vayuyaan.com/">Vayuyaan.com ↗</a></div>
-<button class="menu" type="button" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+<div class="navlinks" id="primary-navigation"><a href="./">Home</a><a href="write-for-us/" >Write for Us</a><a href="arduino/" >Arduino Guides</a><a href="sensors/" >Sensor Guides</a><a href="robotics/" >Robotics Projects</a><a href="motor-drivers/" >Motor Drivers</a><a href="what-is-esp32/" >ESP32</a><a href="https://vayuyaan.com/blog/">Electronics Blog</a><a href="https://vayuyaan.com/shop/">Shop Components</a><a class="nav-cta" href="https://vayuyaan.com/">Vayuyaan.com ↗</a></div>
+<button class="menu" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-navigation">☰</button>
 </nav></header>
-<main>
+<main id="main-content">
 <section class="hero"><div class="hero-inner">
 <div class="hero-copy"><div class="pill"><span></span> Electronics &amp; Robotics Learning Hub</div>
 <h1>Build it.<br><em>Understand it.</em><br>Improve it.</h1>
@@ -70,7 +71,7 @@
 <div class="footer-bottom"><span>© 2026 Vayuyaan. All rights reserved.</span><span>Electronics • Robotics • DIY</span></div>
 <script>
 const menu=document.querySelector('.menu');const nav=document.querySelector('.navlinks');
-if(menu&&nav){menu.addEventListener('click',()=>{const open=nav.classList.toggle('mobile-open');menu.setAttribute('aria-expanded',open);menu.setAttribute('aria-label',open?'Close navigation menu':'Open navigation menu');});nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{nav.classList.remove('mobile-open');menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Open navigation menu');}));}
+if(menu&&nav){const closeMenu=()=>{nav.classList.remove('mobile-open');menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Open navigation menu');};menu.addEventListener('click',()=>{const open=nav.classList.toggle('mobile-open');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close navigation menu':'Open navigation menu');});nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu));document.addEventListener('keydown',event=>{if(event.key==='Escape'&&nav.classList.contains('mobile-open')){closeMenu();menu.focus();}});}
 </script>
 <!-- Trigger fresh GitHub Pages deployment after footer link updates. -->
 </body></html>
