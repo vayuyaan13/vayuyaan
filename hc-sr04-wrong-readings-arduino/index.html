@@ -37,14 +37,15 @@
 </script>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 <header class="header"><nav class="nav">
 <a class="brand" href="../" aria-label="Vayuyaan learning hub home"><img src="../assets/vayuyaan-logo.png" alt="Vayuyaan logo" width="394" height="109"></a>
-<div class="navlinks"><a href="../">Home</a><a href="../write-for-us/">Write for Us</a><a href="../arduino/">Arduino Guides</a><a href="../sensors/">Sensor Guides</a><a href="../robotics/">Robotics Projects</a><a href="../motor-drivers/">Motor Drivers</a><a href="../what-is-esp32/">ESP32</a><a href="https://vayuyaan.com/blog/">Electronics Blog</a><a href="https://vayuyaan.com/shop/">Shop Components</a><a class="nav-cta" href="https://vayuyaan.com/">Vayuyaan.com ↗</a></div>
-<button class="menu" type="button" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+<div class="navlinks" id="primary-navigation"><a href="../">Home</a><a href="../write-for-us/">Write for Us</a><a href="../arduino/">Arduino Guides</a><a href="../sensors/">Sensor Guides</a><a href="../robotics/">Robotics Projects</a><a href="../motor-drivers/">Motor Drivers</a><a href="../what-is-esp32/">ESP32</a><a href="https://vayuyaan.com/blog/">Electronics Blog</a><a href="https://vayuyaan.com/shop/">Shop Components</a><a class="nav-cta" href="https://vayuyaan.com/">Vayuyaan.com ↗</a></div>
+<button class="menu" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-navigation">☰</button>
 </nav></header>
 <div class="article-shell">
 <nav class="article-breadcrumb" aria-label="Breadcrumb"><a href="../">Home</a><span>›</span><a href="../arduino/">Arduino Guides</a><span>›</span><span>HC-SR04 Diagnostics</span></nav>
-<main class="blog-article">
+<main id="main-content" class="blog-article">
 <header class="article-header"><p class="article-category">ARDUINO · ULTRASONIC SENSOR · DEBUGGING</p><h1>Why Is Your HC-SR04 Ultrasonic Sensor Giving Incorrect Distance Readings?</h1><p class="article-deck">A practical workflow for investigating zero readings, sudden jumps and measurements that do not match a ruler. Test the sensor, target and timing before changing your project logic.</p><div class="article-byline"><span>Vayuyaan Editorial Team</span><span>·</span><span>Updated 18 November 2026</span><span>·</span><span>8–10 minute read</span></div></header>
 <div class="article-layout">
 <aside class="article-toc" aria-label="On this page"><p>ON THIS PAGE</p><a href="#start">Start with a controlled test</a><a href="#wiring-range">Check wiring and measurement range</a><a href="#diagnostic-sketch">Diagnostic sketch</a><a href="#symptoms">Symptom-to-cause guide</a><a href="#timing">Timing and filtering</a><a href="#measurement">Compare with a ruler</a><a href="#project-use">Use readings in a project</a><a href="#faq">FAQs</a><a href="#references">References</a></aside>
