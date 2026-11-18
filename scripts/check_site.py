@@ -27,6 +27,10 @@ class PageParser(HTMLParser):
         self.canonicals: list[str] = []
         self.robots: list[str] = []
         self.h1_count = 0
+        self.has_skip_link = False
+        self.has_main_landmark = False
+        self.has_primary_navigation = False
+        self.menu_controls_navigation = False
         self.ids: set[str] = set()
         self.links: list[str] = []
         self.images_missing_alt = 0
@@ -42,6 +46,14 @@ class PageParser(HTMLParser):
             self._in_title = True
         if tag == "h1":
             self.h1_count += 1
+        if tag == "a" and "skip-link" in a.get("class", "").split() and a.get("href") == "#main-content":
+            self.has_skip_link = True
+        if tag == "main" and a.get("id") == "main-content":
+            self.has_main_landmark = True
+        if a.get("id") == "primary-navigation":
+            self.has_primary_navigation = True
+        if tag == "button" and a.get("aria-controls") == "primary-navigation":
+            self.menu_controls_navigation = True
         if tag == "img":
             if "alt" not in a:
                 self.images_missing_alt += 1
@@ -185,6 +197,19 @@ def main() -> int:
                 errors.append(f"{rel}: expected exactly one X/Twitter image, found {len(parser.twitter_images)}")
             if path not in sitemap_paths:
                 errors.append(f"{rel}: indexable page is missing from sitemap")
+
+        if indexable and rel in {
+            "index.html", "arduino/index.html", "sensors/index.html",
+            "robotics/index.html", "write-for-us/index.html"
+        }:
+            if not parser.has_skip_link:
+                errors.append(f"{rel}: missing skip link to #main-content")
+            if not parser.has_main_landmark:
+                errors.append(f"{rel}: missing main landmark id=main-content")
+            if not parser.has_primary_navigation:
+                errors.append(f"{rel}: missing primary-navigation id")
+            if not parser.menu_controls_navigation:
+                errors.append(f"{rel}: menu button must control #primary-navigation")
 
         if indexable:
             for block in parser.jsonld_parts:
