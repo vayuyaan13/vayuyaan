@@ -173,3 +173,15 @@ The HC-SR04 diagnostics article includes three original, repository-hosted SVG d
 - Target-angle comparison showing why a flat, perpendicular target is a better first test.
 
 Each image has descriptive alt text and a caption explaining its instructional purpose. These are explanatory diagrams, not photographs or claims of measured test results.
+
+
+## IR vs ultrasonic comparison split (18 November 2026)
+
+The repository now has two separate comparison pages. Keep their search intent distinct:
+
+- `ir-sensor-vs-ultrasonic-sensor/` is the broad sensor-selection guide. It owns the general explanation of reflective IR versus ultrasonic sensing, feature comparison, common Arduino setup and general project suitability.
+- `ir-vs-ultrasonic-obstacle-detection/` is specifically for obstacle detection on a mobile robot. It focuses on target material and geometry, ambient light, false triggers, missed echoes, field testing, repeatability and stopping distance. It should link to the broad comparison for general sensor fundamentals rather than repeat that guide's full treatment.
+- Arduino and Robotics hubs should link to both pages with distinct anchors that describe the different tasks. The Sensors hub already lists both as separate resources.
+- Keep the two canonical URLs. Do not merge, redirect or canonicalise one to the other solely because they share sensor terminology.
+- The obstacle-detection article uses its own original social-preview illustration. The homepage uses a separate learning-hub preview rather than the square/landscape logo asset.
+- This content plan and its changes apply only to this GitHub Pages repository. The main `vayuyaan.com` site and its WordPress content are outside scope.
