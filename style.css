@@ -65,3 +65,10 @@ footer{max-width:1360px;margin:auto;border-top:1px solid var(--line);padding:38p
 
 /* Make footer links comfortable tap targets on touch screens. */
 footer a{display:inline-flex;align-items:center;min-height:40px;padding:4px 0}
+
+
+/* Keyboard access and motion preferences. Keep focus visible on every interactive element. */
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #8a6500;outline-offset:4px;border-radius:5px}
+.skip-link{position:absolute;left:16px;top:-100px;z-index:1000;padding:12px 16px;background:#101820;color:#fff;border-radius:7px;font-weight:700;text-decoration:none}
+.skip-link:focus{top:12px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
