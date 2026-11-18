@@ -11,6 +11,9 @@ https://vayuyaan13.github.io/vayuyaan/
 - [ESP32 guides](https://vayuyaan13.github.io/vayuyaan/what-is-esp32/)
 - [Write for Us](https://vayuyaan13.github.io/vayuyaan/write-for-us/)
 
+## Contact
+For contributor pitches and general enquiries about this GitHub Pages learning hub, email [info@vayuyaan.com](mailto:info@vayuyaan.com).
+
 ## Search engines
 - Sitemap: https://vayuyaan13.github.io/vayuyaan/sitemap.xml
 - This is a GitHub Pages project site. The repository-level `robots.txt` is published at `/vayuyaan/robots.txt`, not the host-root `/robots.txt`. It therefore cannot set host-wide crawling rules. Do not assume the project-level file controls the host's robots policy.
