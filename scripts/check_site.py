@@ -198,10 +198,7 @@ def main() -> int:
             if path not in sitemap_paths:
                 errors.append(f"{rel}: indexable page is missing from sitemap")
 
-        if indexable and rel in {
-            "index.html", "arduino/index.html", "sensors/index.html",
-            "robotics/index.html", "write-for-us/index.html"
-        }:
+        if indexable:
             if not parser.has_skip_link:
                 errors.append(f"{rel}: missing skip link to #main-content")
             if not parser.has_main_landmark:
