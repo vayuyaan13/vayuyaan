@@ -190,3 +190,25 @@ The repository now has two separate comparison pages. Keep their search intent d
 ## Social preview assets
 
 Dedicated 1200 × 630 social preview artwork is maintained for the homepage (`assets/homepage-social.svg`), Robotics hub (`assets/robotics-social.svg`) and IR-vs-ultrasonic obstacle-detection article (`assets/obstacle-detection-social.svg`). The corresponding Open Graph and X/Twitter metadata uses these page-specific assets. The homepage uses `summary_large_image` so the preview is not reduced to a small logo card.
+
+
+## Ten-article content quality and overlap audit (19 November 2026)
+
+Scope: the ten existing article pages in this repository only. The review checked each page's stated search intent, headings, practical depth, examples, safety notes, internal links and overlap with its closest companion page. This is an editorial review of the repository content, not a claim that every component specification or live search result has been independently laboratory-tested.
+
+| Page | Intended role retained | Audit decision |
+|---|---|---|
+| `arduino-line-follower-ir-sensor-calibration/` | Sensor readings, thresholds and line-tracking calibration | Keep focused on calibration; the IR projects page should link here rather than repeat the full calibration workflow. |
+| `arduino-ldr-automatic-street-light/` | Complete low-voltage LDR street-light model, wiring, code and threshold test | Keep as the project build; the LDR circuit guide remains the deeper component and voltage-divider reference. |
+| `hc-sr04-ultrasonic-sensor-guide/` | HC-SR04 pinout, wiring, formula, starter code and quick troubleshooting | Keep the concise troubleshooting table and link to the diagnostic companion for the full test sequence. |
+| `hc-sr04-wrong-readings-arduino/` | Diagnose zero, unstable and inaccurate readings using controlled tests and logs | Keep as a separate troubleshooting intent; do not merge with the setup guide. |
+| `ir-sensor-projects-arduino/` | Five practical reflective-IR project ideas and build approaches | Keep line-following coverage introductory and direct readers to the dedicated calibration guide. |
+| `ir-sensor-vs-ultrasonic-sensor/` | Broad sensor-selection comparison and Arduino setup | Reduced duplicated robot-specific obstacle-testing advice and linked to the dedicated obstacle-detection article. |
+| `ir-vs-ultrasonic-obstacle-detection/` | Robot-specific obstacle detection, target behaviour, repeatable tests and stopping distance | Retain as the detailed mobile-robot decision and testing guide. |
+| `ldr-sensor-working-principle/` | LDR resistance, voltage-divider design, Arduino readings and calibration | Keep as the technical circuit guide; the street-light article remains the applied project. |
+| `ldr-vs-photodiode/` | Component-selection comparison | Keep the comparison focused on response, circuit requirements and use cases; link to the LDR circuit guide for implementation. |
+| `what-is-esp32/` | General ESP32 family and development-board introduction | Corrected a misleading setup-link anchor, removed a repeated CTA sentence and changed the social card to large-image format. |
+
+The `/esp32/` URL is an intentional legacy redirect to `/what-is-esp32/`, marked `noindex,follow`; it is not a second article and was not changed.
+
+No broad rewrites, new articles, canonical changes, redirects or Search Console actions were made. Keep the ten pages' existing ownership boundaries and review new performance data before making further title or content changes.
