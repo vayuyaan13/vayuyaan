@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - fix/social-preview-raster-cards-20261118
+      - publish-arduino-uno-sensor-interfacing-2026-11-20
     paths:
       - 'assets/*.svg'
       - 'assets/*-social.png'
@@ -24,7 +25,7 @@ jobs:
       - name: Check out branch
         uses: actions/checkout@v4
         with:
-          ref: fix/social-preview-raster-cards-20261118
+          ref: ${{ github.ref_name }}
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -42,5 +43,5 @@ jobs:
             echo "No generated changes to commit."
           else
             git commit -m "Generate raster social preview cards for all pages"
-            git push origin HEAD:fix/social-preview-raster-cards-20261118
+            git push origin HEAD:${GITHUB_REF_NAME}
           fi
