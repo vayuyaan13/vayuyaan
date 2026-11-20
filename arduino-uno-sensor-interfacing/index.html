@@ -261,18 +261,75 @@ void loop() {
 </footer>
 <div class="footer-bottom"><span>© 2026 Vayuyaan. All rights reserved.</span><span>Electronics • Robotics • DIY</span></div>
 <style>
-/* Match the approved homepage footer and remove excessive mobile link spacing. */
-.article-approved-footer{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 36px;padding:34px 22px 26px}
-.article-approved-footer .footer-column{display:flex;flex-direction:column;align-items:flex-start;gap:5px}
-.article-approved-footer .footer-column h2{margin:0 0 9px;font-size:1.2rem;line-height:1.3}
-.article-approved-footer .footer-column a{display:block;min-height:0;padding:4px 0;margin:0;line-height:1.4;font-size:1rem}
-.article-approved-footer+.footer-bottom{padding:14px 22px 20px}
-@media(max-width:560px){
-  .article-approved-footer{grid-template-columns:1fr;gap:26px;padding:28px 22px 22px}
-  .article-approved-footer .footer-column{gap:4px}
-  .article-approved-footer .footer-column h2{margin-bottom:8px;font-size:1.15rem}
-  .article-approved-footer .footer-column a{min-height:0;padding:4px 0;font-size:.96rem;line-height:1.35}
-  .article-approved-footer+.footer-bottom{padding:12px 22px 18px}
+/* Article-only recreation of the approved white Explore / Vayuyaan footer. */
+footer.article-approved-footer{
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:28px;
+  width:100%;
+  max-width:1360px;
+  margin:0 auto;
+  padding:34px 28px 26px;
+  border-top:1px solid #e5e9ed;
+  background:#fff;
+  color:#5f6b75;
+  font-size:1rem;
+}
+.article-approved-footer .footer-column{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:7px;
+  min-width:0;
+}
+.article-approved-footer .footer-column h2{
+  margin:0 0 8px;
+  color:#5f6b75;
+  font-size:1.2rem;
+  font-weight:700;
+  line-height:1.3;
+}
+.article-approved-footer .footer-column a{
+  display:block;
+  width:max-content;
+  max-width:100%;
+  min-height:0;
+  margin:0;
+  padding:3px 0;
+  color:#68737e;
+  font-size:1rem;
+  font-weight:400;
+  line-height:1.4;
+  text-decoration:none;
+  overflow-wrap:anywhere;
+}
+.article-approved-footer .footer-column a:hover{
+  color:#101820;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.article-approved-footer+.footer-bottom{
+  max-width:1360px;
+  margin:0 auto;
+  padding:14px 28px 20px;
+  background:#fff;
+  color:#929ba3;
+  border-top:1px solid #e5e9ed;
+  font-size:.82rem;
+}
+.article-approved-footer+.footer-bottom span:last-child{font-weight:600}
+@media(max-width:760px){
+  footer.article-approved-footer{gap:24px;padding:28px 22px 22px}
+  .article-approved-footer .footer-column{gap:5px}
+  .article-approved-footer .footer-column h2{margin-bottom:6px;font-size:1.12rem}
+  .article-approved-footer .footer-column a{padding:3px 0;font-size:.96rem;line-height:1.35}
+  .article-approved-footer+.footer-bottom{padding:12px 22px 18px;font-size:.78rem}
+}
+@media(max-width:480px){
+  footer.article-approved-footer{gap:22px;padding:25px 20px 20px}
+  .article-approved-footer .footer-column a{font-size:.94rem}
+  .article-approved-footer+.footer-bottom{padding:12px 20px 18px}
 }
 </style>
 <script>(()=>{const b=document.querySelector('.menu'),n=document.querySelector('.navlinks');if(b&&n){const close=()=>{n.classList.remove('mobile-open');b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','Open navigation menu')};b.addEventListener('click',()=>{const o=n.classList.toggle('mobile-open');b.setAttribute('aria-expanded',String(o));b.setAttribute('aria-label',o?'Close navigation menu':'Open navigation menu')});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&n.classList.contains('mobile-open')){close();b.focus()}})}})();</script>
