@@ -27,6 +27,7 @@ SOURCE_ART = {
     "arduino-ldr-automatic-street-light": "assets/arduino-ldr-street-light-overview.svg",
     "ldr-sensor-working-principle": "assets/ldr-resistance-light-response.svg",
     "hc-sr04-wrong-readings-arduino": "assets/hc-sr04-guide-social.svg",
+    "arduino-uno-sensor-interfacing": "assets/arduino-uno-sensor-interfacing-overview.svg",
 }
 OUT.mkdir(parents=True, exist_ok=True)
 

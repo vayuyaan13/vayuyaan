@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arduino Uno Sensor Interfacing: Pins, Wiring &amp; Code | Vayuyaan</title>
+<meta name="description" content="Learn Arduino Uno sensor interfacing with analog and digital pins, PWM, LDR, IR and HC-SR04 wiring, example code and practical troubleshooting.">
+<link rel="canonical" href="https://vayuyaan13.github.io/vayuyaan/arduino-uno-sensor-interfacing/">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta property="og:locale" content="en_IN"><meta property="og:site_name" content="Vayuyaan Electronics &amp; Robotics Guides"><meta property="og:type" content="article">
+<meta property="og:title" content="Arduino Uno Sensor Interfacing: Pins, Wiring &amp; Code"><meta property="og:description" content="Connect analog and digital sensors to Arduino Uno. Understand pin selection, voltage limits, PWM, wiring examples and troubleshooting.">
+<meta property="og:url" content="https://vayuyaan13.github.io/vayuyaan/arduino-uno-sensor-interfacing/"><meta property="og:image" content="https://vayuyaan13.github.io/vayuyaan/assets/social/arduino-uno-sensor-interfacing.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Arduino Uno Sensor Interfacing: Pins, Wiring &amp; Code | Vayuyaan">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Arduino Uno Sensor Interfacing: Pins, Wiring &amp; Code"><meta name="twitter:description" content="Practical Arduino Uno sensor wiring, pin selection, example code and troubleshooting."><meta name="twitter:image" content="https://vayuyaan13.github.io/vayuyaan/assets/social/arduino-uno-sensor-interfacing.jpg">
+<link rel="stylesheet" href="../style.css?v=20261120-sensor-interface">
+<style>
+.article-shell{max-width:1160px;margin:auto;padding:28px 28px 80px}.crumb{font-size:.82rem;color:#74808a;margin:8px 0 32px}.crumb a{color:#66727c}.article-head{max-width:900px;margin:0 auto 34px;border-bottom:1px solid #e4e8eb;padding-bottom:28px}.eyebrow{font-size:.72rem;letter-spacing:.14em;font-weight:800;color:#8a6800}.article-head h1{font-size:clamp(2.35rem,5vw,4rem);line-height:1.06;letter-spacing:-.05em;margin:14px 0 18px}.deck{font-size:1.15rem;line-height:1.75;color:#56636e;max-width:820px}.byline{font-size:.82rem;color:#7c8790;margin-top:18px}.layout{display:grid;grid-template-columns:205px minmax(0,760px);gap:48px;justify-content:center}.toc{position:sticky;top:100px;align-self:start;border-left:2px solid #e2e7ea;padding:4px 0 4px 16px;display:flex;flex-direction:column;gap:10px}.toc strong{font-size:.68rem;letter-spacing:.12em;color:#818b94}.toc a{font-size:.82rem;color:#68747e;text-decoration:none;line-height:1.4}.body{min-width:0;font-size:1.02rem;line-height:1.82;color:#303b44}.body p{margin:0 0 19px}.body a{color:#765800;text-underline-offset:3px}.body h2{font-size:clamp(1.55rem,3vw,2.1rem);line-height:1.2;letter-spacing:-.03em;margin:44px 0 14px;scroll-margin-top:100px}.body h3{font-size:1.15rem;margin:26px 0 8px}.body ul,.body ol{padding-left:24px;margin:0 0 22px}.body li{margin:0 0 8px}.lead{font-size:1.13rem;color:#202b33}.note{background:#fff8e2;border-left:4px solid #ffd23f;padding:18px 21px;margin:24px 0;border-radius:0 8px 8px 0}.figure{margin:25px 0 30px}.figure img{display:block;width:100%;height:auto;border:1px solid #e1e6ea;border-radius:12px;background:#f8fafb}.figure figcaption{font-size:.8rem;color:#77828b;text-align:center;margin-top:8px}.table-wrap{overflow-x:auto;margin:20px 0 26px}.body table{border-collapse:collapse;width:100%;min-width:570px;font-size:.87rem;line-height:1.55}.body th,.body td{border:1px solid #e1e6e9;padding:11px;text-align:left;vertical-align:top}.body th{background:#f3f6f7}.body pre{overflow-x:auto;white-space:pre;padding:17px;background:#111a22;color:#f5f7f8;border-radius:9px;font: .84rem/1.65 ui-monospace,Consolas,monospace;margin:15px 0 23px}.body code{font-family:ui-monospace,Consolas,monospace;font-size:.9em}.body pre code{font-size:1em}.cta{background:#111820;color:#fff;padding:25px;border-radius:11px;margin:42px 0 26px}.cta h2{color:#fff;margin:7px 0 10px}.cta p{color:#c8d0d5}.cta a{display:inline-block;background:#ffd23f;color:#111820;padding:11px 15px;border-radius:6px;font-weight:800;text-decoration:none}.sources{border-top:1px solid #e3e8eb;padding-top:18px;margin-top:34px;font-size:.82rem;color:#66727c}
+@media(max-width:820px){.layout{grid-template-columns:1fr;gap:22px}.toc{position:static;border:1px solid #e2e7ea;border-radius:9px;padding:15px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.toc strong{grid-column:1/-1}}
+@media(max-width:560px){.article-shell{padding:20px 19px 58px}.article-head h1{font-size:2.35rem}.deck{font-size:1.02rem}.body{font-size:.98rem}.body pre{font-size:.76rem}.body table{font-size:.78rem}.body th,.body td{padding:8px}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://vayuyaan13.github.io/vayuyaan/arduino-uno-sensor-interfacing/#article","mainEntityOfPage":{"@type":"WebPage","@id":"https://vayuyaan13.github.io/vayuyaan/arduino-uno-sensor-interfacing/"},"headline":"Arduino Uno Sensor Interfacing: Analog, Digital and PWM Pins Explained","description":"A practical guide to choosing Arduino Uno pins, connecting analog and digital sensors, using PWM correctly and troubleshooting sensor circuits.","image":"https://vayuyaan13.github.io/vayuyaan/assets/arduino-uno-sensor-interfacing-overview.svg","datePublished":"2026-11-20","dateModified":"2026-11-20","author":{"@type":"Organization","name":"Vayuyaan Editorial Team"},"publisher":{"@type":"Organization","name":"Vayuyaan","logo":{"@type":"ImageObject","url":"https://vayuyaan13.github.io/vayuyaan/assets/vayuyaan-logo.png"}},"inLanguage":"en-IN","articleSection":["Arduino","Sensors","Electronics"],"keywords":["Arduino Uno sensor interfacing","Arduino analog pins","Arduino digital pins","Arduino PWM pins","connect sensor to Arduino Uno","Arduino LDR sensor","Arduino IR sensor","HC-SR04 Arduino wiring"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vayuyaan13.github.io/vayuyaan/"},{"@type":"ListItem","position":2,"name":"Arduino Guides","item":"https://vayuyaan13.github.io/vayuyaan/arduino/"},{"@type":"ListItem","position":3,"name":"Arduino Uno Sensor Interfacing","item":"https://vayuyaan13.github.io/vayuyaan/arduino-uno-sensor-interfacing/"}]}]}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="header"><nav class="nav"><a class="brand" href="../" aria-label="Vayuyaan learning hub home"><img src="../assets/vayuyaan-logo.png" alt="Vayuyaan logo" width="394" height="109"></a><div class="navlinks" id="primary-navigation"><a href="../">Home</a><a href="../arduino/">Arduino Guides</a><a href="../sensors/">Sensor Guides</a><a href="../robotics/">Robotics</a><a href="https://vayuyaan.com/blog/">Electronics Blog</a><a href="https://vayuyaan.com/">Vayuyaan.com ↗</a></div><button class="menu" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-navigation">☰</button></nav></header>
+<main id="main-content" class="article-shell">
+<div class="crumb"><a href="../">Home</a> / <a href="../arduino/">Arduino</a> / Sensor interfacing</div>
+<header class="article-head"><span class="eyebrow">ARDUINO · PRACTICAL WIRING GUIDE</span><h1>Arduino Uno R3 Sensor Interfacing: Analog, Digital and PWM Pins Explained</h1><p class="deck">Choose the right Arduino Uno pin, connect sensor modules safely, read their outputs and diagnose common wiring mistakes with practical LDR, IR and HC-SR04 examples.</p><p class="byline">By Vayuyaan Editorial Team · 20 November 2026 · Practical reference guide</p></header>
+<div class="layout">
+<nav class="toc" aria-label="Table of contents"><strong>IN THIS GUIDE</strong><a href="#before">Before connecting</a><a href="#pins">Understand the pins</a><a href="#wiring">Wiring principles</a><a href="#ldr">LDR example</a><a href="#ir">IR module example</a><a href="#ultrasonic">HC-SR04 example</a><a href="#pwm">PWM explained</a><a href="#debug">Troubleshooting</a><a href="#faq">FAQs</a></nav>
+<article class="body">
+<p class="lead">Connecting a sensor to an Arduino Uno is not just a matter of matching wire colours. First identify what the module outputs—an analogue voltage, a digital HIGH/LOW signal, or a timed pulse. Then choose a compatible pin and check the module's supply-voltage requirements.</p>
+<p>If you are new to the board, start with the <a href="https://vayuyaan.com/blog/arduino-uno-r3-complete-guide-for-beginners/">Arduino Uno R3 pinout and beginner's guide</a> for the board layout and basic setup. This page focuses on the next step: connecting sensors and interpreting their signals correctly.</p>
+<figure class="figure"><img src="../assets/arduino-uno-sensor-interfacing-overview.svg" width="1200" height="675" alt="Arduino Uno sensor interfacing overview showing an analogue LDR input on A0, a digital IR output on D2 and HC-SR04 trigger and echo on D9 and D10"><figcaption>Three common signal paths: analogue input, digital input and two digital pins for ultrasonic timing.</figcaption></figure>
+<h2 id="before">Before connecting a sensor</h2>
+<p>Read the label or datasheet for the exact sensor board. Modules that look similar can use different pin orders, supply ranges and output circuits. Check these points before applying power:</p>
+<ul><li><strong>Supply voltage:</strong> confirm whether the module accepts 5 V, 3.3 V or a wider range. Never assume every sensor board is 5 V tolerant.</li><li><strong>Output type:</strong> determine whether the signal is analogue, digital, open-collector/open-drain or a pulse whose duration carries information.</li><li><strong>Logic level:</strong> check the maximum voltage that can appear on an Uno input. A 3.3 V-only device may need level shifting for signals in both directions; a 5 V Uno output can damage a non-5-V-tolerant input.</li><li><strong>Current:</strong> power the sensor from a suitable supply. Do not drive motors, relays or high-current loads directly from an I/O pin.</li><li><strong>Ground:</strong> when using separate supplies, connect grounds together unless the circuit is intentionally isolated.</li></ul>
+<div class="note"><strong>Important:</strong> The classic Arduino Uno R3 uses 5 V logic and a 10-bit ADC. These details do not apply automatically to every Arduino-compatible board, especially 3.3 V boards.</div>
+<h2 id="pins">Arduino Uno pins: which one should you use?</h2>
+<p>The classic Uno R3 has 14 digital I/O pins (D0–D13), six analogue input pins (A0–A5) and six PWM-capable digital pins (3, 5, 6, 9, 10 and 11). Analogue pins can also be used as digital I/O when needed.</p>
+<div class="table-wrap"><table><thead><tr><th>Pin group</th><th>What it does</th><th>Typical sensor use</th><th>Key point</th></tr></thead><tbody><tr><td>A0–A5</td><td>Measures analogue voltage through the ADC</td><td>LDR voltage divider, analogue gas or light module</td><td><code>analogRead()</code> returns 0–1023 at the default 10-bit resolution</td></tr><tr><td>D0–D13</td><td>Reads or outputs digital HIGH/LOW states</td><td>IR obstacle module's digital output</td><td>D0/D1 are also used for serial communication; avoid them when using USB serial unless planned</td></tr><tr><td>D3, D5, D6, D9, D10, D11</td><td>Hardware PWM output using <code>analogWrite()</code></td><td>LED brightness or compatible driver speed input</td><td>PWM is a rapidly switched digital signal, not a true analogue voltage</td></tr><tr><td>5V, 3.3V, GND</td><td>Power and reference connections</td><td>Sensor module supply</td><td>Check the module's rated supply and current before connecting</td></tr></tbody></table></div>
+<p>On a standard Uno R3, the analogue-to-digital converter maps the selected input voltage to a number from 0 to 1023. With the default 5 V reference, a reading of about 512 represents roughly half the reference voltage (about 2.5 V). It is not a direct measurement of lux, temperature or another physical unit; calibration and the sensor's circuit determine how to interpret it.</p>
+<h2 id="wiring">A safe, repeatable sensor-wiring method</h2>
+<ol><li>Disconnect USB and external power before changing connections.</li><li>Find the exact module pin labels or datasheet. Identify VCC, GND and signal pins.</li><li>Connect the module to a supply voltage it supports. Connect GND to Arduino GND.</li><li>Connect the signal to a suitable input pin. Keep signal wires short while testing.</li><li>Power the board and test one sensor with a small sketch before adding other components.</li><li>Open Serial Monitor at the baud rate used by the sketch and compare readings while changing the sensor input.</li></ol>
+<figure class="figure"><img src="../assets/arduino-uno-sensor-wiring-map.svg" width="1200" height="660" alt="Sensor wiring map for Arduino Uno showing shared ground and separate analog, digital and trigger echo signal connections"><figcaption>Conceptual wiring map. Follow the pin labels on your exact module; connector order varies by manufacturer.</figcaption></figure>
+<h2 id="ldr">Example 1: read an LDR using analogue input A0</h2>
+<p>A bare light-dependent resistor (LDR) changes resistance with light. The Arduino cannot measure resistance directly, so pair the LDR with a fixed resistor to make a voltage divider. In this example, connect 5 V to the LDR, the junction to A0, and a 10 kΩ resistor from the junction to GND. The voltage at A0 rises as the LDR becomes brighter because its resistance falls.</p>
+<div class="table-wrap"><table><thead><tr><th>Connection</th><th>Arduino / component</th></tr></thead><tbody><tr><td>LDR first leg</td><td>5V</td></tr><tr><td>LDR second leg and fixed resistor first leg</td><td>A0 junction</td></tr><tr><td>10 kΩ resistor second leg</td><td>GND</td></tr></tbody></table></div>
+<pre><code>const int ldrPin = A0;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int reading = analogRead(ldrPin);
+  float voltage = reading * (5.0 / 1023.0);
+
+  Serial.print("ADC: ");
+  Serial.print(reading);
+  Serial.print(" | Approx. voltage: ");
+  Serial.println(voltage, 2);
+
+  delay(250);
+}</code></pre>
+<p>Open Serial Monitor, note the reading in bright and dim conditions, and use those measured values to choose a threshold for your project. The voltage calculation assumes the default 5 V analogue reference; actual board voltage and ADC characteristics introduce small differences. The ADC number is not a lux value.</p>
+<p>For the sensor's resistance behaviour and other applications, see the main-site <a href="https://vayuyaan.com/blog/what-is-ldr-sensor/">LDR sensor working principle and applications</a> guide. Keep the voltage-divider circuit and project calibration in this practical article.</p>
+<h2 id="ir">Example 2: read a digital IR obstacle module</h2>
+<p>Many reflective IR obstacle modules include an onboard comparator and a small potentiometer. Their digital output changes state when the reflected infrared signal crosses the module's threshold. The active state is not universal: some boards output LOW when an obstacle is detected, while others behave differently. Check the module documentation or observe its indicator LED and serial output.</p>
+<div class="table-wrap"><table><thead><tr><th>Module pin</th><th>Arduino Uno</th></tr></thead><tbody><tr><td>VCC</td><td>Supply accepted by the module (verify its rating)</td></tr><tr><td>GND</td><td>GND</td></tr><tr><td>DO / OUT</td><td>D2</td></tr></tbody></table></div>
+<pre><code>const int irPin = 2;
+
+void setup() {
+  pinMode(irPin, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int state = digitalRead(irPin);
+
+  Serial.print("IR output: ");
+  Serial.println(state == HIGH ? "HIGH" : "LOW");
+
+  delay(100);
+}</code></pre>
+<p>This sketch reports the electrical output only; it deliberately does not label HIGH or LOW as “obstacle detected” because module polarity varies. Once you confirm your board's active state, add that logic to your project. Adjust the potentiometer in small steps and test with the actual target surface and distance.</p>
+<h2 id="ultrasonic">Example 3: connect an HC-SR04 ultrasonic sensor</h2>
+<p>The HC-SR04 uses two digital signal pins. The Arduino sends a short trigger pulse; the sensor returns an echo pulse whose duration represents the sound's round-trip travel time. The commonly used conversion is duration × 0.0343 ÷ 2 for an approximate distance in centimetres at around room temperature.</p>
+<div class="table-wrap"><table><thead><tr><th>HC-SR04 pin</th><th>Arduino Uno</th></tr></thead><tbody><tr><td>VCC</td><td>5V (for a standard 5 V HC-SR04 module)</td></tr><tr><td>GND</td><td>GND</td></tr><tr><td>TRIG</td><td>D9</td></tr><tr><td>ECHO</td><td>D10</td></tr></tbody></table></div>
+<pre><code>const byte trigPin = 9;
+const byte echoPin = 10;
+
+void setup() {
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  // Timeout prevents waiting indefinitely (30 ms ≈ 5 m round trip).
+  unsigned long duration = pulseIn(echoPin, HIGH, 30000UL);
+
+  if (duration == 0) {
+    Serial.println("No echo: check target, wiring and range");
+  } else {
+    float distanceCm = duration * 0.0343 / 2.0;
+    Serial.print("Distance: ");
+    Serial.print(distanceCm, 1);
+    Serial.println(" cm");
+  }
+
+  delay(100);
+}</code></pre>
+<p>The timeout is a guard against a missing echo, not a promise that the sensor measures accurately to five metres. The usable range depends on the module, target size and angle, surface, surroundings and environmental conditions. Avoid treating a zero reading as a real distance. For pinout details and common faults, use the dedicated <a href="../hc-sr04-ultrasonic-sensor-guide/">HC-SR04 wiring and Arduino code guide</a> and <a href="../hc-sr04-wrong-readings-arduino/">HC-SR04 troubleshooting guide</a>.</p>
+<h2 id="pwm">PWM pins: what they can and cannot do</h2>
+<p>On the classic Uno R3, <code>analogWrite()</code> on pins 3, 5, 6, 9, 10 or 11 produces pulse-width modulation (PWM). The output switches between LOW and HIGH; changing the duty cycle changes the average energy delivered to a suitable load. It does not create a steady, adjustable analogue voltage from the pin.</p>
+<pre><code>const byte ledPin = 9;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  for (int level = 0; level <= 255; level++) {
+    analogWrite(ledPin, level);
+    delay(8);
+  }
+
+  for (int level = 255; level >= 0; level--) {
+    analogWrite(ledPin, level);
+    delay(8);
+  }
+}</code></pre>
+<p>Use a suitable series resistor with a bare LED. For motors, use a motor driver rated for the motor's voltage and current; never connect a motor directly to an Arduino I/O pin. PWM pin availability and timer behaviour can differ on other boards, and some libraries use hardware timers that affect PWM on particular pins.</p>
+<h2 id="debug">Sensor not working? Check these common causes</h2>
+<div class="table-wrap"><table><thead><tr><th>Symptom</th><th>What to check</th></tr></thead><tbody><tr><td>Always reads 0 or 1023</td><td>Check the analogue divider path, signal pin, common ground and whether the input is floating or shorted to a rail.</td></tr><tr><td>IR output seems inverted</td><td>Confirm the module's active-LOW or active-HIGH behaviour; do not assume polarity.</td></tr><tr><td>HC-SR04 returns zero</td><td>Check TRIG/ECHO pin assignments, 5 V supply, ground, target angle and timeout. Test a large flat target at a sensible distance.</td></tr><tr><td>Values jump around</td><td>Inspect loose jumper wires, supply stability, electrical noise and sensor-specific filtering or averaging needs.</td></tr><tr><td>Board resets when a motor starts</td><td>Use a properly rated motor driver and suitable motor supply; check wiring and shared ground. Do not power the motor from an I/O pin.</td></tr><tr><td>Sensor gets hot or stops responding</td><td>Disconnect power immediately and recheck polarity, voltage rating and wiring against the module datasheet.</td></tr></tbody></table></div>
+<h2 id="faq">Frequently asked questions</h2>
+<h3>Can I connect multiple sensors to one Arduino Uno?</h3><p>Yes, if enough suitable pins remain and the combined current draw stays within the board and supply limits. Check pin conflicts, libraries and timing requirements before combining sketches.</p>
+<h3>Can I use an analogue sensor on a digital pin?</h3><p>Not if you need its changing analogue voltage. Use A0–A5 with <code>analogRead()</code>. Some modules also provide a separate digital threshold output that can be read with <code>digitalRead()</code>.</p>
+<h3>Are all Arduino Uno pins 5 V tolerant?</h3><p>The classic Uno R3 uses 5 V logic, but this does not make every attached sensor safe at 5 V. Follow the sensor's supply and input/output voltage specifications. Other Uno-branded or compatible boards may use different logic levels.</p>
+<h3>Is PWM the same as analogue output?</h3><p>No. PWM is a switched digital waveform. A load or filter may respond to its average, but the pin itself is not producing a true continuously variable analogue voltage.</p>
+<div class="cta"><span class="eyebrow">CONTINUE LEARNING</span><h2>Choose the right board, sensor and components</h2><p>Use the Arduino Uno overview for board fundamentals, then return here when you are ready to wire and test a sensor.</p><a href="https://vayuyaan.com/blog/arduino-uno-r3-complete-guide-for-beginners/">Read the Arduino Uno R3 beginner's guide ↗</a></div>
+<p class="sources"><strong>Technical references:</strong> <a href="https://docs.arduino.cc/hardware/uno-rev3/">Arduino Uno Rev3 hardware documentation</a>; <a href="https://docs.arduino.cc/language-reference/en/functions/analog-io/analogRead/">Arduino analogRead() reference</a>; <a href="https://docs.arduino.cc/language-reference/en/functions/analog-io/analogWrite/">Arduino analogWrite() reference</a>; <a href="https://docs.arduino.cc/language-reference/en/functions/advanced-io/pulseIn/">Arduino pulseIn() reference</a>. Confirm module-specific pinouts and electrical ratings using the datasheet supplied by its manufacturer.</p>
+</article></div></main>
+<footer class="site-footer"><div class="footer-about"><a class="footer-logo" href="../"><img src="../assets/vayuyaan-logo.png" alt="Vayuyaan logo" width="394" height="109"></a><p>Practical electronics, Arduino, ESP32 and robotics learning resources.</p><p>Email: <a href="mailto:support@vayuyaan.com">support@vayuyaan.com</a></p></div><div class="footer-column"><h2>Explore</h2><a href="../arduino/">Arduino guides</a><a href="../sensors/">Sensor guides</a><a href="../robotics/">Robotics projects</a><a href="../what-is-esp32/">ESP32 guides</a></div><div class="footer-column"><h2>Vayuyaan</h2><a href="https://vayuyaan.com/blog/">Electronics blog</a><a href="https://vayuyaan.com/shop/">Shop components</a><a href="https://vayuyaan.com/">Main website</a></div></footer>
+<div class="footer-bottom"><span>© 2026 Vayuyaan. All rights reserved.</span><span>Electronics • Robotics • DIY</span></div>
+<script>(()=>{const b=document.querySelector('.menu'),n=document.querySelector('.navlinks');if(b&&n){const close=()=>{n.classList.remove('mobile-open');b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','Open navigation menu')};b.addEventListener('click',()=>{const o=n.classList.toggle('mobile-open');b.setAttribute('aria-expanded',String(o));b.setAttribute('aria-label',o?'Close navigation menu':'Open navigation menu')});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&n.classList.contains('mobile-open')){close();b.focus()}})}})();</script>
+</body></html>
