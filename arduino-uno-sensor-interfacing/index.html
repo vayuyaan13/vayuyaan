@@ -20,43 +20,6 @@
 @media(max-width:820px){.layout{grid-template-columns:1fr;gap:22px}.toc{position:static;border:1px solid #e2e7ea;border-radius:9px;padding:15px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.toc strong{grid-column:1/-1}}
 @media(max-width:560px){.article-shell{padding:20px 19px 58px}.article-head h1{font-size:2.35rem}.deck{font-size:1.02rem}.body{font-size:.98rem}.body pre{font-size:.76rem}.body table{font-size:.78rem}.body th,.body td{padding:8px}}
 
-/* Compact mobile tables: preserve context while reducing vertical space. */
-@media(max-width:820px){
-  .article-shell .body .table-wrap{width:100%;max-width:100%;overflow:visible!important;margin:16px 0 22px}
-  .article-shell .body .table-wrap table{display:block!important;width:100%!important;min-width:0!important;max-width:100%!important;border-collapse:separate;border-spacing:0;font-size:.82rem;line-height:1.42}
-  .article-shell .body .table-wrap table thead{display:none!important}
-  .article-shell .body .table-wrap table tbody{display:block!important;width:100%}
-  .article-shell .body .table-wrap table tr{
-    display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-    width:100%;margin:0 0 9px;border:1px solid #e1e6e9;border-radius:8px;
-    overflow:hidden;background:#fff;
-  }
-  .article-shell .body .table-wrap table td{
-    display:block!important;min-width:0;width:auto!important;max-width:none;
-    padding:8px 10px;border:0;border-bottom:1px solid #edf0f2;
-    overflow-wrap:anywhere;word-break:normal;white-space:normal;
-  }
-  /* First cell identifies the row; remaining cells become compact labelled fields. */
-  .article-shell .body .table-wrap table td:first-child{
-    grid-column:1/-1;background:#f3f6f7;color:#26323b;
-    font-weight:700;font-size:.85rem;border-bottom:1px solid #e1e6e9;
-  }
-  .article-shell .body .table-wrap table td:not(:first-child)::before{
-    content:attr(data-label);display:block;margin:0 0 3px;
-    color:#68747e;font-size:.66rem;font-weight:700;
-    letter-spacing:.025em;text-transform:uppercase;line-height:1.25;
-  }
-  .article-shell .body .table-wrap table td:last-child{border-bottom:0}
-  /* Two-column wiring/troubleshooting tables use a compact label/value split. */
-  .article-shell .body .table-wrap table tr:has(td:nth-child(2):last-child){
-    grid-template-columns:minmax(92px,36%) minmax(0,64%);
-  }
-  .article-shell .body .table-wrap table tr:has(td:nth-child(2):last-child) td:first-child{
-    grid-column:auto;background:#f3f6f7;align-self:stretch;
-  }
-  .article-shell .body .table-wrap table tr:has(td:nth-child(2):last-child) td:nth-child(2)::before{margin-bottom:3px}
-}
-
 /* Clean, compact reference lists replace wide tables on every screen size. */
 .data-list{margin:20px 0 28px;border-top:1px solid #e1e6e9}
 .data-item{padding:15px 0 13px;border-bottom:1px solid #e1e6e9}
@@ -72,6 +35,75 @@
  .data-item{padding:12px 0 11px}
  .data-item p{font-size:.9rem}
  .connection-list li{grid-template-columns:minmax(100px,34%) minmax(0,1fr);gap:9px;padding:9px 0;font-size:.88rem}
+}
+
+
+/* Article reading polish: compact hierarchy, calm reference lists and phone-friendly code. */
+.article-shell{max-width:1120px}
+.article-head{max-width:860px}
+.layout{grid-template-columns:190px minmax(0,760px);gap:40px}
+.body{font-size:1rem;line-height:1.72}
+.body p{margin-bottom:16px}
+.body h2{margin:38px 0 12px}
+.body h3{margin:22px 0 7px}
+.figure{margin:22px 0 26px}
+.figure img{border-radius:10px}
+.figure figcaption{line-height:1.5}
+.data-list{margin:16px 0 24px;border-top:1px solid #e8ecef}
+.data-item{padding:13px 0 12px;border-bottom:1px solid #e8ecef}
+.data-item h3{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin:0 0 5px!important;font-size:1rem!important;line-height:1.35;color:#202b33}
+.data-item h3 span{font-family:"DM Sans",system-ui,sans-serif;font-size:.76rem;font-weight:600;letter-spacing:0;text-transform:none;color:#78838c}
+.data-item p{margin:0 0 4px!important;font-size:.91rem;line-height:1.52}
+.data-item .data-note{color:#58636d;font-size:.86rem}
+.connection-list{list-style:none;padding:0!important;margin:15px 0 24px!important;border-top:1px solid #e8ecef}
+.connection-list li{display:grid;grid-template-columns:minmax(125px,32%) minmax(0,1fr);gap:12px;padding:10px 0;margin:0!important;border-bottom:1px solid #e8ecef;font-size:.91rem;line-height:1.48}
+.connection-list li strong{color:#26323b}
+.connection-list li span{min-width:0}
+.body pre{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.body .cta{margin:34px 0 24px;padding:24px}
+.body .cta h2{margin:6px 0 9px}
+.body .sources{line-height:1.65}
+@media(max-width:820px){
+ .article-shell{padding:22px 22px 60px}
+ .layout{grid-template-columns:minmax(0,1fr);gap:18px}
+ .toc{position:static;top:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 14px;padding:13px 15px;border:1px solid #e5e9ec;border-radius:9px;background:#fbfcfc}
+ .toc strong{grid-column:1/-1;margin-bottom:4px}
+ .toc a{padding:5px 0;font-size:.8rem}
+ .article-head{margin-bottom:25px;padding-bottom:22px}
+ .body{font-size:.96rem;line-height:1.68}
+ .body h2{font-size:1.55rem;line-height:1.22;margin:32px 0 10px}
+ .figure{margin:18px 0 22px}
+ .figure img{border-radius:8px}
+ .body pre{font-size:.78rem;line-height:1.55;padding:14px}
+}
+@media(max-width:560px){
+ .article-shell{padding:18px 18px 48px}
+ .crumb{margin:5px 0 22px;font-size:.78rem}
+ .article-head{margin-bottom:22px;padding-bottom:20px}
+ .article-head h1{font-size:clamp(2rem,8.2vw,2.35rem);line-height:1.1;letter-spacing:-.045em;margin:11px 0 12px}
+ .deck{font-size:.98rem;line-height:1.58}
+ .byline{font-size:.76rem;line-height:1.5}
+ .body{font-size:.94rem;line-height:1.65}
+ .body p{margin-bottom:14px}
+ .body h2{font-size:1.42rem;margin:29px 0 9px}
+ .body h3{font-size:1.04rem;margin:19px 0 6px}
+ .body ul,.body ol{padding-left:21px;margin-bottom:17px}
+ .body li{margin-bottom:7px}
+ .note{padding:13px 15px;margin:18px 0}
+ .data-list{margin:13px 0 20px}
+ .data-item{padding:11px 0 10px}
+ .data-item h3{font-size:.96rem!important;gap:7px}
+ .data-item h3 span{font-size:.73rem}
+ .data-item p{font-size:.87rem;line-height:1.5}
+ .data-item .data-note{font-size:.82rem}
+ .connection-list{margin:13px 0 20px!important}
+ .connection-list li{grid-template-columns:minmax(105px,36%) minmax(0,1fr);gap:9px;padding:8px 0;font-size:.85rem;line-height:1.45}
+ .body pre{font-size:.72rem;line-height:1.5;padding:12px;border-radius:7px;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal}
+ .body .cta{margin:28px 0 20px;padding:21px 18px;border-radius:9px}
+ .body .cta h2{font-size:1.45rem}
+ .body .cta p{font-size:.9rem;line-height:1.55}
+ .body .cta a{padding:10px 12px;font-size:.88rem}
+ .body .sources{font-size:.78rem}
 }
 
 </style>
