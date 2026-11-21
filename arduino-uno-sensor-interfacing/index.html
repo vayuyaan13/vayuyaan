@@ -266,8 +266,41 @@ void loop() {
 <style>
 /* Keep the approved four-part homepage footer; tighten link rhythm on this article only. */
 @media(max-width:760px){
-  /* Prevent the sticky site header from covering the footer when users reach the page end. */
-  .header{position:relative;top:auto}
+  /* This article should scroll normally on phones; the sticky header was covering
+     the first part of the footer when the page was scrolled to the bottom. */
+  .header{
+    position:static!important;
+    top:auto!important;
+    z-index:auto!important;
+    transform:none!important;
+  }
+  .site-footer{
+    position:relative;
+    clear:both;
+    padding-top:30px;
+  }
+  .site-footer .footer-about{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    min-width:0;
+    overflow:visible;
+  }
+  .site-footer .footer-logo{
+    display:block;
+    width:168px;
+    max-width:100%;
+    height:auto;
+    overflow:visible;
+    margin:0 0 10px;
+  }
+  .site-footer .footer-logo img{
+    display:block;
+    width:100%;
+    max-width:100%;
+    height:auto;
+    object-fit:contain;
+  }
 }
 
 .site-footer .footer-column{gap:5px}
