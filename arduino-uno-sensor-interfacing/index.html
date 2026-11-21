@@ -265,6 +265,11 @@ void loop() {
 <div class="footer-bottom"><span>© 2026 Vayuyaan. All rights reserved.</span><span>Electronics • Robotics • DIY</span></div>
 <style>
 /* Keep the approved four-part homepage footer; tighten link rhythm on this article only. */
+@media(max-width:760px){
+  /* Prevent the sticky site header from covering the footer when users reach the page end. */
+  .header{position:relative;top:auto}
+}
+
 .site-footer .footer-column{gap:5px}
 .site-footer .footer-column a{min-height:28px;padding:1px 0;line-height:1.3}
 .site-footer .footer-social{row-gap:3px}
