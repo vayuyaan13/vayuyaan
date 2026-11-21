@@ -260,6 +260,14 @@ footer a{display:inline-flex;align-items:center;min-height:40px;padding:4px 0}
 @media(max-width:600px){#arduino .topic-grid{grid-template-columns:1fr}#arduino .topic{min-height:210px}}
 
 
+/* Force the approved light footer on every GitHub Pages section, including mobile dark-mode browsers. */
+.site-footer,.site-footer+.footer-bottom{color-scheme:light!important;background-color:#fff!important}
+.site-footer{color:#5f6b75!important}
+.site-footer .footer-column h2{color:#101820!important}
+.site-footer .footer-column a,.site-footer .footer-about p,.site-footer .footer-email,.site-footer .footer-email a{color:#5f6b75!important}
+.site-footer .footer-column a:hover{color:#101820!important}
+.site-footer+.footer-bottom{color:#929ba3!important;border-top:1px solid #e5e9ed!important}
+
 /* Article footer: keep the approved four-section footer compact and readable on phones. */
 .site-footer{
   width:100%;
