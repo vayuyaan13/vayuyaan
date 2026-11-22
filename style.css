@@ -362,3 +362,128 @@ footer a{display:inline-flex;align-items:center;min-height:40px;padding:4px 0}
   .mobile-reference-footer .footer-about{grid-column:auto!important;margin-bottom:12px!important}
   .mobile-reference-footer .footer-group-links a{min-height:36px}
 }
+
+
+/* Refined Vayuyaan footer: balanced spacing, clear hierarchy and responsive columns. */
+.mobile-reference-footer{
+  box-sizing:border-box;
+  width:min(100% - 64px, 1510px)!important;
+  max-width:1510px!important;
+  margin:0 auto!important;
+  grid-template-columns:minmax(250px,1.4fr) minmax(190px,1.15fr) minmax(190px,1.1fr) minmax(145px,.8fr) minmax(155px,.85fr)!important;
+  gap:clamp(28px,3vw,54px)!important;
+  padding:54px 0 58px!important;
+  border-top:1px solid #e7e9ed!important;
+  background:#fff!important;
+  color:#596675!important;
+  font-size:15px!important;
+}
+.mobile-reference-footer .footer-logo img{
+  width:180px!important;
+  height:auto!important;
+  filter:none!important;
+}
+.mobile-reference-footer .footer-about{
+  gap:18px!important;
+  margin:0!important;
+  padding-right:12px;
+}
+.mobile-reference-footer .footer-about p{
+  max-width:340px!important;
+  margin:0!important;
+  color:#596675!important;
+  font-size:15px!important;
+  line-height:1.75!important;
+}
+.mobile-reference-footer .footer-email,
+.mobile-reference-footer .footer-email a{
+  color:#596675!important;
+  font-size:14px!important;
+}
+.mobile-reference-footer .footer-group-title{
+  margin:0 0 12px!important;
+  padding:0 0 12px!important;
+  border-bottom:1px solid #edf0f2;
+  color:#17212b!important;
+  font-size:15px!important;
+  font-weight:700!important;
+  letter-spacing:.01em;
+  line-height:1.35!important;
+}
+.mobile-reference-footer .footer-group-links{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  gap:13px!important;
+  padding:0!important;
+}
+.mobile-reference-footer .footer-group-links a{
+  display:inline-block!important;
+  min-height:0!important;
+  padding:1px 0!important;
+  color:#596675!important;
+  font-size:14px!important;
+  line-height:1.55!important;
+  text-decoration:none!important;
+  overflow-wrap:anywhere;
+  transition:color .18s ease,transform .18s ease;
+}
+.mobile-reference-footer .footer-group-links a:hover{
+  color:#e98200!important;
+  text-decoration:underline!important;
+  text-decoration-color:#f2b24a!important;
+  text-underline-offset:4px;
+}
+.mobile-reference-footer .footer-group-links a:focus-visible,
+.mobile-reference-footer .footer-logo:focus-visible{
+  outline:2px solid #e98200;
+  outline-offset:4px;
+  border-radius:2px;
+}
+.mobile-reference-footer .footer-group{border:0!important;padding:0!important}
+.mobile-reference-footer+.footer-bottom,
+.mobile-reference-footer-bottom{
+  box-sizing:border-box;
+  width:min(100% - 64px,1510px)!important;
+  max-width:1510px!important;
+  margin:0 auto!important;
+  padding:18px 0 24px!important;
+  border-top:1px solid #e7e9ed!important;
+  background:#fff!important;
+  color:#89939d!important;
+  font-size:12px!important;
+  line-height:1.5;
+}
+@media(max-width:1100px){
+  .mobile-reference-footer{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:36px 28px!important;
+    padding:44px 0 46px!important;
+  }
+  .mobile-reference-footer .footer-about{grid-column:1/-1!important}
+}
+@media(max-width:760px){
+  .mobile-reference-footer{
+    width:calc(100% - 40px)!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:30px 22px!important;
+    padding:36px 0 38px!important;
+  }
+  .mobile-reference-footer .footer-about{grid-column:1/-1!important}
+  .mobile-reference-footer .footer-logo img{width:165px!important}
+  .mobile-reference-footer .footer-group-title{font-size:14px!important}
+  .mobile-reference-footer .footer-group-links{gap:11px!important}
+  .mobile-reference-footer+.footer-bottom,
+  .mobile-reference-footer-bottom{width:calc(100% - 40px)!important;padding:16px 0 22px!important}
+}
+@media(max-width:480px){
+  .mobile-reference-footer{
+    grid-template-columns:1fr!important;
+    gap:26px!important;
+    padding:30px 0 32px!important;
+  }
+  .mobile-reference-footer .footer-about{grid-column:auto!important}
+  .mobile-reference-footer .footer-group-title{margin-bottom:10px!important}
+  .mobile-reference-footer+.footer-bottom,
+  .mobile-reference-footer-bottom{width:calc(100% - 40px)!important}
+}
