@@ -343,7 +343,7 @@ footer a{display:inline-flex;align-items:center;min-height:40px;padding:4px 0}
 /* Footer layout correction: make the four link groups direct grid items. */
 .mobile-reference-footer{
   display:grid!important;
-  grid-template-columns:minmax(220px,1.35fr) repeat(3,minmax(0,1fr))!important;
+  grid-template-columns:minmax(220px,1.35fr) repeat(4,minmax(0,1fr))!important;
   align-items:start;
   gap:32px;
 }
