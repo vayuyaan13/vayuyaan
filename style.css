@@ -338,3 +338,27 @@ footer a{display:inline-flex;align-items:center;min-height:40px;padding:4px 0}
   .mobile-reference-footer .footer-group-links a{display:block;min-height:44px;padding:8px 0;color:#b9b9bb!important;font-size:1rem;line-height:1.5}
   .mobile-reference-footer-bottom{display:block!important;max-width:none!important;padding:28px 18px 34px!important;background:#08090b!important;color:#b9b9bb!important;font-size:.82rem!important;border-top:1px solid #292b2e!important}
 }
+
+
+/* Footer layout correction: make the four link groups direct grid items. */
+.mobile-reference-footer{
+  display:grid!important;
+  grid-template-columns:minmax(220px,1.35fr) repeat(3,minmax(0,1fr))!important;
+  align-items:start;
+  gap:32px;
+}
+.mobile-reference-footer .footer-about{grid-column:auto!important;min-width:0}
+.mobile-reference-footer .footer-accordion-grid{display:contents!important}
+.mobile-reference-footer .footer-group{min-width:0}
+.mobile-reference-footer .footer-group-title{font-size:1rem;line-height:1.3;white-space:normal}
+.mobile-reference-footer .footer-group-links{min-width:0;gap:8px}
+.mobile-reference-footer .footer-group-links a{display:block;min-width:0;min-height:32px;line-height:1.45;overflow-wrap:anywhere}
+@media(max-width:900px){
+  .mobile-reference-footer{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:24px 20px}
+  .mobile-reference-footer .footer-about{grid-column:1/-1!important}
+}
+@media(max-width:700px){
+  .mobile-reference-footer{grid-template-columns:1fr!important;gap:22px!important;padding:32px 22px 38px!important}
+  .mobile-reference-footer .footer-about{grid-column:auto!important;margin-bottom:12px!important}
+  .mobile-reference-footer .footer-group-links a{min-height:36px}
+}
