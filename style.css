@@ -964,3 +964,47 @@ footer a{display:inline-flex;align-items:center;min-height:40px;padding:4px 0}
     padding:0!important;
   }
 }
+
+
+/* Desktop footer reference styling: keep the Links column consistent with the other columns. */
+@media (min-width:761px){
+  footer.site-footer.mobile-reference-footer .footer-accordion-grid > .footer-group:nth-child(2) > .footer-group-links{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:flex-start!important;
+    gap:10px!important;
+    row-gap:10px!important;
+    margin:0!important;
+    padding:0!important;
+  }
+  footer.site-footer.mobile-reference-footer .footer-accordion-grid > .footer-group:nth-child(2) > .footer-group-links > a,
+  footer.site-footer.mobile-reference-footer .footer-accordion-grid > .footer-group:nth-child(2) > .footer-group-links > a:link,
+  footer.site-footer.mobile-reference-footer .footer-accordion-grid > .footer-group:nth-child(2) > .footer-group-links > a:visited{
+    display:inline-block!important;
+    width:auto!important;
+    min-height:0!important;
+    height:auto!important;
+    max-height:none!important;
+    flex:0 0 auto!important;
+    margin:0!important;
+    padding:1px 0!important;
+    border:0!important;
+    border-radius:0!important;
+    background:transparent!important;
+    color:#596675!important;
+    font-size:14px!important;
+    font-weight:400!important;
+    line-height:1.55!important;
+    text-decoration:none!important;
+    transform:none!important;
+  }
+  footer.site-footer.mobile-reference-footer .footer-accordion-grid > .footer-group:nth-child(2) > .footer-group-links > a::after{
+    content:none!important;
+    display:none!important;
+  }
+  footer.site-footer.mobile-reference-footer .footer-accordion-grid > .footer-group:nth-child(2) > .footer-group-links > a:hover{
+    color:#e98200!important;
+    text-decoration:underline!important;
+    background:transparent!important;
+  }
+}
