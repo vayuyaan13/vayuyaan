@@ -823,3 +823,42 @@ footer a{display:inline-flex;align-items:center;min-height:40px;padding:4px 0}
     font-size:11px!important;
   }
 }
+
+
+/* Hard reset the mobile Links list rhythm (override legacy footer rules). */
+@media (max-width:760px){
+  footer.site-footer.mobile-reference-footer .footer-accordion-grid > section.footer-group:nth-of-type(2) > .footer-group-links{
+    display:flex!important;
+    flex-flow:column nowrap!important;
+    align-items:stretch!important;
+    justify-content:flex-start!important;
+    gap:0!important;
+    row-gap:0!important;
+    padding:0!important;
+    margin:0!important;
+  }
+  footer.site-footer.mobile-reference-footer .footer-accordion-grid > section.footer-group:nth-of-type(2) > .footer-group-links > a,
+  footer.site-footer.mobile-reference-footer .footer-accordion-grid > section.footer-group:nth-of-type(2) > .footer-group-links > a:link,
+  footer.site-footer.mobile-reference-footer .footer-accordion-grid > section.footer-group:nth-of-type(2) > .footer-group-links > a:visited{
+    display:flex!important;
+    flex:0 0 auto!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    box-sizing:border-box!important;
+    width:max-content!important;
+    max-width:100%!important;
+    min-height:0!important;
+    height:auto!important;
+    padding:0!important;
+    margin:0!important;
+    margin-block:0!important;
+    border:0!important;
+    font-size:16px!important;
+    line-height:1.2!important;
+  }
+  footer.site-footer.mobile-reference-footer .footer-accordion-grid > section.footer-group:nth-of-type(2) > .footer-group-links > a::after{
+    margin:0 0 0 7px!important;
+    padding:0!important;
+    line-height:1!important;
+  }
+}
