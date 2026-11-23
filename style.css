@@ -538,3 +538,32 @@ footer a{display:inline-flex;align-items:center;min-height:40px;padding:4px 0}
     padding:9px 10px!important;
   }
 }
+
+
+/* Compact mobile footer rhythm: reduce oversized gaps between link rows. */
+@media(max-width:760px){
+  .mobile-reference-footer .footer-group-links{
+    gap:2px!important;
+    padding:4px 0 0!important;
+  }
+  .mobile-reference-footer .footer-group-links a,
+  .mobile-reference-footer .footer-group:nth-of-type(2) .footer-group-links a{
+    min-height:0!important;
+    height:auto!important;
+    margin:0!important;
+    padding:7px 8px!important;
+    line-height:1.35!important;
+  }
+  .mobile-reference-footer .footer-group-title{
+    margin:0 0 8px!important;
+    padding:0 0 10px!important;
+    line-height:1.3!important;
+  }
+  .mobile-reference-footer .footer-group{
+    margin:0!important;
+    padding:0 0 16px!important;
+  }
+  .mobile-reference-footer .footer-about{
+    margin-bottom:8px!important;
+  }
+}
