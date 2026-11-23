@@ -1008,3 +1008,19 @@ footer a{display:inline-flex;align-items:center;min-height:40px;padding:4px 0}
     background:transparent!important;
   }
 }
+
+
+/* Match Links typography exactly to Recent Posts, Categories and Socials. */
+@media (min-width:761px){
+  footer.site-footer.mobile-reference-footer .footer-main-links > a,
+  footer.site-footer.mobile-reference-footer .footer-main-links > a:link,
+  footer.site-footer.mobile-reference-footer .footer-main-links > a:visited{
+    font-family:inherit!important;
+    font-size:14px!important;
+    font-weight:400!important;
+    line-height:1.55!important;
+    letter-spacing:normal!important;
+    color:#596675!important;
+    text-transform:none!important;
+  }
+}
