@@ -662,3 +662,104 @@ footer a{display:inline-flex;align-items:center;min-height:40px;padding:4px 0}
     line-height:1.35!important;
   }
 }
+
+
+/* Desktop footer refinement: tighten the About block and balance all five columns. */
+@media(min-width:1101px){
+  .mobile-reference-footer{
+    grid-template-columns:minmax(235px,1.2fr) minmax(245px,1.15fr) minmax(225px,1.05fr) minmax(150px,.72fr) minmax(165px,.78fr)!important;
+    align-items:start!important;
+    column-gap:clamp(24px,2.6vw,42px)!important;
+    row-gap:24px!important;
+    padding-top:42px!important;
+    padding-bottom:42px!important;
+  }
+  .mobile-reference-footer .footer-about{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:flex-start!important;
+    gap:16px!important;
+    margin:0!important;
+    padding:0!important;
+  }
+  .mobile-reference-footer .footer-logo{
+    display:inline-flex!important;
+    margin:0!important;
+    padding:0!important;
+  }
+  .mobile-reference-footer .footer-logo img{
+    width:158px!important;
+    height:auto!important;
+    margin:0!important;
+  }
+  .mobile-reference-footer .footer-about p{
+    max-width:34ch!important;
+    margin:0!important;
+    font-size:14px!important;
+    line-height:1.6!important;
+  }
+  .mobile-reference-footer .footer-email{
+    margin-top:2px!important;
+    font-size:13px!important;
+  }
+  .mobile-reference-footer .footer-group-title{
+    margin-bottom:10px!important;
+    padding-bottom:11px!important;
+  }
+  .mobile-reference-footer .footer-group-links{gap:8px!important}
+  .mobile-reference-footer .footer-group-links a{font-size:13.5px!important;line-height:1.5!important}
+  .mobile-reference-footer .footer-group:nth-of-type(2) .footer-group-links a{
+    width:max-content!important;
+    max-width:100%!important;
+    min-height:36px!important;
+    padding:6px 2px!important;
+    gap:10px!important;
+  }
+  .mobile-reference-footer .footer-group:nth-of-type(2) .footer-group-links a::after{
+    margin-left:0!important;
+    padding-left:0!important;
+    font-size:12px!important;
+  }
+  .mobile-reference-footer .footer-group:nth-of-type(2) .footer-group-links a:hover{
+    transform:translateX(2px);
+    background:transparent!important;
+    border-color:transparent!important;
+  }
+}
+
+/* Give the social list a consistent, recognisable icon cue without external assets. */
+.mobile-reference-footer .footer-group:last-of-type .footer-group-links a{
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  width:max-content!important;
+  max-width:100%!important;
+}
+.mobile-reference-footer .footer-group:last-of-type .footer-group-links a::before{
+  display:inline-grid;
+  place-items:center;
+  flex:0 0 19px;
+  width:19px;
+  height:19px;
+  border:1px solid #e7e9ed;
+  border-radius:5px;
+  color:#e98200;
+  font-family:Arial,sans-serif;
+  font-size:11px;
+  font-weight:700;
+  line-height:1;
+}
+.mobile-reference-footer .footer-group:last-of-type .footer-group-links a:nth-child(1)::before{content:"✉"}
+.mobile-reference-footer .footer-group:last-of-type .footer-group-links a:nth-child(2)::before{content:"◎"}
+.mobile-reference-footer .footer-group:last-of-type .footer-group-links a:nth-child(3)::before{content:"f"}
+.mobile-reference-footer .footer-group:last-of-type .footer-group-links a:nth-child(4)::before{content:"in";font-size:9px}
+.mobile-reference-footer .footer-group:last-of-type .footer-group-links a:nth-child(5)::before{content:"p"}
+.mobile-reference-footer .footer-group:last-of-type .footer-group-links a:nth-child(6)::before{content:"@"}
+.mobile-reference-footer .footer-group:last-of-type .footer-group-links a:nth-child(7)::before{content:"𝕏";font-size:10px}
+.mobile-reference-footer .footer-group:last-of-type .footer-group-links a:nth-child(8)::before{content:"▶";font-size:9px}
+@media(max-width:760px){
+  .mobile-reference-footer .footer-group:last-of-type .footer-group-links a{
+    min-height:36px!important;
+    padding:5px 8px!important;
+  }
+}
