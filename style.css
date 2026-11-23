@@ -567,3 +567,41 @@ footer a{display:inline-flex;align-items:center;min-height:40px;padding:4px 0}
     margin-bottom:8px!important;
   }
 }
+
+
+/* Final mobile footer spacing override. Keep each link row compact on phones. */
+@media screen and (max-width:760px){
+  footer.site-footer.mobile-reference-footer .footer-accordion-grid,
+  footer.site-footer.mobile-reference-footer .footer-group-links{
+    display:flex!important;
+    flex-direction:column!important;
+    gap:0!important;
+    row-gap:0!important;
+    padding:0!important;
+    margin:0!important;
+  }
+  footer.site-footer.mobile-reference-footer .footer-group{
+    padding:0 0 12px!important;
+    margin:0!important;
+  }
+  footer.site-footer.mobile-reference-footer .footer-group-title{
+    margin:0 0 6px!important;
+    padding:0 0 8px!important;
+  }
+  footer.site-footer.mobile-reference-footer .footer-group-links a,
+  footer.site-footer.mobile-reference-footer .footer-group:nth-of-type(2) .footer-group-links a{
+    display:block!important;
+    box-sizing:border-box!important;
+    width:100%!important;
+    min-height:0!important;
+    height:auto!important;
+    margin:0!important;
+    padding:5px 8px!important;
+    line-height:1.25!important;
+  }
+  footer.site-footer.mobile-reference-footer .footer-group:nth-of-type(2) .footer-group-links a{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+  }
+}
