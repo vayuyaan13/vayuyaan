@@ -794,3 +794,32 @@ footer a{display:inline-flex;align-items:center;min-height:40px;padding:4px 0}
     font-size:11px!important;
   }
 }
+
+
+/* Cache-busted mobile Links spacing correction. */
+@media screen and (max-width:760px){
+  footer.site-footer.mobile-reference-footer .footer-accordion-grid > section.footer-group:nth-of-type(2) .footer-group-links{
+    display:flex!important;
+    flex-direction:column!important;
+    gap:0!important;
+    row-gap:0!important;
+    padding:0!important;
+    margin:0!important;
+  }
+  footer.site-footer.mobile-reference-footer .footer-accordion-grid > section.footer-group:nth-of-type(2) .footer-group-links > a{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    min-height:0!important;
+    height:auto!important;
+    padding:2px 4px!important;
+    margin:0!important;
+    line-height:1.25!important;
+    font-size:16px!important;
+  }
+  footer.site-footer.mobile-reference-footer .footer-accordion-grid > section.footer-group:nth-of-type(2) .footer-group-links > a::after{
+    margin-left:7px!important;
+    padding:0!important;
+    font-size:11px!important;
+  }
+}
