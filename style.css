@@ -646,3 +646,19 @@ footer a{display:inline-flex;align-items:center;min-height:40px;padding:4px 0}
     line-height:1.45!important;
   }
 }
+
+
+/* Tighten only the Recent Posts list on mobile. */
+@media screen and (max-width:760px){
+  footer.site-footer.mobile-reference-footer .footer-group:first-of-type .footer-group-links{
+    gap:2px!important;
+    row-gap:2px!important;
+  }
+  footer.site-footer.mobile-reference-footer .footer-group:first-of-type .footer-group-links a{
+    min-height:0!important;
+    margin:0!important;
+    padding:3px 8px!important;
+    font-size:16px!important;
+    line-height:1.35!important;
+  }
+}
