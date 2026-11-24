@@ -1052,3 +1052,38 @@ footer a{display:inline-flex;align-items:center;min-height:40px;padding:4px 0}
     padding:3px 8px!important;
   }
 }
+
+
+/* Final mobile typography reset: every footer list must match Recent Posts. */
+@media screen and (max-width:760px){
+  footer.site-footer.mobile-reference-footer{
+    -webkit-text-size-adjust:100%!important;
+    text-size-adjust:100%!important;
+  }
+  footer.site-footer.mobile-reference-footer .footer-accordion-grid .footer-group-links > a,
+  footer.site-footer.mobile-reference-footer .footer-accordion-grid .footer-group-links > a:link,
+  footer.site-footer.mobile-reference-footer .footer-accordion-grid .footer-group-links > a:visited,
+  footer.site-footer.mobile-reference-footer .footer-accordion-grid .footer-main-links > a,
+  footer.site-footer.mobile-reference-footer .footer-accordion-grid .footer-main-links > a:link,
+  footer.site-footer.mobile-reference-footer .footer-accordion-grid .footer-main-links > a:visited{
+    font-family:inherit!important;
+    font-size:16px!important;
+    font-style:normal!important;
+    font-weight:400!important;
+    line-height:1.35!important;
+    letter-spacing:0!important;
+    text-transform:none!important;
+    color:#596675!important;
+  }
+  footer.site-footer.mobile-reference-footer .footer-accordion-grid .footer-group-links{
+    gap:8px!important;
+    row-gap:8px!important;
+  }
+  footer.site-footer.mobile-reference-footer .footer-accordion-grid .footer-group-links > a{
+    min-height:0!important;
+    height:auto!important;
+    max-height:none!important;
+    padding:3px 8px!important;
+    margin:0!important;
+  }
+}
